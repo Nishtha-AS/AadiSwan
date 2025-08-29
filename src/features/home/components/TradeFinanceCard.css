@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.trade-finance-card {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  border-radius: 40px 20px;
+  background: linear-gradient(180deg, #003760 0%, #000708 75.96%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trade-finance-icon {
+  width: 91px;
+  height: 82px;
+  position: absolute;
+  top: 31px;
+  left: 44px;
+  object-fit: contain;
+}
+
+.trade-finance-label {
+  width: 150px;
+  height: 28px;
+  position: absolute;
+  top: 128px;
+  left: 15px;
+  color: #FFF;
+  text-align: center;
+  font: 500 16px Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .trade-finance-card {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .trade-finance-icon {
+    width: 81px;
+    height: 72px;
+    top: 28px;
+    left: 39px;
+  }
+  
+  .trade-finance-label {
+    width: 130px;
+    top: 115px;
+    left: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trade-finance-card {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .trade-finance-icon {
+    width: 71px;
+    height: 62px;
+    top: 25px;
+    left: 34px;
+  }
+  
+  .trade-finance-label {
+    width: 110px;
+    top: 100px;
+    left: 15px;
+    font-size: 12px;
+  }
+}

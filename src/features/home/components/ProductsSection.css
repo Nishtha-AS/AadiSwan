@@ -1,0 +1,151 @@
+.products-section {
+  border-radius: 0;
+}
+
+.products-container {
+  width: 100%;
+}
+
+.products-row {
+  gap: 20px;
+  display: flex;
+}
+
+.products-row-bottom {
+  margin-top: 32px;
+  gap: 20px;
+  display: flex;
+}
+
+.product-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 33%;
+  margin-left: 0;
+}
+
+.product-column:nth-child(2) {
+  margin-left: 20px;
+}
+
+.product-column:nth-child(3) {
+  margin-left: 20px;
+}
+
+.product-column-wide {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 50%;
+  margin-left: 0;
+}
+
+.product-column-wide:nth-child(2) {
+  margin-left: 20px;
+}
+
+.product-card {
+  border-radius: 40px 20px 40px 20px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 38px 34px;
+}
+
+.product-logo {
+  aspect-ratio: 3.61;
+  object-fit: contain;
+  object-position: center;
+  width: 235px;
+  max-width: 100%;
+}
+
+.product-description {
+  font-size: 14px;
+  font-weight: 300;
+  align-self: stretch;
+  margin-top: 19px;
+}
+
+.product-button {
+  border-radius: 96px;
+  margin-top: 61px;
+  width: 141px;
+  max-width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 39px 16px;
+}
+
+/* Bottom row adjustments for wide cards */
+.products-row-bottom .product-card {
+  padding: 38px 34px;
+}
+
+.products-row-bottom .product-description {
+  font-size: 15px;
+  margin-top: 9px;
+}
+
+.products-row-bottom .product-button {
+  margin-top: 55px;
+  width: 142px;
+  padding: 5px 38px 17px;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 991px) {
+  .products-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  
+  .products-row-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  
+  .product-column {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .product-column-wide {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .product-card {
+    margin-top: 36px;
+    padding: 0 20px;
+  }
+  
+  .products-row-bottom .product-card {
+    max-width: 100%;
+    margin-top: 38px;
+    padding: 0 20px;
+  }
+  
+  .product-button {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+  
+  .products-row-bottom .product-button {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+  
+  .products-row-bottom .product-description {
+    max-width: 100%;
+  }
+}

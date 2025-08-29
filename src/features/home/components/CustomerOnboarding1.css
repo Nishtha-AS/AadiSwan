@@ -1,0 +1,32 @@
+.customer-onboarding-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.customer-onboarding-image {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  aspect-ratio: 1.78;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 1440px) {
+  .customer-onboarding-container {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .customer-onboarding-container {
+    padding: 20px 10px;
+  }
+  
+  .customer-onboarding-image {
+    max-width: 100%;
+  }
+}
