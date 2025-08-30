@@ -6,6 +6,9 @@ import StatisticsSection from '../components/StatisticsSection';
 import ConsultancySection from '../components/ConsultancySection';
 import CustomerOnboarding1 from '../components/CustomerOnboarding1';
 
+// ✅ ADDED - Import the new Footer component
+import Footer from '../components/Footer';
+
 // Local image imports for asset classes (from src/assets)
 import leadingLoanImg from '../../../assets/leading_loan_management_img.png';
 import workingCapitalIcon from '../../../assets/WCM_logo.jpg';
@@ -346,67 +349,77 @@ const LandingPage = () => {
           across all financial portfolios.
         </p>
 
-        <div className="products-grid">
-          {[
-            {
-              id: 'eb598de18572e13b2ecd0f01e1d60c800e57d8c1',
-              text: `AadiSwan's flagship lending suite, covering origination, underwriting,
-              credit administration, covenant management, and valuation/legal workflows. Using
-              self-service BRE, it automates end-to-end processes, ensuring precise evaluations,
-              compliance, and faster turnaround times.`,
-            },
-            {
-              id: '716fee80c37d1c6dd7332f298b19317757a8ecff',
-              text: `CADPro streamlines credit administration with automated document
-              templatization, covenant scheduling & tracking, disbursement workflows, pre/post
-              disbursement compliance—ensuring consistency & transparency while reducing manual
-              intervention.`,
-            },
-            {
-              id: 'a7a803ceae652b505f09572aa0c3ded43775b3d5',
-              text: `CAMPro is an AI- and ML-powered engine that automates credit appraisals by
-              generating analyst-style memos, projecting financials, benchmarking peers, and
-              delivering sentiment analysis with forward-looking metrics for faster, consistent
-              lending decisions.`,
-            },
-          ].map(({ id, text }) => (
-            <div key={id} className="product-card large">
+        <div className="products-container">
+          {/* Top Row - 3 Products */}
+          <div className="products-row-top">
+            <div className="product-card">
               <img
-                src={`https://api.builder.io/api/v1/image/assets/TEMP/${id}?width=470`}
-                alt="Product Logo"
+                src="https://api.builder.io/api/v1/image/assets/TEMP/eb598de18572e13b2ecd0f01e1d60c800e57d8c1?width=470"
+                alt="AS CredPro"
                 className="product-logo"
                 loading="lazy"
               />
-              <p className="product-description">{text}</p>
+              <p className="product-description">
+                AadiSwan's flagship lending suite, covering origination, underwriting, credit administration, covenant management, and valuation/legal workflows. Using self-service BRE, it automates end-to-end processes, ensuring precise evaluations, compliance, and faster turnaround times.
+              </p>
               <button className="more-btn">More →</button>
             </div>
-          ))}
-
-          {[
-            {
-              id: 'a4fd30933838b6ad02726223cd8507f059476290',
-              text: `ESMSPro facilitates environmental and social risk management by integrating
-              ESG criteria into lending processes, offering comprehensive assessments, monitoring,
-              and reporting to support sustainable and responsible financing practices.`,
-            },
-            {
-              id: 'a823da0f4adf90c08d2370342d795d4fa0aedf92',
-              text: `EWSPro provides early warning signals by monitoring behavioural financial
-              and non-financial indicators, enabling proactive risk management and timely alerts
-              to mitigate potential credit risks and reduce defaults.`,
-            },
-          ].map(({ id, text }) => (
-            <div key={id} className="product-card wide">
+            
+            <div className="product-card">
               <img
-                src={`https://api.builder.io/api/v1/image/assets/TEMP/${id}?width=473`}
-                alt="Product Logo"
+                src="https://api.builder.io/api/v1/image/assets/TEMP/716fee80c37d1c6dd7332f298b19317757a8ecff?width=470"
+                alt="AS CADPro"
                 className="product-logo"
                 loading="lazy"
               />
-              <p className="product-description">{text}</p>
+              <p className="product-description">
+                CADPro streamlines credit administration with automated document templatization, covenant scheduling & tracking, disbursement workflows, pre/post disbursement compliance—ensuring consistency & transparency while reducing manual intervention.
+              </p>
               <button className="more-btn">More →</button>
             </div>
-          ))}
+            
+            <div className="product-card">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/a7a803ceae652b505f09572aa0c3ded43775b3d5?width=470"
+                alt="AS CAMPro"
+                className="product-logo"
+                loading="lazy"
+              />
+              <p className="product-description">
+                CAMPro is an AI- and ML-powered engine that automates credit appraisals by generating analyst-style memos, projecting financials, benchmarking peers, and delivering sentiment analysis with forward-looking metrics for faster, consistent lending decisions.
+              </p>
+              <button className="more-btn">More →</button>
+            </div>
+          </div>
+          
+          {/* Bottom Row - 2 Products (WIDER) */}
+          <div className="products-row-bottom">
+            <div className="product-card">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/a4fd30933838b6ad02726223cd8507f059476290?width=473"
+                alt="AS ESMSPro"
+                className="product-logo"
+                loading="lazy"
+              />
+              <p className="product-description">
+                ESMSPro facilitates environmental and social risk management by integrating ESG criteria into lending processes, offering comprehensive assessments, monitoring, and reporting to support sustainable and responsible financing practices.
+              </p>
+              <button className="more-btn">More →</button>
+            </div>
+            
+            <div className="product-card">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/a823da0f4adf90c08d2370342d795d4fa0aedf92?width=473"
+                alt="AS EWSPro"
+                className="product-logo"
+                loading="lazy"
+              />
+              <p className="product-description">
+                EWSPro provides early warning signals by monitoring behavioural financial and non-financial indicators, enabling proactive risk management and timely alerts to mitigate potential credit risks and reduce defaults.
+              </p>
+              <button className="more-btn">More →</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -496,187 +509,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer Section */}
-      <section className="footer-section">
-        <img
-          className="footer-background"
-          src="https://api.builder.io/api/v1/image/assets/TEMP/6d9d205db9aec208c9dcf74e6a6b4a91731efbb6?width=1440"
-          alt=""
-        />
-
-        <img
-          className="footer-logo"
-          src="https://api.builder.io/api/v1/image/assets/TEMP/6a46d8eeed76ab7e2aa362283b5f85cc5f3a6021?width=244"
-          alt="AadiSwan Logo"
-        />
-
-        <div className="footer-content">
-          {/* Our Presence Section */}
-          <div className="presence-section">
-            <h3 className="footer-section-header">OUR PRESENCE</h3>
-            <div className="presence-grid">
-              <div className="presence-card">
-                <div className="presence-top">
-                  <h4 className="presence-city">Delhi</h4>
-                </div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/b8e0f5f8de5c7c2ae7c5d5aa7e6b5d0fe9e2b0f1?width=150"
-                  alt="Delhi skyline"
-                  className="presence-skyline"
-                  loading="lazy"
-                />
-                <p className="presence-address">
-                  105A, 1st Floor, NDM-1, Netaji Subhash Place, Pitampura, Delhi, 110034
-                </p>
-              </div>
-
-              <div className="presence-card">
-                <div className="presence-top">
-                  <h4 className="presence-city">Lucknow</h4>
-                </div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/c9f1e6f9df6c8c3bf8c6d6bb8f7c6e1gf0f3c1g2?width=150"
-                  alt="Lucknow skyline"
-                  className="presence-skyline"
-                  loading="lazy"
-                />
-                <p className="presence-address">
-                  Ground and 4th Floor, Yogiraj Tower, C-47, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
-                </p>
-              </div>
-
-              <div className="presence-card">
-                <div className="presence-top">
-                  <h4 className="presence-city">Mumbai</h4>
-                </div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/d0g2f7g0eg7d9d4cg9d7e7cc9g8d7f2hg1g4d2h3?width=150"
-                  alt="Mumbai skyline"
-                  className="presence-skyline"
-                  loading="lazy"
-                />
-                <p className="presence-address">
-                  Modi Business Park, Sai Nagar, Anand Nagar, Thane West, Thane, Maharashtra 400615
-                </p>
-              </div>
-
-              <div className="presence-card">
-                <div className="presence-top">
-                  <h4 className="presence-city">Abu Dhabi</h4>
-                </div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/e1h3g8h1fh8e0e5dh0e8f8dd0h9e8g3ih2h5e3i4?width=150"
-                  alt="Abu Dhabi skyline"
-                  className="presence-skyline"
-                  loading="lazy"
-                />
-                <p className="presence-address">
-                  Office No: 208, Room No: 2,. Al Nasar Commercial Center, Najda Street. Abu Dhabi, Abu Dhabi 131416, AE
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Useful Links Section */}
-          <div className="useful-links-section">
-            <h3 className="footer-section-header">USEFUL LINKS</h3>
-            <div className="links-list">
-              <div className="nav-link active-link">Home</div>
-              <div className="nav-link">Products</div>
-              <div className="nav-link">Solutions</div>
-              <div className="nav-link">About Us</div>
-              <div className="nav-link">Blog</div>
-              <div className="nav-link">Contact Us</div>
-            </div>
-          </div>
-
-          {/* Contact Section */}
-          <div className="contact-section">
-            <h3 className="footer-section-header">CONTACT US</h3>
-            <div className="contact-info">
-              <div className="contact-item">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/phone-icon?width=24"
-                  alt="Phone"
-                  className="contact-icon"
-                />
-                <span className="contact-text">+91-11-41421313</span>
-              </div>
-              <div className="contact-item">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/email-icon?width=24"
-                  alt="Email"
-                  className="contact-icon"
-                />
-                <span className="contact-text">info@aadiswan.com</span>
-              </div>
-            </div>
-
-            <div className="legal-links">
-              <div className="legal-link">Privacy Policy</div>
-              <div className="legal-link">Terms and Conditions</div>
-            </div>
-
-            <div className="social-icons">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/linkedin-icon?width=30"
-                alt="LinkedIn"
-                className="social-icon"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/twitter-icon?width=30"
-                alt="Twitter"
-                className="social-icon"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/facebook-icon?width=30"
-                alt="Facebook"
-                className="social-icon"
-              />
-            </div>
-          </div>
-
-          {/* Contact Form Section */}
-          <div className="contact-form-section">
-            <h3 className="footer-section-header">GET IN TOUCH</h3>
-            <form className="contact-form">
-              <div className="input-field">
-                <label className="field-label">Name*</label>
-                <div className="input-wrapper">
-                  <input type="text" className="form-input" placeholder="Enter your name" />
-                </div>
-              </div>
-
-              <div className="input-field">
-                <label className="field-label">Email*</label>
-                <div className="input-wrapper">
-                  <input type="email" className="form-input" placeholder="Enter your email" />
-                </div>
-              </div>
-
-              <div className="textarea-field">
-                <label className="field-label">Message*</label>
-                <div className="textarea-wrapper">
-                  <textarea className="form-textarea" placeholder="Enter your message"></textarea>
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/drag-icon?width=7"
-                    alt="Resize"
-                    className="drag-icon"
-                  />
-                </div>
-              </div>
-
-              <div className="button-group">
-                <button type="submit" className="submit-btn">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <p className="copyright-text">
-          Copyright © 2024 AadiSwan Fintech Private Limited. All rights reserved.
-        </p>
-      </section>
+      {/* ✅ REPLACED - New Modern Footer Component */}
+      <Footer />
     </div>
   );
 };
