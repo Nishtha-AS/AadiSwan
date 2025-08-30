@@ -6,28 +6,40 @@ import StatisticsSection from '../components/StatisticsSection';
 import ConsultancySection from '../components/ConsultancySection';
 import CustomerOnboarding1 from '../components/CustomerOnboarding1';
 
-// ✅ ADDED - Import the new Footer component
+// ✅ Footer
 import Footer from '../components/Footer';
 
-// Local image imports for asset classes (from src/assets)
+// ------- Local images -------
+// Promo
 import leadingLoanImg from '../../../assets/leading_loan_management_img.png';
+
+// Asset classes
 import workingCapitalIcon from '../../../assets/WCM_logo.jpg';
 import supplyChainIcon from '../../../assets/supply_chain_logo.png';
 import projectFinanceIcon from '../../../assets/project_finance_logo.png';
 import lapIcon from '../../../assets/load_against_property_logo.png';
 import nbfcFundingIcon from '../../../assets/NBFC_logo.png';
 
-// Product logos (ensure these files exist in src/assets)
+// Products
 import credProLogo from '../../../assets/CredPro_logo.png';
 import cadProLogo from '../../../assets/CADPro_logo.png';
 import camProLogo from '../../../assets/CAMPro_logo.png';
 import esmsProLogo from '../../../assets/ESMSPro_logo.png';
 import ewsProLogo from '../../../assets/EWSPro_logo.png';
 
+// ✅ NEW: Solutions logos
+import underwritingStudioLogo from '../../../assets/underwriting_studio_logo.png';
+import dmteLogo from '../../../assets/DMTE_Logo.png';
+import automatedDecisioningLogo from '../../../assets/automated_decisioning.png';
+import covenantManagementLogo from '../../../assets/convenant_management.png'; // filename spelled 'convenant'
+import supportWorkflowLogo from '../../../assets/support_workflow_logo.png';
+import tpdLogo from '../../../assets/TPD_Logo.png';
+
 // Stylesheet
 import './LandingPage.css';
 
 const LandingPage = () => {
+  // Asset Classes (right column in Solutions dropdown)
   const assetClasses = [
     { icon: workingCapitalIcon, label: 'Working Capital Loans' },
     { icon: supplyChainIcon, label: 'Supply Chain Finance' },
@@ -36,6 +48,17 @@ const LandingPage = () => {
     { icon: nbfcFundingIcon, label: 'NBFC Funding' },
   ];
 
+  // ✅ Solutions (left column – now uses icons instead of numbers)
+  const solutions = [
+    { icon: underwritingStudioLogo, label: 'Underwriting Studio' },
+    { icon: dmteLogo, label: 'Document Management and Template Engine' },
+    { icon: automatedDecisioningLogo, label: 'Automated Decisioning', highlighted: true },
+    { icon: covenantManagementLogo, label: 'Covenant Management' },
+    { icon: supportWorkflowLogo, label: 'Support Workflows- Legal, Valuation and more' },
+    { icon: tpdLogo, label: 'Third Party Integrations' },
+  ];
+
+  // Product cards content
   const products = [
     {
       logo: credProLogo,
@@ -131,7 +154,7 @@ const LandingPage = () => {
                   </ul>
                 </div>
 
-                {/* Right PRODUCTS column (no duplicate title) */}
+                {/* Right PRODUCTS column */}
                 <div className="dropdown-column products-column">
                   <ul className="dropdown-list products-list" role="none">
                     {productCols[1].map((p) => (
@@ -186,46 +209,18 @@ const LandingPage = () => {
               aria-label="Solutions"
             >
               <div className="dropdown-columns">
-                {/* Solutions Column */}
+                {/* ✅ Solutions with icons */}
                 <div className="dropdown-column">
                   <h3 className="dropdown-title">SOLUTIONS</h3>
                   <ul className="dropdown-list" role="none">
-                    <li role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">1</span>
-                        <span>Underwriting Studio</span>
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">2</span>
-                        <span>Document Management and Template Engine</span>
-                      </a>
-                    </li>
-                    <li className="highlighted" role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">3</span>
-                        <span>Automated Decisioning</span>
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">4</span>
-                        <span>Covenant Management</span>
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">5</span>
-                        <span>Support Workflows- Legal, Valuation and more</span>
-                      </a>
-                    </li>
-                    <li role="presentation">
-                      <a href="#solution" role="menuitem">
-                        <span className="list-number">6</span>
-                        <span>Third Party Integrations</span>
-                      </a>
-                    </li>
+                    {solutions.map(({ icon, label, highlighted }) => (
+                      <li key={label} className={highlighted ? 'highlighted' : ''} role="presentation">
+                        <a href="#solution" role="menuitem">
+                          <img src={icon} alt="" className="list-icon" />
+                          <span>{label}</span>
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -509,7 +504,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ✅ REPLACED - New Modern Footer Component */}
+      {/* Footer */}
       <Footer />
     </div>
   );

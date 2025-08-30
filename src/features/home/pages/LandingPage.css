@@ -836,7 +836,7 @@ html, body {
 .dropdown-list a {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;               /* a touch more space for icons */
   padding: 8px 12px;
   border-radius: 6px;
   color: #0B1220;
@@ -854,6 +854,7 @@ html, body {
   font-weight: 500;
 }
 
+/* Number used earlier – kept for compatibility but not used now */
 .list-number {
   font-weight: 600;
   color: #036CBC;
@@ -861,9 +862,10 @@ html, body {
   min-width: 16px;
 }
 
+/* ✅ Icon used for Solutions & Asset Classes rows */
 .list-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;             /* slightly larger for clarity */
+  height: 28px;
   object-fit: contain;
   flex-shrink: 0;
 }
