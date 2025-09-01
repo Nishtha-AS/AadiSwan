@@ -440,3 +440,188 @@
     font-size: 20px;
   }
 }
+/* === CREDPRO DROPDOWN FIX PATCH (append at end of CredProLanding.css) === */
+
+/* 1) Allow dropdown to render outside the hero */
+.credpro-hero-section {
+  overflow: visible !important;           /* was hidden; this clipped the menu */
+}
+
+/* 2) Make sure the nav can show popovers above everything */
+.navigation-section,
+.nav-container,
+.menu-items {
+  overflow: visible !important;
+}
+.navigation-section {
+  z-index: 1000 !important;
+  position: relative;                     /* keep relative so absolute menus anchor correctly */
+}
+
+/* 3) Dropdown mechanics (desktop) */
+.menu-item.dropdown { position: relative; }
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 24px;
+  width: min(1200px, 95vw);
+  min-width: min(1000px, 90vw);
+  max-width: 95vw;
+  max-height: 400px;
+  color: #0B1220;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+/* show on hover and when React adds .is-open (for click/touch) */
+.menu-item.dropdown:hover .dropdown-menu,
+.menu-item.dropdown:focus-within .dropdown-menu,
+.dropdown-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 4) Products layout (matches Home) */
+.products-dropdown .dropdown-columns {
+  display: grid;
+  grid-template-columns: 1.15fr 1.15fr 1.35fr;
+  align-items: start;
+  gap: 24px;
+}
+.products-dropdown .products-column {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.products-dropdown .products-column:first-of-type {
+  border-right: 1px solid rgba(3,108,188,0.08);
+  padding-right: 16px;
+}
+.products-dropdown .products-column:nth-of-type(2) { padding-left: 16px; }
+.products-dropdown .product-link {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 14px;
+  min-height: 120px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(3,108,188,0.14);
+  box-shadow: 0 1px 2px rgba(11,18,32,0.06);
+}
+.products-dropdown .product-link:hover {
+  border-color: rgba(3,108,188,0.35);
+  box-shadow: 0 2px 6px rgba(11,18,32,0.10);
+  background-color: rgba(3,108,188,0.05);
+}
+.products-dropdown .product-icon {
+  width: 90px; height: auto; max-height: 45px; object-fit: contain;
+}
+.products-dropdown .product-copy { display: block; width: 100%; }
+.products-dropdown .product-name { display: none; }  /* keep descriptions as titles */
+.products-dropdown .product-desc {
+  font-size: 13px; line-height: 1.5; color: #425466; margin: 0;
+}
+
+/* 5) Solutions layout (matches Home) */
+.solutions-dropdown .dropdown-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  align-items: start;
+  gap: 24px;
+  height: 320px;
+  padding: 10px 0;
+}
+.solutions-dropdown .dropdown-columns > div:first-child,
+.solutions-dropdown .dropdown-columns > div:nth-child(2) {
+  border-right: 1px solid rgba(3,108,188,0.15);
+  padding-right: 20px;
+}
+.solutions-dropdown .dropdown-columns > div:nth-child(2),
+.solutions-dropdown .dropdown-columns > div:nth-child(3) {
+  padding-left: 20px;
+}
+.dropdown-title { font: 600 14px Poppins, sans-serif; color: #036CBC; margin: 0 0 16px; }
+.dropdown-list {
+  list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;
+  max-height: 280px; overflow-y: auto; padding-right: 8px;
+}
+.dropdown-list a {
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  border-radius: 6px; color: #0B1220; text-decoration: none; font: 400 14px Poppins, sans-serif;
+  transition: background-color .2s ease;
+}
+.dropdown-list a:hover { background-color: rgba(3,108,188,0.05); }
+.dropdown-list .highlighted a { background-color: rgba(3,108,188,0.1); font-weight: 500; }
+.list-icon { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
+
+/* 6) Promo card used in both dropdowns */
+.dropdown-promo { display: flex; justify-content: center; align-items: center; }
+.promo-image { position: relative; width: min(300px, 100%); height: clamp(160px, 20vw, 200px); border-radius: 12px; overflow: hidden; }
+.promo-image img { width: 100%; height: 100%; object-fit: cover; }
+.promo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(transparent 40%, rgba(0,0,0,0.7));
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 20px; color: #FFF; text-align: center;
+}
+.trusted-badge { background: rgba(220,16,21,.9); padding: 6px 14px; border-radius: 24px; font-size: 12px; font-weight: 600; margin: 0 auto 8px; }
+
+/* 7) Viewport-aware sizing + mobile behavior (fixed panel) */
+.products-dropdown.dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-35%) !important;      /* align nicely under trigger group */
+  width: min(1200px, 90vw) !important;
+  max-width: 90vw !important;
+}
+@media (min-width: 1200px) {
+  .products-dropdown.dropdown-menu {
+    max-width: calc(var(--max-width, 1440px) - 64px) !important;
+    left: var(--container-padding, 32px) !important;
+    right: var(--container-padding, 32px) !important;
+  }
+}
+@media (max-width: 1200px) {
+  .dropdown-menu {
+    width: 95vw !important; min-width: auto !important; max-height: 70vh !important;
+  }
+  .solutions-dropdown .dropdown-columns { gap: 16px; height: auto; }
+}
+@media (max-width: 991px) {
+  .dropdown-menu {
+    position: fixed; top: 80px; left: 20px; right: 20px; transform: none !important;
+    width: auto; max-width: none; max-height: 80vh;
+  }
+  .products-dropdown .dropdown-columns,
+  .solutions-dropdown .dropdown-columns {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .dropdown-promo { order: -1; }
+}
+/* ================ SIMPLE FIX ================== */
+/* Hide any logo that's not in navigation or footer container */
+.logo:not(.navigation-section .logo):not(.footer-container .footer-logo) {
+  display: none !important;
+}
+
+/* Dropdown support */
+.dropdown-menu.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+/* Products styling */
+.dropdown-menu .products-list .product-item { 
+  margin-bottom: 10px; 
+}
