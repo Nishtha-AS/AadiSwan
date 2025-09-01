@@ -1,0 +1,152 @@
+/* Product Overview — Figma-accurate two-column layout with centered title */
+.product-overview-section{
+  width:100%;
+  background:#FFF;
+  position:relative;
+  padding:80px 0 40px 0;
+  font-family:Poppins,-apple-system,Roboto,Helvetica,sans-serif;
+}
+
+/* Max width keeps lines and image sizes consistent across pages */
+.product-overview-container{
+  width:100%;
+  max-width:1200px;              /* <-- tuned to Figma’s readable line length */
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 560px 1fr;  /* text column ≈560px + flexible image col */
+  gap:56px;
+  align-items:start;
+  position:relative;
+}
+
+/* Title is visually centered above the whole section */
+.product-overview-title{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translate(-50%,-50%);
+  margin:0;
+  text-align:center;
+  text-shadow:0 2px 4px rgba(255,255,255,.4);
+  font-family:Iceland,-apple-system,Roboto,Helvetica,sans-serif;
+  font-size:40px;
+  font-weight:400;
+  background:linear-gradient(90deg,#036CBC 39.42%,#003760 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Left column (copy) */
+.product-overview-content{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  /* leave room for the floating title */
+  padding-top:24px;
+}
+
+.product-overview-description{
+  margin:0;
+  color:#003760;
+  font-size:14px;
+  font-weight:300;
+  line-height:24px;
+}
+
+.target-audience-section{ margin-top:6px; }
+.audience-intro{
+  margin:0 0 6px 0;
+  color:#003760;
+  font-size:14px;
+  font-weight:500;
+}
+.audience-list{
+  margin:0;
+  padding-left:18px;
+}
+.audience-list li{
+  color:#003760;
+  font-size:14px;
+  font-weight:300;
+  line-height:24px;
+}
+
+/* 2×2 features grid that lines up with Figma bullets */
+.features-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px 40px;                 /* row / column gap */
+  margin-top:6px;
+}
+.feature-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.feature-icon{
+  position:relative;
+  width:25px;height:25px;flex:0 0 25px;
+}
+.feature-icon svg:first-child{
+  position:absolute;inset:0;width:25px;height:25px;
+}
+.check-mark{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);width:13px;height:13px;
+}
+.feature-text{
+  color:#003760;
+  font-size:14px;
+  font-weight:300;
+}
+
+/* Right column (devices) */
+.product-overview-image{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:28px;               /* aligns device baseline with bullets */
+}
+.overview-image{
+  width:100%;
+  max-width:540px;                /* matches Figma device width */
+  height:auto;
+  object-fit:contain;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1280px){
+  .product-overview-container{
+    max-width:1100px; gap:48px;
+    grid-template-columns: 520px 1fr;
+  }
+  .overview-image{ max-width:500px; }
+}
+@media (max-width: 1100px){
+  .product-overview-container{
+    max-width:960px; gap:40px;
+    grid-template-columns: 1fr 1fr;      /* let text shrink a bit */
+  }
+}
+@media (max-width: 900px){
+  .product-overview-section{ padding:64px 20px 32px; }
+  .product-overview-title{
+    position:static; transform:none; margin-bottom:18px;
+    font-size:clamp(28px,5vw,40px);
+  }
+  .product-overview-container{
+    display:flex; flex-direction:column;
+    max-width:720px; gap:28px;
+  }
+  .product-overview-image{ order:2; }
+  .overview-image{ max-width:520px; margin:0 auto; }
+}
+@media (max-width: 560px){
+  .features-grid{ grid-template-columns:1fr; gap:14px; }
+  .audience-list{ padding-left:16px; }
+  .product-overview-description,
+  .audience-intro,
+  .audience-list li,
+  .feature-text{ font-size:13px; line-height:22px; }
+}
