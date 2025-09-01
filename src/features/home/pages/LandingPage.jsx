@@ -1,5 +1,5 @@
 // src/features/home/pages/LandingPage.jsx
-import React from 'react';
+import React, { useState } from 'react';
 
 // Sections that live under features/home/components
 import StatisticsSection from '../components/StatisticsSection';
@@ -27,7 +27,7 @@ import camProLogo from '../../../assets/CAMPro_logo.png';
 import esmsProLogo from '../../../assets/ESMSPro_logo.png';
 import ewsProLogo from '../../../assets/EWSPro_logo.png';
 
-// ✅ NEW: Solutions logos
+// ✅ Solutions logos
 import underwritingStudioLogo from '../../../assets/underwriting_studio_logo.png';
 import dmteLogo from '../../../assets/DMTE_Logo.png';
 import automatedDecisioningLogo from '../../../assets/automated_decisioning.png';
@@ -39,6 +39,10 @@ import tpdLogo from '../../../assets/TPD_Logo.png';
 import './LandingPage.css';
 
 const LandingPage = () => {
+  // Tap-to-open state for mobile (hover still works on desktop via CSS)
+  const [openProducts, setOpenProducts] = useState(false);
+  const [openSolutions, setOpenSolutions] = useState(false);
+
   // Asset Classes (right column in Solutions dropdown)
   const assetClasses = [
     { icon: workingCapitalIcon, label: 'Working Capital Loans' },
@@ -48,7 +52,7 @@ const LandingPage = () => {
     { icon: nbfcFundingIcon, label: 'NBFC Funding' },
   ];
 
-  // ✅ Solutions (left column – now uses icons instead of numbers)
+  // ✅ Solutions (left column – uses icons)
   const solutions = [
     { icon: underwritingStudioLogo, label: 'Underwriting Studio' },
     { icon: dmteLogo, label: 'Document Management and Template Engine' },
@@ -90,6 +94,16 @@ const LandingPage = () => {
   // Split products to match two-column design (3 + 2)
   const productCols = [products.slice(0, 3), products.slice(3)];
 
+  // Close the other dropdown when one opens (keeps UI tidy on mobile)
+  const toggleProducts = () => {
+    setOpenProducts(v => !v);
+    setOpenSolutions(false);
+  };
+  const toggleSolutions = () => {
+    setOpenSolutions(v => !v);
+    setOpenProducts(false);
+  };
+
   return (
     <div className="landing-page">
       {/* Background Hero Image */}
@@ -99,7 +113,7 @@ const LandingPage = () => {
         alt=""
       />
 
-      {/* Navigation Section */}
+      {/* Navigation Section (one-line header with working dropdowns) */}
       <div className="navigation-section" role="navigation" aria-label="Main">
         <img
           className="logo"
@@ -113,13 +127,19 @@ const LandingPage = () => {
           </div>
 
           {/* Products Dropdown */}
-          <div className="menu-item dropdown" role="none">
+          <div
+            className="menu-item dropdown"
+            role="none"
+            onMouseEnter={() => setOpenProducts(true)}
+            onMouseLeave={() => setOpenProducts(false)}
+          >
             <button
               type="button"
               className="menu-trigger"
               aria-haspopup="menu"
-              aria-expanded="false"
+              aria-expanded={openProducts}
               aria-controls="products-menu"
+              onClick={toggleProducts}
             >
               <span>Products</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -128,10 +148,9 @@ const LandingPage = () => {
               </svg>
             </button>
 
-            {/* Products dropdown menu */}
             <div
               id="products-menu"
-              className="dropdown-menu products-dropdown"
+              className={`dropdown-menu products-dropdown ${openProducts ? 'is-open' : ''}`}
               role="menu"
               aria-label="Products"
             >
@@ -186,13 +205,19 @@ const LandingPage = () => {
           </div>
 
           {/* Solutions Dropdown */}
-          <div className="menu-item dropdown" role="none">
+          <div
+            className="menu-item dropdown"
+            role="none"
+            onMouseEnter={() => setOpenSolutions(true)}
+            onMouseLeave={() => setOpenSolutions(false)}
+          >
             <button
               type="button"
               className="menu-trigger"
               aria-haspopup="menu"
-              aria-expanded="false"
+              aria-expanded={openSolutions}
               aria-controls="solutions-menu"
+              onClick={toggleSolutions}
             >
               <span>Solutions</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -201,10 +226,9 @@ const LandingPage = () => {
               </svg>
             </button>
 
-            {/* Solutions Dropdown Menu */}
             <div
               id="solutions-menu"
-              className="dropdown-menu solutions-dropdown"
+              className={`dropdown-menu solutions-dropdown ${openSolutions ? 'is-open' : ''}`}
               role="menu"
               aria-label="Solutions"
             >
@@ -253,6 +277,7 @@ const LandingPage = () => {
             </div>
           </div>
 
+          {/* Static items */}
           <div className="menu-item" role="menuitem"><span>About Us</span></div>
           <div className="menu-item" role="menuitem"><span>Blog</span></div>
           <div className="menu-item" role="menuitem"><span>Contact Us</span></div>
@@ -359,7 +384,7 @@ const LandingPage = () => {
               </p>
               <button className="more-btn">More →</button>
             </div>
-            
+
             <div className="product-card">
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/716fee80c37d1c6dd7332f298b19317757a8ecff?width=470"
@@ -372,7 +397,7 @@ const LandingPage = () => {
               </p>
               <button className="more-btn">More →</button>
             </div>
-            
+
             <div className="product-card">
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/a7a803ceae652b505f09572aa0c3ded43775b3d5?width=470"
@@ -386,7 +411,7 @@ const LandingPage = () => {
               <button className="more-btn">More →</button>
             </div>
           </div>
-          
+
           {/* Bottom Row - 2 Products (WIDER) */}
           <div className="products-row-bottom">
             <div className="product-card">
@@ -401,7 +426,7 @@ const LandingPage = () => {
               </p>
               <button className="more-btn">More →</button>
             </div>
-            
+
             <div className="product-card">
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/a823da0f4adf90c08d2370342d795d4fa0aedf92?width=473"
