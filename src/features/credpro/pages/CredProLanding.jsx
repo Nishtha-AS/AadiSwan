@@ -5,6 +5,7 @@ import InputDesign from '../components/InputDesign';
 import ApiEcosystem from '../components/ApiEcosystem';
 import IndustriesUseCases from '../components/IndustriesUseCases';
 import FAQSection from '../components/FAQSection';
+import Footer from '../components/Footer'; // Added Footer import
 import './CredProLanding.css';
 
 const CredProLanding = () => {
@@ -16,6 +17,7 @@ const CredProLanding = () => {
       <ApiEcosystem />
       <IndustriesUseCases />
       <FAQSection />
+      <Footer /> {/* Added Footer component */}
     </div>
   );
 };

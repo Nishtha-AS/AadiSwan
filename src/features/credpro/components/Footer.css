@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+.footer-container{
+  width:100%;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#2C3E50 0%,#1A252F 100%);
+  --logo-strip-height:100px; /* height of top band */
+  --content-max:1180px;      /* total content width */
+  --col-gap:32px;
+}
+
+/* Top band behind centered logo */
+.footer-container::before{
+  content:"";
+  position:absolute; inset:0 auto auto 0;
+  width:100%; height:var(--logo-strip-height);
+  background:rgba(9,15,24,0.6);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  z-index:1;
+}
+
+/* Centered logo inside top band */
+.footer-logo{
+  position:absolute; top:0; left:50%;
+  transform:translateX(-50%);
+  height:var(--logo-strip-height);
+  width:260px;
+  display:flex; align-items:center; justify-content:center;
+  z-index:3; padding:0 16px;
+}
+.footer-logo img{ width:100%; height:auto; object-fit:contain; }
+.logo-text{ display:none; }
+
+/* Four columns: Presence / Links / Contact / Form (safe minimums) */
+.footer-content{
+  position:relative; z-index:2;
+  display:grid;
+  grid-template-columns:
+    minmax(340px, 1fr)   /* Our Presence */
+    minmax(190px, 220px) /* Useful Links */
+    minmax(240px, 280px) /* Contact Us */
+    minmax(300px, 1fr);  /* Get In Touch */
+  column-gap:28px; row-gap:24px;
+  max-width:var(--content-max);
+  margin:0 auto;
+  padding:calc(var(--logo-strip-height) + 36px) 24px 40px;
+}
+
+/* Section headings */
+.section-header{
+  color:#56AEFF; margin:0 0 16px 0;
+  font:600 20px Poppins, sans-serif;
+}
+
+/* -------- Our Presence (2x2 cards) -------- */
+.presence-section{ min-width:340px; }
+
+.locations-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(160px, 1fr));
+  gap:18px;
+}
+
+.location-card{
+  position:relative; overflow:hidden;
+  min-height:160px;              /* gives room for full addresses */
+  height:auto;
+  padding:16px;
+  border-radius:18px;            /* a bit rounder to match Figma */
+  border:1px solid rgba(86,174,255,0.28);
+  background:rgba(255,255,255,0.04);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),
+             0 8px 18px rgba(0,0,0,0.18);
+}
+
+/* Figma-like POP corners (top-left blue swoosh + bottom-right silver shine) */
+.location-card::before{
+  content:"";
+  position:absolute;
+  width:var(--corner-size);
+  height:var(--corner-size);
+  left:var(--corner-offset);
+  top:var(--corner-offset);
+  pointer-events:none;
+  border-radius:20px;
+  background:
+    radial-gradient(120% 120% at 0% 0%,
+      color-mix(in srgb, var(--corner-blue) 92%, #1b2940) 0 56%,
+      color-mix(in srgb, var(--corner-blue) 70%, #1b2940) 57% 70%,
+      transparent 71%),
+    radial-gradient(70% 70% at 28% 28%,
+      rgba(255,255,255,.65) 0 40%,
+      transparent 41%);
+  box-shadow:
+    0 6px 14px rgba(86,174,255,.20),
+    inset 0 0 0 1px color-mix(in srgb, var(--corner-blue) 35%, #ffffff 0%);
+}
+
+.location-card::after{
+  content:"";
+  position:absolute;
+  width:var(--corner-size);
+  height:var(--corner-size);
+  right:var(--corner-offset);
+  bottom:var(--corner-offset);
+  pointer-events:none;
+  border-radius:20px;
+  background:
+    radial-gradient(120% 120% at 100% 100%,
+      rgba(255,255,255,.90) 0 54%,
+      rgba(255,255,255,.45) 55% 68%,
+      transparent 69%),
+    radial-gradient(80% 80% at 74% 74%,
+      rgba(86,174,255,.22) 0 40%,
+      transparent 41%);
+  box-shadow:
+    0 6px 12px rgba(0,0,0,.18),
+    inset 0 0 0 1px rgba(255,255,255,.25);
+  mix-blend-mode:screen;
+}
+
+.location-icon-container{
+  display:flex; align-items:center; justify-content:center;
+  min-height:62px;
+  margin-bottom:10px;
+}
+
+.location-image{
+  width:100%;
+  max-width:200px;               /* smaller logos so addresses fit */
+  max-height:50px;
+  height:auto; object-fit:contain; filter:none;
+}
+
+.city-name{ display:none; }
+
+.address-text{
+  color:#d3e6ff; text-align:left; margin:0;
+  font:400 12px Poppins, sans-serif;
+  line-height:1.6;
+  word-break:break-word;
+}
+
+/* -------- Useful Links -------- */
+.links-list{ display:flex; flex-direction:column; gap:10px; }
+.nav-link{
+  color:#FFF; text-decoration:none; cursor:pointer;
+  font:400 15px Poppins, sans-serif; transition:color .2s ease;
+}
+.nav-link:hover,.nav-link.active-link{ color:#56AEFF; font-weight:500; }
+
+/* -------- Contact -------- */
+.contact-info{ display:flex; flex-direction:column; gap:18px; margin-bottom:20px; }
+.contact-item{ display:flex; align-items:center; gap:12px; }
+
+/* icons: no invert (prevents white squares) */
+.contact-icon{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+  filter:none;
+  flex-shrink:0;
+}
+
+.contact-text{ color:#FFF; text-decoration:none; font:400 15px Poppins, sans-serif; }
+.contact-text:hover{ color:#56AEFF; }
+
+.social-icons{ display:flex; gap:10px; margin-top:12px; }
+.social-icon{
+  width:32px; height:32px; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(86,174,255,0.12); transition:background-color .2s ease;
+}
+.social-icon:hover{ background:rgba(86,174,255,0.3); }
+.social-icon-img{
+  width:16px; height:16px; object-fit:contain; filter:none;
+}
+
+/* -------- Get In Touch (form) -------- */
+.contact-form-section{ max-width:320px; width:100%; margin-left:auto; }
+.contact-form{ display:flex; flex-direction:column; gap:16px; }
+
+.input-field,.textarea-field{ display:flex; flex-direction:column; gap:6px; }
+.field-label{ color:rgba(245,245,245,.9); font:400 13px Inter, sans-serif; }
+
+.input-wrapper,.textarea-wrapper{
+  display:flex; width:100%; align-items:center;
+  padding:8px 12px;               /* compact fields */
+  border-radius:6px;
+  border:1px solid rgba(217,217,217,0.3);
+  background:rgba(255,255,255,0.08); backdrop-filter:blur(8px);
+}
+.form-input,.form-textarea{
+  flex:1; border:none; outline:none; background:transparent;
+  color:rgba(255,255,255,.92); font:400 13.5px Inter, sans-serif;
+}
+.form-input::placeholder,.form-textarea::placeholder{ color:rgba(255,255,255,.55); }
+.form-textarea{ resize:none; min-height:72px; line-height:1.45; }
+
+.submit-btn{
+  width:100%; border:none; border-radius:8px; cursor:pointer;
+  padding:10px 16px; color:#fff;
+  background:linear-gradient(135deg,#036CBC 0%,#0277bd 100%);
+  font:500 14px Inter, sans-serif;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.submit-btn:hover{ background:linear-gradient(135deg,#025594 0%,#01579b 100%); transform:translateY(-1px); box-shadow:0 4px 12px rgba(3,108,188,.3); }
+
+/* -------- Bottom bar -------- */
+.footer-bottom{
+  max-width:var(--content-max);
+  margin:0 auto; padding:16px 24px 22px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+.legal-links{ display:flex; gap:20px; }
+.legal-link{ color:#56AEFF; text-decoration:none; font:400 13px Poppins, sans-serif; }
+.legal-link:hover{ text-decoration:underline; }
+.copyright-text{ color:rgba(255,255,255,.7); font:300 13px Poppins, sans-serif; }
+
+/* -------- Breakpoints -------- */
+@media (max-width:1366px){
+  .footer-content{
+    grid-template-columns:
+      minmax(330px, 1fr)
+      minmax(190px, 210px)
+      minmax(230px, 260px)
+      minmax(290px, 1fr);
+    column-gap:26px;
+  }
+}
+
+@media (max-width:1024px){
+  .footer-container{ --logo-strip-height:90px; }
+  .footer-content{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    max-width:900px; gap:30px;
+    padding:calc(var(--logo-strip-height) + 28px) 20px 36px;
+  }
+  .contact-form-section{ max-width:100%; }
+}
+
+@media (max-width:768px){
+  .footer-container{ --logo-strip-height:80px; }
+  .footer-logo{ width:200px; }
+  .footer-content{
+    grid-template-columns:minmax(0, 1fr);
+    max-width:700px; gap:24px;
+  }
+  .locations-grid{ grid-template-columns:minmax(0, 1fr); }
+}
+
+@media (max-width:480px){
+  .footer-container{ --logo-strip-height:72px; }
+  .footer-logo{ width:150px; }
+  .footer-content{ padding:calc(var(--logo-strip-height) + 22px) 16px 28px; }
+  .location-card{ min-height:150px; }
+}
+
+/* ===== Desktop-only nudge: shift Useful Links slightly left ===== */
+@media (min-width:1025px){
+  .useful-links-section{ margin-left: 35px; } /* adjust -8 to -16px to taste */
+}
+@media (max-width:1024px){
+  .useful-links-section{ margin-left: 0; }
+}
