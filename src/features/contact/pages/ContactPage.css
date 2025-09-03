@@ -1,37 +1,36 @@
-/* src/features/contact/pages/ContactPage.css */
-
 /* Base page wrapper */
 .contact-page {
   position: relative;
   width: 100%;
-  height: auto;
   min-height: 100vh;
   overflow: visible;
   background: #FFF;
 
-  /* === Point 1: reserve space for the overlaid header (used in hero via var(--nav-h)) */
-  --nav-h: 88px;         /* desktop header height */
+  /* reserve space reference for the floating header (hero uses this) */
+  --nav-h: 88px;
 }
 @media (max-width: 1024px) { .contact-page { --nav-h: 72px; } }
 @media (max-width: 640px)  { .contact-page { --nav-h: 60px; } }
 
-/* --- Page-scoped header overlay + layout (prevents overlap with Contact Us icons) --- */
-.contact-page .navigation-section {
-  position: absolute;   /* overlay nav on top of hero */
+/* === Use the real SiteNavigation root === */
+.contact-page .site-nav-section {
+  position: absolute; /* overlay nav on top of the hero */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;        /* above hero background/content */
+  z-index: 1000;      /* above hero content */
 }
 
+/* keep grid: logo | centered menu | right icons */
 .contact-page .nav-container {
   display: grid !important;
-  grid-template-columns: auto 1fr auto !important; /* logo | centered menu | right icons */
+  grid-template-columns: auto 1fr auto !important;
   align-items: center !important;
   column-gap: 28px !important;
-  overflow: visible !important;  /* allow dropdowns */
+  overflow: visible !important;  /* allow dropdowns to overflow */
 }
 
+/* center the menu row */
 .contact-page .menu-items {
   display: flex !important;
   justify-content: center !important;
@@ -41,12 +40,12 @@
   overflow: visible !important;
 }
 
-/* Stop pushing the last menu item into the right icons area */
+/* last item shouldn’t drift into right icons */
 .contact-page .menu-items .menu-item:last-of-type {
   margin-left: 0 !important;
 }
 
-/* Keep the round contact icons at the right edge, never overlapping */
+/* keep the round contact icons pinned right */
 .contact-page .contact-buttons {
   justify-self: end !important;
   position: static !important;
@@ -54,7 +53,7 @@
   flex: 0 0 auto !important;
 }
 
-/* Ensure dropdown popovers render above hero */
+/* ensure popovers are above hero */
 .contact-page .dropdown-menu {
   z-index: 1100;
 }

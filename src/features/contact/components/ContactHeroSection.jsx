@@ -1,5 +1,4 @@
 import React from 'react';
-import ContactNavigation from './ContactNavigation';
 import './ContactHeroSection.css';
 
 const ContactHeroSection = () => {
@@ -11,7 +10,7 @@ const ContactHeroSection = () => {
         alt=""
       />
 
-      <ContactNavigation />
+      {/* Header is rendered at page level via <SiteNavigation /> */}
 
       <div className="contact-hero-content">
         <h1 className="contact-hero-title">Contact AadiSwan</h1>

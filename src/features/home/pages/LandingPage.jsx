@@ -1,13 +1,14 @@
 // src/features/home/pages/LandingPage.jsx
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Sections that live under features/home/components
 import StatisticsSection from '../components/StatisticsSection';
 import ConsultancySection from '../components/ConsultancySection';
 import CustomerOnboarding1 from '../components/CustomerOnboarding1';
 
-// ✅ Footer
-import Footer from '../components/Footer';
+// ✅ Footer - Using centralized Footer component
+import Footer from '../../../components/Footer';
 
 // ------- Local images -------
 // Promo
@@ -278,7 +279,11 @@ const LandingPage = () => {
           </div>
 
           {/* Static items */}
-          <div className="menu-item" role="menuitem"><span>About Us</span></div>
+          <div className="menu-item" role="menuitem">
+            <Link to="/aboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <span>About Us</span>
+            </Link>
+          </div>
           <div className="menu-item" role="menuitem"><span>Blog</span></div>
           <div className="menu-item" role="menuitem"><span>Contact Us</span></div>
         </div>

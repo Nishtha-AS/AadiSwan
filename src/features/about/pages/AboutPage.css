@@ -12,20 +12,27 @@
 
   /* Header height used by the hero to center under the floating nav */
   --nav-h: 88px;
+
+  /* Ensure positioned children stack correctly */
+  isolation: isolate;
 }
 
 /* Adjust header height var at smaller breakpoints */
 @media (max-width: 1024px) { .about-page { --nav-h: 72px; } }
 @media (max-width: 640px)  { .about-page { --nav-h: 60px; } }
 
-/* Page-scoped safety so dropdowns aren’t clipped */
-.about-page .about-navigation-section,
-.about-page .about-menu-items {
+/* Ensure SiteNavigation dropdowns aren’t clipped on this page */
+.about-page .site-nav-section,
+.about-page .menu-items {
   overflow: visible !important;
 }
 
-/* (Optional) If any global rule pushes the last menu item to the edge,
-   neutralize it only on this page */
-.about-page .about-menu-items .about-menu-item:last-of-type {
+/* Keep the floating header above the hero artwork */
+.about-page .site-nav-section {
+  z-index: 1200; /* higher than hero background */
+}
+
+/* (Optional) Neutralize margin on last menu item only for this page */
+.about-page .menu-items .menu-item:last-of-type {
   margin-left: 0 !important;
 }

@@ -42,6 +42,7 @@
   line-height: 30px;
 }
 
+/* Active pill (kept same) */
 .menu-item.active {
   background: linear-gradient(180deg, rgba(134,197,255,.30) 0%, rgba(3,108,188,.30) 100%);
 }
@@ -52,9 +53,50 @@
   color: #FFF; display: inline-flex; align-items: center; gap: 10px; height: 30px;
   border-radius: 999px;
 }
-.menu-item.dropdown .menu-trigger:focus-visible { outline: 2px solid #86C5FF; outline-offset: 2px; }
+.menu-item.dropdown .menu-trigger:focus-visible {
+  outline: 2px solid #86C5FF; outline-offset: 2px;
+}
 
-/* Small blue dot behind chevron */
+/* === Chevron inside solid blue circle badge (Figma style) === */
+.caret-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+
+  /* SOLID fill + soft gradient */
+  background: radial-gradient(100% 100% at 30% 25%, #9BD2FF 0%, #56AEFF 45%, #1D78D6 100%);
+  border: 2px solid #86C5FF;            /* outer ring */
+  box-shadow:
+    0 0 0 2px rgba(134,197,255,0.25),   /* halo */
+    inset 0 0 8px rgba(255,255,255,0.25);
+
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+/* Chevron */
+.menu-trigger .caret-icon {
+  width: 14px; height: 14px;
+  color: #0B1220;                 /* dark glyph on blue */
+  transition: transform .2s ease;
+}
+.menu-trigger .caret-icon.rotated { transform: rotate(180deg); }
+
+/* Hover/open amplify */
+.menu-item.dropdown:hover .caret-circle,
+.menu-item.dropdown .menu-trigger[aria-expanded="true"] .caret-circle {
+  background: radial-gradient(100% 100% at 30% 25%, #B5DEFF 0%, #69B8FF 40%, #2C85E0 100%);
+  border-color: #9BD2FF;
+  box-shadow:
+    0 0 0 3px rgba(134,197,255,0.30),
+    inset 0 0 10px rgba(255,255,255,0.28);
+}
+
+/* (Legacy) Small blue dot — unused */
 .caret-dot {
   width: 20px; height: 20px; border-radius: 999px; flex-shrink: 0;
   background: rgba(134,197,255,.30);
@@ -99,8 +141,8 @@
   padding: 24px;
   width: min(1200px, 95vw);
   min-width: min(1000px, 90vw);
-  max-height: 72vh;     /* only the whole dropdown can scroll */
-  overflow: auto;       /* global scroll, not column scroll */
+  max-height: 72vh;
+  overflow: auto;
   transition: opacity .2s ease, transform .2s ease, visibility .2s;
   z-index: 1100;
 }
@@ -108,15 +150,52 @@
   opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
 }
 
+/* ===== Robust anti-clipping for PRODUCTS (desktop) ===== */
+/* Anchor to viewport center and override any inline JS positioning */
+@media (min-width: 992px) {
+  .site-nav-section.is-overlay .dropdown-menu.products-dropdown {
+    position: fixed !important;                      /* viewport, not trigger */
+    top: calc(var(--nav-h, 88px) + 10px) !important; /* align under header */
+    left: 50vw !important;                           /* viewport center */
+    right: auto !important;
+    transform: translateX(-50%) translateY(-8px) !important;
+    width: min(1200px, calc(100vw - 48px));
+    min-width: auto;
+    max-height: 72vh;
+    z-index: 1200;
+  }
+  .site-nav-section.is-overlay .dropdown-menu.products-dropdown.is-open {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+}
+
+/* Fallback: pages without .is-overlay */
+@media (min-width: 992px) {
+  .dropdown-menu.products-dropdown {
+    position: fixed !important;
+    top: calc(var(--nav-h, 88px) + 10px) !important;
+    left: 50vw !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(-8px) !important;
+    width: min(1200px, calc(100vw - 48px));
+    min-width: auto;
+    max-height: 72vh;
+    z-index: 1200;
+  }
+  .dropdown-menu.products-dropdown.is-open {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+}
+
 /* =======================================================
-   PRODUCTS layout — match Figma rows, no column scroll
+   PRODUCTS layout
    ======================================================= */
 .products-dropdown {
-  --pd-gap: 20px;       /* vertical gap between cards */
-  --pd-row-h: 96px;     /* shared row height so columns align */
-  --pd-chip-w: 112px;   /* left chip column width */
-  --pd-logo-w: 94px;    /* pill PNG width inside chip */
-  --pd-logo-h: 40px;    /* pill PNG height inside chip */
+  --pd-gap: 20px;
+  --pd-row-h: 96px;
+  --pd-chip-w: 112px;
+  --pd-logo-w: 94px;
+  --pd-logo-h: 40px;
 }
 
 .products-dropdown .products-columns {
@@ -127,7 +206,6 @@
 }
 
 .products-dropdown .products-column {
-  /* remove inner scroll completely */
   max-height: none;
   overflow: visible;
   padding-right: 8px;
@@ -140,14 +218,13 @@
   padding-left: 16px;
 }
 
-/* Each row aligned */
 .product-row {
   display: grid;
   grid-template-columns: var(--pd-chip-w) 1fr;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
-  height: var(--pd-row-h);           /* fixed row height for alignment */
+  height: var(--pd-row-h);
   text-decoration: none; color: inherit;
   border: 1px solid #E6EEF6;
   border-radius: 12px;
@@ -161,7 +238,6 @@
   background: #FBFDFF;
 }
 
-/* Chip with logo pill */
 .product-chip {
   display: flex; align-items: center; justify-content: center;
   padding: 0;
@@ -174,7 +250,6 @@
   display: block;
 }
 
-/* Copy block */
 .product-card-body {
   display: flex; flex-direction: column; justify-content: center;
   gap: 4px;
@@ -184,16 +259,15 @@
 .product-desc { font-size: 13px; line-height: 1.4; color: #425466; }
 
 /* =======================================================
-   SOLUTIONS layout — align columns and reduce spacing
+   SOLUTIONS layout
    ======================================================= */
 .solutions-dropdown {
-  --sd-row-pad: 6px;      /* item padding Y */
-  --sd-row-gap: 4px;      /* gap between items */
-  --sd-icon: 28px;        /* logo size for both lists */
-  --sd-title-mb: 12px;    /* space under headings */
+  --sd-row-pad: 6px;
+  --sd-row-gap: 4px;
+  --sd-icon: 28px;
+  --sd-title-mb: 12px;
 }
 
-/* 3 columns: Solutions | Asset Classes | Promo */
 .solutions-dropdown .solutions-columns {
   display: grid;
   gap: 24px;
@@ -201,16 +275,12 @@
   grid-template-columns: 1fr 1fr 1.3fr;
 }
 
-/* Columns & vertical dividers */
 .solutions-dropdown .col { position: relative; padding: 0 24px; }
 .solutions-dropdown .col--left   { padding: 0 20px 0 0;  border-right: 1px solid rgba(3,108,188,.15); }
 .solutions-dropdown .col--center { padding: 0 20px 0 18px; border-right: 1px solid rgba(3,108,188,.15); }
 .solutions-dropdown .col--promo  { padding-right: 0; }
 
-/* Headings */
 .dropdown-title { font: 600 14px Poppins, sans-serif; color: #036CBC; margin: 0 0 var(--sd-title-mb); }
-
-/* Lists */
 .dropdown-list { list-style: none; margin: 0; padding: 0; }
 
 .solutions-list { display: flex; flex-direction: column; gap: var(--sd-row-gap); }
@@ -224,7 +294,6 @@
 }
 .solutions-list a:hover { background: rgba(3,108,188,.07); }
 
-/* Icons (plain logos) */
 .li-logo,
 .dropdown-menu img.li-logo {
   width: var(--sd-icon) !important;
@@ -235,7 +304,6 @@
   object-fit: contain;
 }
 
-/* Badge/dot fallback if no icon is supplied */
 .li-badge {
   display: inline-flex; align-items: center; justify-content: center;
   width: 22px; height: 22px; border-radius: 999px;
@@ -245,14 +313,12 @@
 .li-badge--dot { width: 10px; height: 10px; background: #036CBC; }
 .bullet  { width: 10px; height: 10px; border-radius: 999px; background: #036CBC; opacity: .45; box-shadow: inset 0 0 0 2px #86C5FF; }
 
-/* Highlight row */
 .solutions-list li.highlighted a {
   background: #E8F3FF;
   color: #0B1220;
   font-weight: 600;
 }
 
-/* Promo card for Solutions */
 .dropdown-promo { display: flex; justify-content: center; align-items: center; }
 .promo-image { position: relative; width: min(300px, 100%); height: clamp(160px, 20vw, 200px); border-radius: 12px; overflow: hidden; }
 .promo-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -268,7 +334,6 @@
 .nav--credpro .menu-items > .menu-item > span { font-weight: 500; }
 .nav--credpro .icon-btn { border-color: #56AEFF; box-shadow: inset 0 0 0 2px rgba(134,197,255,.15); }
 
-/* Dropdown text visibility (ensure dark text in light dropdown) */
 .dropdown-menu .dropdown-list a span:not(.bullet):not(.li-badge) {
   color: #0B1220;
 }
