@@ -1,149 +1,42 @@
-/* CredPro Hero Section - Responsive Layout */
+/* CredProHeroSection.css — hero only; nav handled by SiteNavigation.css */
+
 .credpro-hero-section {
   position: relative;
   width: 100%;
   min-height: 614px;
-  background-image: url('https://api.builder.io/api/v1/image/assets/TEMP/0947a8e192b354420e3d510fb3b44498e35aa445?width=2880');
+
+  /* Use local asset (reliable) + soft gradient fallback */
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(0, 33, 71, .55) 0%, rgba(0, 14, 28, .65) 65%, rgba(0, 10, 18, .85) 100%),
+    url('../../../assets/credPro_hero_backgroung.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-/* Navigation Section */
-.navigation-section {
-  position: relative;
-  z-index: 10;
-  padding: 0 40px 0;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1360px;
-  height: 50px;
-  position: relative;
-  margin: 0 auto;
-  flex-wrap: nowrap;
-}
-
-/* Logo */
-.nav-logo {
-  width: 180px;
-  height: 50px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-}
-
-.logo-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Menu Items - Perfectly centered */
-.menu-items {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  gap: 25px;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: nowrap;
-  max-width: calc(100% - 360px);
-}
-
-.menu-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-  min-width: fit-content;
-}
-
-/* Products button styling */
-.menu-item:nth-child(2) { /* Products */
-  background: linear-gradient(180deg, rgba(134, 197, 255, 0.30) 0%, rgba(3, 108, 188, 0.30) 100%);
-  border-radius: 92px;
-  min-width: 110px;
-}
-
-/* Solutions button styling */
-.menu-item:nth-child(3) { /* Solutions */
-  background: linear-gradient(180deg, rgba(134, 197, 255, 0.30) 0%, rgba(3, 108, 188, 0.30) 100%);
-  border-radius: 92px;
-  min-width: 110px;
-}
-
-.menu-text {
-  color: #FFF;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  white-space: nowrap;
-}
-
-.menu-text.highlighted {
-  font-weight: 600;
-}
-
-.dropdown-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-left: 4px;
-}
-
-.menu-item:hover .menu-text {
-  color: #56AEFF;
-}
-
-/* Contact Buttons - Perfectly aligned */
-.contact-buttons {
-  width: 114px;
-  height: 50px;
-  flex-shrink: 0;
-  position: relative;
-  right: auto;
-  top: auto;
-  display: flex;
-  align-items: center;
-}
-
-.contact-buttons-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Main Hero Content */
+/* Main content centered under the overlaid header */
 .hero-main-content {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 40px 40px;
+
+  /* Center within (hero height - header height) */
+  min-height: calc(614px - var(--nav-h, 88px));
+  padding: var(--nav-h, 88px) 40px 40px;
+
   max-width: 1360px;
   width: 100%;
   margin: 0 auto;
   gap: 80px;
 }
 
-/* Hero Content Container */
+/* Left column */
 .hero-content-container {
   flex: 1;
   max-width: 658px;
@@ -152,476 +45,98 @@
   gap: 20px;
 }
 
-/* Hero Title */
+/* Headline (force Poppins to defeat old Iceland rules) */
+.hero-title,
+.credpro-brand,
+.title-text {
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif !important;
+  color: #fff;
+}
+
 .hero-title {
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 32px;
-  font-style: normal;
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
   background: linear-gradient(90deg, #56AEFF 39.42%, #036CBC 100%);
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.credpro-brand {
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 700;
-  font-size: 40px;
-}
+.credpro-brand { font-weight: 700; font-size: 40px; }
+.title-text   { font-weight: 700; font-size: 32px; }
 
-.title-text {
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 700;
-  font-size: 32px;
-}
-
-/* Hero Description */
+/* Copy */
 .hero-description {
   color: #FFF;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 15px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.6;
   margin: 0;
   max-width: 637px;
 }
 
-/* Hero Buttons */
-.hero-buttons {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
-}
+/* CTA buttons */
+.hero-buttons { display: flex; gap: 30px; margin-top: 20px; }
 
-/* Book Demo Button */
 .book-demo-button {
-  width: 156px;
-  height: 45px;
-  border-radius: 20px;
+  width: 156px; height: 45px; border-radius: 20px;
   background: linear-gradient(95deg, #025594 36.04%, #86C5FF 92.29%);
-  border: none;
-  color: #FFF;
-  text-align: center;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
+  border: none; color: #FFF; font-size: 18px; cursor: pointer;
   transition: all 0.3s ease;
 }
+.book-demo-button:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(2, 85, 148, 0.3); }
 
-.book-demo-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(2, 85, 148, 0.3);
-}
-
-/* Call Us Button */
 .call-us-button {
-  width: 156px;
-  height: 45px;
-  border-radius: 20px;
-  border: 3px solid #025594;
-  background: transparent;
-  color: #FFF;
-  text-align: center;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  width: 156px; height: 45px; border-radius: 20px;
+  border: 3px solid #025594; background: transparent; color: #FFF;
+  font-size: 18px; cursor: pointer; transition: all 0.3s ease;
 }
+.call-us-button:hover { background: rgba(2,85,148,0.1); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(2, 85, 148, 0.2); }
 
-.call-us-button:hover {
-  background: rgba(2, 85, 148, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(2, 85, 148, 0.2);
-}
-
-/* Hero Image Section */
+/* Right column */
 .hero-image-section {
   flex: 1;
   max-width: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; justify-content: center; align-items: center;
 }
-
 .hero-image {
-  width: 100%;
-  height: auto;
-  max-width: 500px;
-  object-fit: contain;
+  width: 100%; height: auto; max-width: 500px; object-fit: contain;
   filter: drop-shadow(0 0 20px rgba(86, 174, 255, 0.2));
 }
 
-/* Responsive Design */
-@media (max-width: 1400px) {
-  .menu-items {
-    gap: 20px;
-  }
-  
-  .menu-item {
-    padding: 6px 10px;
-  }
-}
-
+/* =================== Responsive =================== */
 @media (max-width: 1200px) {
-  .hero-main-content {
-    gap: 60px;
-    padding: 60px 30px 30px;
-  }
-
-  .navigation-section {
-    padding: 0 30px 0;
-  }
-
-  .menu-items {
-    gap: 18px;
-  }
-
-  .nav-logo {
-    width: 160px;
-  }
+  .hero-main-content { gap: 60px; padding: var(--nav-h, 88px) 30px 30px; }
 }
-
 @media (max-width: 1024px) {
-  .menu-item {
-    padding: 4px 8px;
-  }
-
-  .menu-items {
-    gap: 15px;
-  }
-
-  .menu-text {
-    font-size: 14px;
-  }
-
   .hero-main-content {
-    flex-direction: column;
-    gap: 40px;
-    text-align: center;
-    padding: 40px 30px 30px;
+    flex-direction: column; gap: 40px; text-align: center;
+    padding: var(--nav-h, 72px) 30px 30px;
+    min-height: calc(500px - var(--nav-h, 72px));
   }
-
-  .hero-image-section {
-    order: -1;
-    max-width: 400px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .credpro-brand {
-    font-size: 36px;
-  }
-
-  .title-text {
-    font-size: 28px;
-  }
+  .hero-image-section { order: -1; max-width: 400px; }
+  .hero-title { font-size: 28px; }
+  .credpro-brand { font-size: 36px; }
+  .title-text { font-size: 28px; }
 }
-
 @media (max-width: 900px) {
-  .nav-container {
-    flex-wrap: nowrap;
-  }
-  
-  .menu-items {
-    gap: 12px;
-  }
-  
-  .menu-item {
-    padding: 4px 6px;
-  }
-  
-  .menu-text {
-    font-size: 13px;
-  }
-  
-  .nav-logo {
-    width: 140px;
-  }
+  .hero-image-section { max-width: 360px; }
 }
-
 @media (max-width: 768px) {
-  .navigation-section {
-    padding: 0 20px 0;
-  }
-
-  .nav-container {
-    justify-content: space-between;
-    height: auto;
-  }
-
-  .menu-items {
-    display: none; /* Hide menu items, implement hamburger menu */
-  }
-
-  .contact-buttons {
-    position: relative;
-    right: auto;
-    top: auto;
-  }
-
   .hero-main-content {
-    padding: 30px 20px 20px;
-    gap: 30px;
+    padding: var(--nav-h, 60px) 20px 20px; gap: 30px;
+    min-height: calc(500px - var(--nav-h, 60px));
   }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .hero-title {
-    font-size: 24px;
-  }
-
-  .credpro-brand {
-    font-size: 28px;
-  }
-
-  .title-text {
-    font-size: 24px;
-  }
-
-  .hero-description {
-    font-size: 14px;
-  }
-
-  .hero-image-section {
-    max-width: 300px;
-  }
+  .hero-buttons { flex-direction: column; align-items: center; gap: 16px; }
+  .hero-title { font-size: 24px; }
+  .credpro-brand { font-size: 28px; }
+  .title-text { font-size: 24px; }
+  .hero-description { font-size: 14px; }
+  .hero-image-section { max-width: 300px; }
 }
-
 @media (max-width: 480px) {
-  .credpro-hero-section {
-    min-height: 500px;
-  }
-
-  .hero-main-content {
-    padding: 20px 16px 16px;
-  }
-
-  .navigation-section {
-    padding: 0 16px 0;
-  }
-
-  .nav-logo {
-    width: 120px;
-    height: 38px;
-  }
-
-  .book-demo-button,
-  .call-us-button {
-    width: 140px;
-    height: 40px;
-    font-size: 16px;
-  }
-
-  .hero-title {
-    font-size: 20px;
-  }
-
-  .credpro-brand {
-    font-size: 24px;
-  }
-
-  .title-text {
-    font-size: 20px;
-  }
-}
-/* === CREDPRO DROPDOWN FIX PATCH (append at end of CredProLanding.css) === */
-
-/* 1) Allow dropdown to render outside the hero */
-.credpro-hero-section {
-  overflow: visible !important;           /* was hidden; this clipped the menu */
-}
-
-/* 2) Make sure the nav can show popovers above everything */
-.navigation-section,
-.nav-container,
-.menu-items {
-  overflow: visible !important;
-}
-.navigation-section {
-  z-index: 1000 !important;
-  position: relative;                     /* keep relative so absolute menus anchor correctly */
-}
-
-/* 3) Dropdown mechanics (desktop) */
-.menu-item.dropdown { position: relative; }
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px);
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-  border-radius: 12px;
-  padding: 24px;
-  width: min(1200px, 95vw);
-  min-width: min(1000px, 90vw);
-  max-width: 95vw;
-  max-height: 400px;
-  color: #0B1220;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 1001;
-}
-
-/* show on hover and when React adds .is-open (for click/touch) */
-.menu-item.dropdown:hover .dropdown-menu,
-.menu-item.dropdown:focus-within .dropdown-menu,
-.dropdown-menu.is-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* 4) Products layout (matches Home) */
-.products-dropdown .dropdown-columns {
-  display: grid;
-  grid-template-columns: 1.15fr 1.15fr 1.35fr;
-  align-items: start;
-  gap: 24px;
-}
-.products-dropdown .products-column {
-  max-height: 350px;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-.products-dropdown .products-column:first-of-type {
-  border-right: 1px solid rgba(3,108,188,0.08);
-  padding-right: 16px;
-}
-.products-dropdown .products-column:nth-of-type(2) { padding-left: 16px; }
-.products-dropdown .product-link {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px 14px;
-  min-height: 120px;
-  border-radius: 10px;
-  background: #fff;
-  border: 1px solid rgba(3,108,188,0.14);
-  box-shadow: 0 1px 2px rgba(11,18,32,0.06);
-}
-.products-dropdown .product-link:hover {
-  border-color: rgba(3,108,188,0.35);
-  box-shadow: 0 2px 6px rgba(11,18,32,0.10);
-  background-color: rgba(3,108,188,0.05);
-}
-.products-dropdown .product-icon {
-  width: 90px; height: auto; max-height: 45px; object-fit: contain;
-}
-.products-dropdown .product-copy { display: block; width: 100%; }
-.products-dropdown .product-name { display: none; }  /* keep descriptions as titles */
-.products-dropdown .product-desc {
-  font-size: 13px; line-height: 1.5; color: #425466; margin: 0;
-}
-
-/* 5) Solutions layout (matches Home) */
-.solutions-dropdown .dropdown-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.3fr;
-  align-items: start;
-  gap: 24px;
-  height: 320px;
-  padding: 10px 0;
-}
-.solutions-dropdown .dropdown-columns > div:first-child,
-.solutions-dropdown .dropdown-columns > div:nth-child(2) {
-  border-right: 1px solid rgba(3,108,188,0.15);
-  padding-right: 20px;
-}
-.solutions-dropdown .dropdown-columns > div:nth-child(2),
-.solutions-dropdown .dropdown-columns > div:nth-child(3) {
-  padding-left: 20px;
-}
-.dropdown-title { font: 600 14px Poppins, sans-serif; color: #036CBC; margin: 0 0 16px; }
-.dropdown-list {
-  list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;
-  max-height: 280px; overflow-y: auto; padding-right: 8px;
-}
-.dropdown-list a {
-  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
-  border-radius: 6px; color: #0B1220; text-decoration: none; font: 400 14px Poppins, sans-serif;
-  transition: background-color .2s ease;
-}
-.dropdown-list a:hover { background-color: rgba(3,108,188,0.05); }
-.dropdown-list .highlighted a { background-color: rgba(3,108,188,0.1); font-weight: 500; }
-.list-icon { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
-
-/* 6) Promo card used in both dropdowns */
-.dropdown-promo { display: flex; justify-content: center; align-items: center; }
-.promo-image { position: relative; width: min(300px, 100%); height: clamp(160px, 20vw, 200px); border-radius: 12px; overflow: hidden; }
-.promo-image img { width: 100%; height: 100%; object-fit: cover; }
-.promo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(transparent 40%, rgba(0,0,0,0.7));
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 20px; color: #FFF; text-align: center;
-}
-.trusted-badge { background: rgba(220,16,21,.9); padding: 6px 14px; border-radius: 24px; font-size: 12px; font-weight: 600; margin: 0 auto 8px; }
-
-/* 7) Viewport-aware sizing + mobile behavior (fixed panel) */
-.products-dropdown.dropdown-menu {
-  left: 50% !important;
-  transform: translateX(-35%) !important;      /* align nicely under trigger group */
-  width: min(1200px, 90vw) !important;
-  max-width: 90vw !important;
-}
-@media (min-width: 1200px) {
-  .products-dropdown.dropdown-menu {
-    max-width: calc(var(--max-width, 1440px) - 64px) !important;
-    left: var(--container-padding, 32px) !important;
-    right: var(--container-padding, 32px) !important;
-  }
-}
-@media (max-width: 1200px) {
-  .dropdown-menu {
-    width: 95vw !important; min-width: auto !important; max-height: 70vh !important;
-  }
-  .solutions-dropdown .dropdown-columns { gap: 16px; height: auto; }
-}
-@media (max-width: 991px) {
-  .dropdown-menu {
-    position: fixed; top: 80px; left: 20px; right: 20px; transform: none !important;
-    width: auto; max-width: none; max-height: 80vh;
-  }
-  .products-dropdown .dropdown-columns,
-  .solutions-dropdown .dropdown-columns {
-    display: flex; flex-direction: column; gap: 20px;
-  }
-  .dropdown-promo { order: -1; }
-}
-/* ================ SIMPLE FIX ================== */
-/* Hide any logo that's not in navigation or footer container */
-.logo:not(.navigation-section .logo):not(.footer-container .footer-logo) {
-  display: none !important;
-}
-
-/* Dropdown support */
-.dropdown-menu.is-open {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateX(-50%) translateY(0) !important;
-}
-
-/* Products styling */
-.dropdown-menu .products-list .product-item { 
-  margin-bottom: 10px; 
+  .credpro-hero-section { min-height: 500px; }
+  .hero-main-content { padding: var(--nav-h, 60px) 16px 16px; }
 }

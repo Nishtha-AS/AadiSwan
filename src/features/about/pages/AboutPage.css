@@ -1,0 +1,31 @@
+/* src/features/about/pages/AboutPage.css */
+
+.about-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+
+  /* Prevent horizontal scroll caused by legacy fixed widths */
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  /* Header height used by the hero to center under the floating nav */
+  --nav-h: 88px;
+}
+
+/* Adjust header height var at smaller breakpoints */
+@media (max-width: 1024px) { .about-page { --nav-h: 72px; } }
+@media (max-width: 640px)  { .about-page { --nav-h: 60px; } }
+
+/* Page-scoped safety so dropdowns aren’t clipped */
+.about-page .about-navigation-section,
+.about-page .about-menu-items {
+  overflow: visible !important;
+}
+
+/* (Optional) If any global rule pushes the last menu item to the edge,
+   neutralize it only on this page */
+.about-page .about-menu-items .about-menu-item:last-of-type {
+  margin-left: 0 !important;
+}

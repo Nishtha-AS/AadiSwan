@@ -1,0 +1,399 @@
+.our-presence-section {
+  position: relative;
+  width: 100%;
+  background: #FFF;
+  padding: 40px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+.presence-title {
+  width: 367px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 60px 0;
+  height: 39px;
+}
+
+.presence-locations-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 80px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.location-card {
+  width: 300px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #003760;
+  position: relative;
+  background: #FFF;
+  overflow: hidden;
+}
+
+.location-image-container {
+  width: 280px;
+  height: 78px;
+  flex-shrink: 0;
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  overflow: hidden;
+}
+
+.location-image {
+  width: 280px;
+  height: 78px;
+  flex-shrink: 0;
+  object-fit: cover;
+  aspect-ratio: 140/39;
+}
+
+.location-name {
+  color: #003760;
+  text-align: center;
+  text-shadow: 0 2px 0 #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  position: absolute;
+  top: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  white-space: nowrap;
+}
+
+.presence-quote {
+  width: 873px;
+  max-width: 90%;
+  color: #003760;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0 0 60px 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presence-buttons-container {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.book-demo-button {
+  width: 156px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: linear-gradient(95deg, #025594 36.04%, #86C5FF 92.29%);
+  border: none;
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-demo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 85, 148, 0.3);
+}
+
+.call-us-button {
+  width: 156px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 3px solid #025594;
+  background: transparent;
+  color: #003760;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.call-us-button:hover {
+  background: #025594;
+  color: #FFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 85, 148, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .presence-locations-container {
+    gap: 8px;
+    padding: 0 15px;
+  }
+
+  .location-card {
+    width: 280px;
+  }
+
+  .location-image-container {
+    width: 260px;
+    left: 10px;
+  }
+
+  .location-image {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .our-presence-section {
+    padding: 30px 0 60px 0;
+  }
+
+  .presence-locations-container {
+    gap: 5px;
+    padding: 0 10px;
+  }
+
+  .location-card {
+    width: 250px;
+    height: 110px;
+  }
+
+  .location-image-container {
+    width: 230px;
+    height: 68px;
+    left: 10px;
+  }
+
+  .location-image {
+    width: 230px;
+    height: 68px;
+  }
+
+  .location-name {
+    font-size: 18px;
+    top: 72px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .presence-locations-container {
+    gap: 3px;
+    padding: 0 5px;
+  }
+
+  .location-card {
+    width: 220px;
+    height: 100px;
+  }
+
+  .location-image-container {
+    width: 200px;
+    height: 60px;
+    left: 10px;
+  }
+
+  .location-image {
+    width: 200px;
+    height: 60px;
+  }
+
+  .location-name {
+    font-size: 16px;
+    height: 25px;
+    top: 64px;
+  }
+
+  .presence-quote {
+    font-size: 32px;
+    height: auto;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 768px) {
+  .our-presence-section {
+    padding: 20px 0 40px 0;
+  }
+
+  .presence-title {
+    font-size: 32px;
+    width: auto;
+    margin-bottom: 40px;
+  }
+
+  .presence-locations-container {
+    gap: 2px;
+    margin-bottom: 50px;
+    padding: 0 2px;
+  }
+
+  .location-card {
+    width: 170px;
+    height: 85px;
+  }
+
+  .location-image-container {
+    width: 150px;
+    height: 50px;
+    left: 10px;
+    top: 3px;
+  }
+
+  .location-image {
+    width: 150px;
+    height: 50px;
+  }
+
+  .location-name {
+    font-size: 12px;
+    height: 20px;
+    top: 55px;
+  }
+
+  .presence-quote {
+    font-size: 24px;
+    margin-bottom: 40px;
+    padding: 0 10px;
+  }
+
+  .presence-buttons-container {
+    gap: 20px;
+  }
+
+  .book-demo-button,
+  .call-us-button {
+    width: 140px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .presence-locations-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .location-card {
+    width: 140px;
+    height: 75px;
+  }
+
+  .location-image-container {
+    width: 120px;
+    height: 45px;
+    left: 10px;
+    top: 3px;
+  }
+
+  .location-image {
+    width: 120px;
+    height: 45px;
+  }
+
+  .location-name {
+    font-size: 10px;
+    height: 18px;
+    top: 49px;
+  }
+}
+
+@media (max-width: 480px) {
+  .our-presence-section {
+    padding: 15px 0 30px 0;
+  }
+
+  .presence-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .presence-locations-container {
+    margin-bottom: 40px;
+    padding: 0 5px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .location-card {
+    width: 130px;
+    height: 70px;
+  }
+
+  .location-image-container {
+    width: 110px;
+    height: 40px;
+    left: 10px;
+    top: 3px;
+  }
+
+  .location-image {
+    width: 110px;
+    height: 40px;
+  }
+
+  .location-name {
+    font-size: 9px;
+    height: 15px;
+    top: 45px;
+  }
+
+  .presence-quote {
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding: 0 5px;
+  }
+
+  .presence-buttons-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .book-demo-button,
+  .call-us-button {
+    width: 150px;
+    height: 42px;
+    font-size: 16px;
+  }
+}

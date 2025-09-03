@@ -1,0 +1,150 @@
+/* AboutNavigation.css — responsive, centered, no overlap */
+
+/* Float header over hero and center it within a max width */
+.about-navigation-section {
+  position: absolute;
+  top: 0;               /* adjust to taste (e.g., 24px) */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* 3 columns: logo | menu | right icons */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  height: var(--nav-h, 88px);       /* uses --nav-h if AboutPage.css defines it */
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  overflow: visible;                /* allow dropdowns to render */
+}
+
+/* Logo */
+.about-logo {
+  width: 200px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Centered menu group */
+.about-menu-items {
+  /* ensure no old absolute positioning affects layout */
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: 38px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  overflow: visible;
+}
+
+/* Generic menu item */
+.about-menu-item {
+  position: static !important;
+  width: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 6px 14px;
+  border-radius: 92px;              /* allows the pill style when active */
+}
+
+/* Text */
+.about-menu-item span {
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep “About Us” pill look when marked active (via .active) */
+.about-menu-item.active {
+  background: linear-gradient(180deg, rgba(134,197,255,0.30) 0%, rgba(3,108,188,0.30) 100%);
+}
+
+/* Dropdown trigger (Products / Solutions) */
+.about-menu-item.dropdown .about-menu-trigger {
+  background: none;
+  border: none;
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  height: 30px;
+}
+.about-menu-trigger svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Right-side icon cluster */
+.about-contact-buttons {
+  position: static !important;      /* cancel old absolute coords */
+  right: auto !important;
+  top: auto !important;
+
+  width: 114px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-self: end;                /* snap to right grid column */
+  gap: 14px;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 1200px) {
+  .about-navigation-section { padding: 0 32px; }
+  .about-menu-items { gap: 24px; }
+}
+
+@media (max-width: 900px) {
+  .about-navigation-section { padding: 0 24px; }
+  .about-menu-items { gap: 18px; }
+  .about-menu-item span { font-size: 15px; }
+}
+
+@media (max-width: 768px) {
+  /* Optional: stack the header on small screens */
+  .about-navigation-section {
+    position: relative;             /* stop overlaying if you prefer */
+    grid-template-columns: 1fr;
+    height: auto;
+    row-gap: 12px;
+    padding: 15px 20px;
+  }
+  .about-logo { width: 150px; height: 37px; }
+
+  .about-menu-items {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .about-menu-item { padding: 8px 12px; }
+  .about-menu-item span { font-size: 14px; }
+
+  .about-contact-buttons {
+    justify-self: center;
+    width: auto;
+    height: 40px;
+  }
+}

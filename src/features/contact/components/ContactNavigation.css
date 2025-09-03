@@ -1,0 +1,150 @@
+/* ContactNavigation.css — responsive, no overlap */
+
+/* --- Header container (overlay) --- */
+.contact-navigation-section {
+  position: absolute;          /* floats over the hero */
+  top: 24px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* 3 columns: logo | menu | right icons */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  height: 50px;
+
+  /* center within page width */
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* --- Logo --- */
+.contact-nav-logo {
+  width: 200px;
+  height: 50px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* --- Centered menu group --- */
+.contact-menu-items {
+  /* kill old absolute coordinates */
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: 38px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;                   /* spacing between items */
+  overflow: visible;           /* allow dropdown popovers */
+}
+
+/* Generic item (no per-index positioning) */
+.contact-menu-item {
+  position: static !important;
+  left: auto !important;
+  width: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 6px 14px;
+  border-radius: 92px;         /* so .active looks like a pill */
+}
+
+/* Text */
+.contact-menu-item span {
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+/* Keep the “Contact Us” pill style when active */
+.contact-menu-item.active {
+  background: linear-gradient(180deg, rgba(134, 197, 255, 0.30) 0%, rgba(3, 108, 188, 0.30) 100%);
+}
+
+/* Dropdown trigger button style (Products / Solutions) */
+.contact-menu-item.dropdown .contact-menu-trigger {
+  background: none;
+  border: none;
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  height: 30px;
+}
+.contact-menu-trigger svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* --- Right-side icon cluster --- */
+.contact-nav-buttons {
+  /* kill old absolute positioning */
+  position: static !important;
+  right: auto !important;
+  top: auto !important;
+
+  width: 114px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-self: end;          /* snap to right grid column */
+  gap: 14px;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 1200px) {
+  .contact-navigation-section { padding: 0 32px; }
+  .contact-menu-items { gap: 24px; }
+}
+
+@media (max-width: 900px) {
+  .contact-navigation-section { padding: 0 24px; }
+  .contact-menu-items { gap: 18px; }
+  .contact-menu-item span { font-size: 15px; }
+}
+
+@media (max-width: 768px) {
+  /* If you want a stacked mobile header, keep this block; otherwise remove it. */
+  .contact-navigation-section {
+    position: relative;        /* stop overlaying for small screens */
+    top: 0;
+    grid-template-columns: 1fr; 
+    height: auto;
+    row-gap: 12px;
+    padding: 15px 20px;
+  }
+
+  .contact-nav-logo { width: 150px; height: 37px; }
+
+  .contact-menu-items {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .contact-menu-item { padding: 8px 12px; }
+  .contact-menu-item span { font-size: 14px; }
+
+  .contact-nav-buttons {
+    justify-self: center;
+    width: auto;
+    height: 40px;
+  }
+}

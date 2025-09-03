@@ -1,0 +1,306 @@
+.leadership-section {
+  position: relative;
+  width: 100%;
+  background: #FFF;
+  padding: 60px 0;
+  overflow: visible;
+}
+
+.leadership-title {
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 40px 0;
+  padding: 0;
+}
+
+.leadership-description {
+  width: 100%;
+  max-width: 1153px;
+  color: #003760;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 auto 80px auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.leadership-description strong {
+  font-weight: 700;
+}
+
+.leadership-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.leadership-card {
+  width: 550px;
+  height: 356px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid #003760;
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.50) 0%, rgba(229, 243, 255, 0.50) 100%);
+  box-shadow: 0 4px 10px 10px rgba(134, 197, 255, 0.10);
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 15px;
+}
+
+.leader-image {
+  width: 200px;
+  height: 240px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.leader-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.leader-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 10px;
+  min-width: 0;
+}
+
+.leader-name {
+  color: #003760;
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.leader-title {
+  color: #423A3A;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+}
+
+.leader-description {
+  color: #003760;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .leadership-section {
+    padding: 40px 0;
+  }
+  
+  .leadership-cards-container {
+    gap: 30px;
+    padding: 0 40px;
+  }
+  
+  .leadership-card {
+    width: 500px;
+    height: 320px;
+    padding: 25px;
+  }
+  
+  .leader-image {
+    width: 250px;
+    height: 270px;
+  }
+  
+  .leader-name {
+    font-size: 28px;
+  }
+  
+  .leader-title {
+    font-size: 18px;
+  }
+  
+  .leader-description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 968px) {
+  .leadership-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .leadership-card {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    min-height: 320px;
+    padding: 20px;
+  }
+  
+  .leader-image {
+    width: 200px;
+    height: 220px;
+  }
+  
+  .leader-info {
+    padding-top: 20px;
+  }
+  
+  .leader-name {
+    font-size: 26px;
+  }
+  
+  .leader-title {
+    font-size: 17px;
+  }
+  
+  .leader-description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadership-section {
+    padding: 30px 0;
+  }
+
+  .leadership-title {
+    font-size: 28px;
+    margin: 0 0 30px 0;
+    padding: 0 20px;
+  }
+
+  .leadership-description {
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0 auto 60px auto;
+  }
+
+  .leadership-cards-container {
+    padding: 0 20px;
+    gap: 25px;
+  }
+
+  .leadership-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    min-height: 400px;
+    padding: 25px 20px;
+  }
+
+  .leader-image {
+    width: 180px;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  .leader-info {
+    padding-top: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .leader-name {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .leader-title {
+    font-size: 16px;
+    text-align: center;
+    margin: 0 0 15px 0;
+  }
+
+  .leader-description {
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadership-section {
+    padding: 20px 0;
+  }
+
+  .leadership-title {
+    font-size: 24px;
+    padding: 0 15px;
+    margin: 0 0 25px 0;
+  }
+
+  .leadership-description {
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0 auto 50px auto;
+    padding: 0 15px;
+  }
+
+  .leadership-cards-container {
+    padding: 0 15px;
+    gap: 20px;
+  }
+
+  .leadership-card {
+    padding: 20px 15px;
+    min-height: 380px;
+  }
+
+  .leader-image {
+    width: 150px;
+    height: 170px;
+  }
+
+  .leader-name {
+    font-size: 22px;
+  }
+
+  .leader-title {
+    font-size: 15px;
+  }
+
+  .leader-description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

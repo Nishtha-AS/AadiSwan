@@ -1,0 +1,129 @@
+/* ContactHeroSection.css — centered below floating header, responsive */
+
+.contact-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 614px;            /* hero baseline height */
+  overflow: hidden;             /* keep bg clipped to hero */
+}
+
+/* Full-bleed background */
+.contact-hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Centered stack: title → description → contact row
+   Centers within (hero height - header height) using --nav-h from ContactPage.css */
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+
+  /* ↓↓↓ key change: center UNDER the floating header */
+  min-height: calc(614px - var(--nav-h, 88px));
+  padding: var(--nav-h, 88px) 24px 40px;
+
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* horizontal center */
+  justify-content: center;   /* vertical center */
+  text-align: center;
+  gap: 18px;
+}
+
+/* --- Typography --- */
+.contact-hero-title,
+.contact-hero-description {
+  margin: 0;
+}
+
+.contact-hero-title {
+  color: #fff;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.contact-hero-description {
+  color: #fff;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 1024px;
+}
+
+/* --- Contact row --- */
+.contact-info-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 8px;
+  flex-wrap: wrap;           /* stays tidy on smaller widths */
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.contact-link {
+  color: #fff;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity .2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.contact-link:hover { opacity: .8; }
+
+/* Divider between phone and email */
+.contact-divider {
+  width: 2px;
+  height: 24px;
+  background: #fff;
+  opacity: .9;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 1024px) {
+  .contact-hero-content { max-width: 920px; }
+}
+
+@media (max-width: 768px) {
+  .contact-hero-content {
+    /* smaller hero target on tablet/mobile, still respecting header height */
+    min-height: calc(500px - var(--nav-h, 60px));
+    padding: var(--nav-h, 60px) 16px 32px;
+    gap: 16px;
+  }
+  .contact-info-section { gap: 20px; }
+  .contact-divider { display: none; } /* stack cleanly */
+  .contact-link { font-size: 14px; }
+  .contact-icon { width: 20px; height: 20px; }
+}
+
+@media (max-width: 480px) {
+  .contact-hero-content {
+    padding: var(--nav-h, 60px) 14px 28px;
+  }
+  .contact-link { font-size: 13px; }
+}

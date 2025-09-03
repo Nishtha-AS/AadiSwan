@@ -1,0 +1,229 @@
+.our-values-section {
+  position: relative;
+  width: 100%;
+  background: #FFF;
+  padding: 60px 0;
+  overflow: visible;
+}
+
+.our-values-title {
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 40px 0;
+  padding: 0;
+}
+
+.values-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.value-card {
+  width: 219px;
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: 30px 5px;
+  border: 3px solid #036CBC;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.value-icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.value-icon img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.value-icon svg {
+  width: 100px;
+  height: 100px;
+}
+
+.value-label {
+  color: #036CBC;
+  text-align: center;
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .values-container {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .our-values-section {
+    padding: 40px 0;
+  }
+  
+  .values-container {
+    gap: 15px;
+    padding: 0 40px;
+  }
+  
+  .value-card {
+    width: 200px;
+    height: 150px;
+  }
+  
+  .value-icon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .value-icon img,
+  .value-icon svg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .value-label {
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 968px) {
+  .values-container {
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .value-card {
+    width: 180px;
+    height: 140px;
+  }
+  
+  .value-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .value-icon img,
+  .value-icon svg {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .value-label {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .our-values-section {
+    padding: 30px 0;
+  }
+
+  .our-values-title {
+    font-size: 28px;
+    margin: 0 0 30px 0;
+    padding: 0 20px;
+  }
+
+  .values-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .value-card {
+    width: 200px;
+    height: 150px;
+  }
+  
+  .value-icon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .value-icon img,
+  .value-icon svg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .value-label {
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .our-values-section {
+    padding: 20px 0;
+  }
+
+  .our-values-title {
+    font-size: 24px;
+    padding: 0 15px;
+    margin: 0 0 25px 0;
+  }
+
+  .values-container {
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .value-card {
+    width: 180px;
+    height: 130px;
+    padding: 8px;
+  }
+  
+  .value-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 6px;
+  }
+  
+  .value-icon img,
+  .value-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .value-label {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

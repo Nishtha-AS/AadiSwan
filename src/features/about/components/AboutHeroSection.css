@@ -1,0 +1,75 @@
+/* AboutHeroSection.css — centered below floating header, responsive */
+
+.about-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 614px;        /* hero baseline height */
+  overflow: hidden;         /* keep bg clipped to hero */
+}
+
+/* Full-bleed background image */
+.about-hero-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Centered stack: title → description (no absolute left/top) */
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+
+  /* Center within (hero height - header height).
+     --nav-h comes from the page CSS; defaults to 88px if not set. */
+  min-height: calc(614px - var(--nav-h, 88px));
+  padding: var(--nav-h, 88px) 24px 40px;
+
+  max-width: 1200px;        /* keeps line length tidy */
+  margin-inline: auto;      /* center the block */
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* horizontal center */
+  justify-content: center;  /* vertical center */
+  text-align: center;
+  gap: 18px;
+}
+
+/* Typography (no fixed widths/heights) */
+.about-hero-title {
+  margin: 0;
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.about-hero-description {
+  margin: 0;
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 1024px;
+}
+
+/* ------------------- Responsive ------------------- */
+@media (max-width: 1024px) {
+  .about-hero-content { max-width: 920px; }
+}
+
+@media (max-width: 768px) {
+  .about-hero-content {
+    min-height: calc(500px - var(--nav-h, 60px));
+    padding: var(--nav-h, 60px) 16px 32px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-content { padding: var(--nav-h, 60px) 14px 28px; }
+}

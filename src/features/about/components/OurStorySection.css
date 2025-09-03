@@ -1,0 +1,229 @@
+.our-story-section {
+  position: relative;
+  width: 100%;
+  min-height: 800px;
+  background: #FFF;
+  padding: 60px 0;
+  overflow: visible;
+}
+
+.our-story-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 700px;
+  flex-shrink: 0;
+  opacity: 0.4;
+  object-fit: cover;
+}
+
+.our-story-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.our-story-title {
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 40px 0 20px 0;
+  padding: 0;
+}
+
+.our-story-description {
+  max-width: 1130px;
+  margin: 0 auto 80px auto;
+  padding: 0 20px;
+  color: #003760;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.mission-vision-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.mission-card,
+.vision-card {
+  width: 550px;
+  min-height: 250px;
+  max-width: calc(50% - 15px);
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid #003760;
+  background: #FFF;
+  box-shadow: 0 4px 10px 10px rgba(134, 197, 255, 0.10);
+  padding: 32px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-title {
+  color: #003760;
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 0 26px 0;
+  width: 100%;
+}
+
+.card-description {
+  color: #423A3A;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .our-story-section {
+    padding: 40px 0;
+  }
+
+  .our-story-description {
+    padding: 0 40px;
+  }
+
+  .mission-vision-container {
+    padding: 0 40px;
+  }
+
+  .mission-card,
+  .vision-card {
+    max-width: calc(50% - 15px);
+  }
+}
+
+@media (max-width: 968px) {
+  .mission-vision-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .mission-card,
+  .vision-card {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .our-story-section {
+    padding: 30px 0;
+    min-height: auto;
+  }
+
+  .our-story-background {
+    width: 100%;
+    height: 100%;
+  }
+
+  .our-story-title {
+    font-size: 28px;
+    margin: 20px 0 15px 0;
+    padding: 0 20px;
+  }
+
+  .our-story-description {
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+  }
+
+  .mission-vision-container {
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .mission-card,
+  .vision-card {
+    width: 100%;
+    max-width: none;
+    min-height: 180px;
+    padding: 20px 25px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    margin: 0 0 15px 0;
+  }
+
+  .card-description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .our-story-section {
+    padding: 20px 0;
+  }
+
+  .our-story-title {
+    font-size: 24px;
+    padding: 0 15px;
+  }
+
+  .our-story-description {
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0 15px;
+    margin: 0 auto 30px auto;
+  }
+
+  .mission-vision-container {
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .mission-card,
+  .vision-card {
+    padding: 15px 20px;
+    min-height: 160px;
+  }
+
+  .card-title {
+    font-size: 22px;
+    margin: 0 0 12px 0;
+  }
+
+  .card-description {
+    font-size: 12px;
+  }
+}
