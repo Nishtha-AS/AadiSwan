@@ -16,112 +16,100 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer-container">
-      {/* Background layers */}
-      <div className="footer-background-primary"></div>
-      <div className="footer-background-secondary"></div>
-      <div className="footer-background-bottom"></div>
+    <footer className="global-footer">
+      {/* Background layers matching Figma */}
+      <div className="footer-bg-primary"></div>
+      <div className="footer-bg-secondary"></div>
+      <div className="footer-bg-bottom"></div>
 
       {/* Centered logo */}
-      <div className="footer-logo-section">
+      <div className="footer-logo-container">
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/094ac5b656d6c9c243317250a4f4131ec257b852?width=433"
           alt="AadiSwan Logo"
-          className="footer-logo"
+          className="footer-main-logo"
         />
       </div>
 
-      {/* Main content */}
-      <div className="footer-content">
+      {/* Main content sections */}
+      <div className="footer-main-content">
         {/* Our Presence Section */}
         <div className="presence-section">
-          <h3 className="section-title">Our Presence</h3>
+          <h3 className="footer-section-title">Our Presence</h3>
           
-          <div className="locations-grid">
+          <div className="location-cards-grid">
             {/* New Delhi */}
             <div className="location-card">
-              <div className="location-background"></div>
-              <div className="location-content">
-                <div className="city-title">NEW DELHI</div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/e085c71a9d961fa2f943124b46d389c577f62acd?width=308"
-                  alt="New Delhi"
-                  className="location-flag"
-                />
-                <p className="location-address">
-                  105A, 1st Floor, NDM-1, Netaji Subhash Place, Pitampura, Delhi, 110034
-                </p>
-              </div>
+              <div className="city-name">NEW DELHI</div>
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/e085c71a9d961fa2f943124b46d389c577f62acd?width=308"
+                alt="New Delhi Flag"
+                className="location-flag-img"
+              />
+              <p className="location-address">
+                105A, 1st Floor, NDM-1, Netaji Subhash Place, Pitampura, Delhi, 110034
+              </p>
             </div>
 
             {/* Lucknow */}
             <div className="location-card">
-              <div className="location-background"></div>
-              <div className="location-content">
-                <div className="city-title">LUCKNOW</div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/8e705f193585327134ef1f7e574a1db4a1e620ba?width=308"
-                  alt="Lucknow"
-                  className="location-flag"
-                />
-                <p className="location-address">
-                  Ground and 4th Floor, Yogiraj Tower, C-47, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
-                </p>
-              </div>
+              <div className="city-name">LUCKNOW</div>
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/8e705f193585327134ef1f7e574a1db4a1e620ba?width=308"
+                alt="Lucknow Flag"
+                className="location-flag-img"
+              />
+              <p className="location-address">
+                Ground and 4th Floor, Yogiraj Tower, C-47, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
+              </p>
             </div>
 
             {/* Mumbai */}
             <div className="location-card">
-              <div className="location-background"></div>
-              <div className="location-content">
-                <div className="city-title">MUMBAI</div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/e7427043cd1c375fc36b357e423b369af63d958a?width=308"
-                  alt="Mumbai"
-                  className="location-flag"
-                />
-                <p className="location-address">
-                  Modi Business Park, Sai Nagar, Anand Nagar, Thane West, Thane, Maharashtra 400615
-                </p>
-              </div>
+              <div className="city-name">MUMBAI</div>
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/e7427043cd1c375fc36b357e423b369af63d958a?width=308"
+                alt="Mumbai Flag"
+                className="location-flag-img"
+              />
+              <p className="location-address">
+                Modi Business Park, Sai Nagar, Anand Nagar, Thane West, Thane, Maharashtra 400615
+              </p>
             </div>
 
             {/* Abu Dhabi */}
             <div className="location-card">
-              <div className="location-background"></div>
-              <div className="location-content">
-                <div className="city-title">ABU DHABI</div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/c509711ba12eb215bc0e358034e01dd4ae1d9589?width=308"
-                  alt="Abu Dhabi"
-                  className="location-flag"
-                />
-                <p className="location-address">
-                  Office No: 208, Room No: 2,. Al Nasar Commercial Center, Najda Street. Abu Dhabi, Abu Dhabi 131416, AE
-                </p>
-              </div>
+              <div className="city-name">ABU DHABI</div>
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/c509711ba12eb215bc0e358034e01dd4ae1d9589?width=308"
+                alt="Abu Dhabi Flag"
+                className="location-flag-img"
+              />
+              <p className="location-address">
+                Office No: 208, Room No: 2,. Al Nasar Commercial Center, Najda Street. Abu Dhabi, Abu Dhabi 131416, AE
+              </p>
             </div>
           </div>
         </div>
 
         {/* Useful Links Section */}
         <div className="useful-links-section">
-          <h3 className="section-title">Useful Links</h3>
-          <div className="links-list">
-            <a href="/" className="footer-link">Home</a>
-            <a href="/aboutUs" className="footer-link">About Us</a>
-            <a href="/products" className="footer-link">Products</a>
-            <a href="/solutions" className="footer-link">Solutions</a>
-            <a href="/careers" className="footer-link">Careers</a>
-            <a href="/contact" className="footer-link">Contact Us</a>
+          <h3 className="footer-section-title">Useful Links</h3>
+          <div className="footer-nav-links">
+            <a href="/" className="footer-nav-link">Home</a>
+            <a href="/about" className="footer-nav-link">About Us</a>
+            <a href="/products" className="footer-nav-link">Products</a>
+            <a href="/solutions" className="footer-nav-link">Solutions</a>
+            <a href="/careers" className="footer-nav-link">Careers</a>
+            <a href="/contact" className="footer-nav-link">Contact Us</a>
           </div>
         </div>
 
         {/* Contact Us Section */}
-        <div className="contact-section">
-          <h3 className="section-title">Contact Us</h3>
+        <div className="contact-info-section">
+          <h3 className="footer-section-title">Contact Us</h3>
           
-          <div className="contact-info">
+          <div className="contact-details">
             <div className="contact-item">
               <svg className="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M15.0501 5C16.0268 5.19057 16.9244 5.66826 17.6281 6.37194C18.3318 7.07561 18.8095 7.97326 19.0001 8.95M15.0501 1C17.0793 1.22544 18.9716 2.13417 20.4163 3.57701C21.8609 5.01984 22.7721 6.91101 23.0001 8.94M22.0001 16.92V19.92C22.0012 20.1985 21.9441 20.4742 21.8326 20.7293C21.721 20.9845 21.5574 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6408 21.8227C20.377 21.9119 20.0974 21.9451 19.8201 21.92C16.7429 21.5856 13.7871 20.5341 11.1901 18.85C8.77388 17.3147 6.72539 15.2662 5.19006 12.85C3.50003 10.2412 2.4483 7.27099 2.12006 4.18C2.09507 3.90347 2.12793 3.62476 2.21656 3.36162C2.30518 3.09849 2.44763 2.85669 2.63482 2.65162C2.82202 2.44655 3.04986 2.28271 3.30385 2.17052C3.55783 2.05833 3.8324 2.00026 4.11006 2H7.11006C7.59536 1.99522 8.06585 2.16708 8.43382 2.48353C8.80179 2.79999 9.04213 3.23945 9.11005 3.72C9.23668 4.68007 9.47151 5.62273 9.81006 6.53C9.9446 6.88792 9.97372 7.27691 9.89396 7.65088C9.81421 8.02485 9.62892 8.36811 9.36005 8.64L8.09006 9.91C9.51361 12.4135 11.5865 14.4864 14.0901 15.91L15.3601 14.64C15.6319 14.3711 15.9752 14.1858 16.3492 14.1061C16.7231 14.0263 17.1121 14.0555 17.4701 14.19C18.3773 14.5286 19.32 14.7634 20.2801 14.89C20.7658 14.9585 21.2095 15.2032 21.5266 15.5775C21.8437 15.9518 22.0122 16.4296 22.0001 16.92Z" stroke="#56AEFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -139,8 +127,8 @@ const Footer = () => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="social-media">
-            <a href="https://linkedin.com/company/aadiswan" className="social-link" aria-label="LinkedIn">
+          <div className="social-media-icons">
+            <a href="https://linkedin.com/company/aadiswan" className="social-icon-link" aria-label="LinkedIn">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                 <path d="M8.125 10C9.16054 10 10 9.16054 10 8.125C10 7.08946 9.16054 6.25 8.125 6.25C7.08946 6.25 6.25 7.08946 6.25 8.125C6.25 9.16054 7.08946 10 8.125 10Z" fill="white"/>
                 <path d="M6.25 12.5C6.25 11.8097 6.80965 11.25 7.5 11.25H8.75C9.44035 11.25 10 11.8096 10 12.5V22.5C10 23.1904 9.44035 23.75 8.75 23.75H7.5C6.80965 23.75 6.25 23.1904 6.25 22.5V12.5Z" fill="white"/>
@@ -149,7 +137,7 @@ const Footer = () => {
               </svg>
             </a>
 
-            <a href="https://instagram.com/aadiswan" className="social-link" aria-label="Instagram">
+            <a href="https://instagram.com/aadiswan" className="social-icon-link" aria-label="Instagram">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                 <path fillRule="evenodd" clipRule="evenodd" d="M15 22.5C19.1421 22.5 22.5 19.1421 22.5 15C22.5 10.8579 19.1421 7.5 15 7.5C10.8579 7.5 7.5 10.8579 7.5 15C7.5 19.1421 10.8579 22.5 15 22.5ZM15 20C17.7614 20 20 17.7614 20 15C20 12.2386 17.7614 10 15 10C12.2386 10 10 12.2386 10 15C10 17.7614 12.2386 20 15 20Z" fill="white"/>
                 <path d="M22.5 6.25C21.8096 6.25 21.25 6.80965 21.25 7.5C21.25 8.19035 21.8096 8.75 22.5 8.75C23.1904 8.75 23.75 8.19035 23.75 7.5C23.75 6.80965 23.1904 6.25 22.5 6.25Z" fill="white"/>
@@ -157,7 +145,7 @@ const Footer = () => {
               </svg>
             </a>
 
-            <a href="https://facebook.com/aadiswan" className="social-link" aria-label="Facebook">
+            <a href="https://facebook.com/aadiswan" className="social-icon-link" aria-label="Facebook">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                 <path fillRule="evenodd" clipRule="evenodd" d="M25 1.25C27.0711 1.25 28.75 2.92894 28.75 5V25C28.75 27.0711 27.0711 28.75 25 28.75H5C2.92894 28.75 1.25 27.0711 1.25 25V5C1.25 2.92894 2.92894 1.25 5 1.25H25ZM25 3.75C25.6904 3.75 26.25 4.30965 26.25 5V25C26.25 25.6904 25.6904 26.25 25 26.25H18.75V17.4999H21.3453C21.8833 17.4999 22.3609 17.1556 22.5311 16.6451L23.0849 14.9839C23.2872 14.3767 22.8354 13.7499 22.1955 13.7499H18.75V11.2499C18.75 10.6249 19.375 9.9999 20 9.9999H22.5C23.1904 9.9999 23.75 9.44025 23.75 8.7499V7.89241C23.75 7.48864 23.4921 7.12662 23.1016 7.02359C21.4631 6.59119 20 6.59119 20 6.59119C16.875 6.59119 15 8.7499 15 10.6249V13.7499H12.5C11.8097 13.7499 11.25 14.3095 11.25 14.9999V16.2499C11.25 16.9402 11.8096 17.4999 12.5 17.4999H15V26.25H5C4.30965 26.25 3.75 25.6904 3.75 25V5C3.75 4.30965 4.30965 3.75 5 3.75H25Z" fill="white"/>
               </svg>
@@ -167,47 +155,47 @@ const Footer = () => {
 
         {/* Contact Form Section */}
         <div className="contact-form-section">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-field">
+          <form className="footer-contact-form" onSubmit={handleSubmit}>
+            <div className="form-input-field">
               <input
                 type="text"
                 name="name"
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="form-input"
+                className="footer-form-input"
                 required
               />
             </div>
 
-            <div className="form-field">
+            <div className="form-input-field">
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="form-input"
+                className="footer-form-input"
                 required
               />
             </div>
 
-            <div className="form-field">
+            <div className="form-textarea-field">
               <textarea
                 name="message"
                 placeholder="Your Message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className="form-textarea"
+                className="footer-form-textarea"
                 required
                 rows="4"
               />
-              <svg className="textarea-resize-icon" width="8" height="8" viewBox="0 0 8 8" fill="none">
+              <svg className="textarea-resize-handle" width="8" height="8" viewBox="0 0 8 8" fill="none">
                 <path d="M6.523 0.353516L0.353516 6.523M6.98064 3.89589L3.8959 6.98063" stroke="#979797"/>
               </svg>
             </div>
 
-            <button type="submit" className="submit-button">
+            <button type="submit" className="footer-submit-button">
               Submit
             </button>
           </form>
@@ -215,13 +203,13 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="footer-bottom">
-        <div className="copyright">
+      <div className="footer-bottom-section">
+        <div className="footer-copyright">
           ©2025 Aadiswan Info Consultants Pvt. Ltd.
         </div>
-        <div className="legal-links">
-          <a href="/terms" className="legal-link">Terms of Service</a>
-          <a href="/privacy" className="legal-link">Privacy Policy</a>
+        <div className="footer-legal-links">
+          <a href="/terms" className="footer-legal-link">Terms of Service</a>
+          <a href="/privacy" className="footer-legal-link">Privacy Policy</a>
         </div>
       </div>
     </footer>
