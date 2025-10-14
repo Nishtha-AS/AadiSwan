@@ -387,7 +387,7 @@ const LandingPage = () => {
               <p className="product-description">
                 AadiSwan's flagship lending suite, covering origination, underwriting, credit administration, covenant management, and valuation/legal workflows. Using self-service BRE, it automates end-to-end processes, ensuring precise evaluations, compliance, and faster turnaround times.
               </p>
-              <button className="more-btn">More →</button>
+              <button className="more-btn"> <Link to="/credpro" >More → </Link> </button>
             </div>
 
             <div className="product-card">

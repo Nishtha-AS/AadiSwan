@@ -4,28 +4,36 @@ import '../styles/FAQSection.css';
 const FAQSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState(3); // Fourth FAQ is open by default
 
-  const faqs = [
-    {
-      id: 1,
-      question: "What is end-to-end credit lifecycle automation, and how does CredPro enable it?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: 2,
-      question: "How does CredPro integrate with existing Core Banking Systems (CBS) and third-party APIs?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: 3,
-      question: "Can CredPro help reduce turnaround time (TAT) for loan sanctioning and disbursement?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: 4,
-      question: "What makes CredPro different from traditional lending workflow solutions?",
-      answer: "CredPro is different from traditional lending workflow solutions because it goes beyond basic digitization. While legacy systems rely on manual checks and siloed processes, CredPro delivers a fully automated, policy-driven credit lifecycle. It integrates with 100+ APIs (credit bureaus, KYC, AML, valuation, compliance), ensuring real-time data validation and faster decision-making. Its AI-powered monitoring engine enables continuous covenant tracking, early warning signals, and ESG compliance—features missing in traditional solutions. This means lenders get faster turnaround times, reduced risk, and a scalable, future-ready platform tailored for banks, NBFCs, and MSME lenders."
-    }
-  ];
+ const faqs = [
+  {
+    id: 1,
+    question:
+      "What is end-to-end credit lifecycle automation, and how does CredPro enable it?",
+    answer:
+      "CredPro digitizes the complete lending journey—from lead capture and onboarding to underwriting, sanction, disbursement, and ongoing monitoring. It uses policy-driven workflows, checklists, and maker–checker controls to enforce credit policy, capture evidence, and maintain a full audit trail. Integrated data pulls (KYC, bureau, GST/ITR, bank statements, AML, valuation) reduce manual effort and improve decision quality."
+  },
+  {
+    id: 2,
+    question:
+      "How does CredPro integrate with existing Core Banking Systems (CBS) and third-party APIs?",
+    answer:
+      "CredPro provides REST/SOAP adapters and event/webhook support to exchange customers, accounts, limits, collateral, postings, and status updates with CBS/LMS. Out of the box it connects to 100+ services—KYC, credit bureau, AML/blacklist, MCA, GST/ITR, bank-statement analyzers, e-Sign/e-Stamp, eNACH/mandates, valuation/legal vendors—through a configurable connector layer, minimizing bespoke development."
+  },
+  {
+    id: 3,
+    question:
+      "Can CredPro help reduce turnaround time (TAT) for loan sanctioning and disbursement?",
+    answer:
+      "Yes. Pre-built journeys, auto-prefill from APIs, rule-based underwriting, and automated document assembly cut rework and handoffs. Maker–checker thresholds, smart tasking, and straight-through checks (account validation, mandate creation, payout rails) compress decision and disbursement TAT while improving accuracy and compliance."
+  },
+  {
+    id: 4,
+    question:
+      "What makes CredPro different from traditional lending workflow solutions?",
+    answer:
+      "Traditional tools digitize forms but leave policy enforcement and data gathering manual. CredPro is policy-first: it embeds rules, evidence capture, and covenants into the workflow; orchestrates 100+ integrations for real-time validation; and continuously monitors obligations with alerts and escalations. The result is consistent decisions, lower operational risk, faster throughput, and clean regulatory auditability across banks, NBFCs, and MSME lenders."
+  }
+];
 
   const toggleFAQ = (id) => {
     setExpandedFAQ(expandedFAQ === id ? null : id);

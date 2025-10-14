@@ -75,6 +75,7 @@
   min-height: 400px;
   text-align: center;
   position: relative;
+  isolation: isolate;            /* added: ensure top-layer link receives clicks */
 }
 
 .product-logo {
@@ -118,6 +119,11 @@
   margin-top: auto;
   flex-shrink: 0;
   transition: background 0.3s ease;
+
+  /* ensure link is clickable above any siblings */
+  position: relative;
+  z-index: 10;                  /* raised from 2 */
+  pointer-events: auto;         /* guarantee it receives the click */
 }
 
 .more-btn:hover {
@@ -220,3 +226,13 @@
     font-size: 11px;
   }
 }
+
+/* keep these helpers so nothing blocks the link */
+.product-card { position: relative; }
+.more-btn { position: relative; z-index: 10; pointer-events: auto; }
+.product-card img,
+.product-description { position: relative; z-index: 1; }
+/* if you have any decorative absolute layer in the card */
+.product-card .overlay,
+.product-card::before,
+.product-card::after { pointer-events: none; }

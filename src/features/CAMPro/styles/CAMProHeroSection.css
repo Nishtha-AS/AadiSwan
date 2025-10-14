@@ -1,0 +1,142 @@
+/* CredProHeroSection.css — hero only; nav handled by SiteNavigation.css */
+
+.campro-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 614px;
+
+  /* Use local asset (reliable) + soft gradient fallback */
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(0, 33, 71, .55) 0%, rgba(0, 14, 28, .65) 65%, rgba(0, 10, 18, .85) 100%),
+    url('../../../assets/credPro_hero_backgroung.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Main content centered under the overlaid header */
+.hero-main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Center within (hero height - header height) */
+  min-height: calc(614px - var(--nav-h, 88px));
+  padding: var(--nav-h, 88px) 40px 40px;
+
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 80px;
+}
+
+/* Left column */
+.hero-content-container {
+  flex: 1;
+  max-width: 658px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Headline (force Poppins to defeat old Iceland rules) */
+.hero-title,
+.credpro-brand,
+.title-text {
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif !important;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  background: linear-gradient(90deg, #56AEFF 39.42%, #036CBC 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.credpro-brand { font-weight: 700; font-size: 40px; }
+.title-text   { font-weight: 700; font-size: 32px; }
+
+/* Copy */
+.hero-description {
+  color: #FFF;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 637px;
+}
+
+/* CTA buttons */
+.hero-buttons { display: flex; gap: 30px; margin-top: 20px; }
+
+.book-demo-button {
+  width: 156px; height: 45px; border-radius: 20px;
+  background: linear-gradient(95deg, #025594 36.04%, #86C5FF 92.29%);
+  border: none; color: #FFF; font-size: 18px; cursor: pointer;
+  transition: all 0.3s ease;
+}
+.book-demo-button:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(2, 85, 148, 0.3); }
+
+.call-us-button {
+  width: 156px; height: 45px; border-radius: 20px;
+  border: 3px solid #025594; background: transparent; color: #FFF;
+  font-size: 18px; cursor: pointer; transition: all 0.3s ease;
+}
+.call-us-button:hover { background: rgba(2,85,148,0.1); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(2, 85, 148, 0.2); }
+
+/* Right column */
+.hero-image-section {
+  flex: 1;
+  max-width: 500px;
+  display: flex; justify-content: center; align-items: center;
+}
+.hero-image {
+  width: 100%; height: auto; max-width: 500px; object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(86, 174, 255, 0.2));
+}
+
+/* =================== Responsive =================== */
+@media (max-width: 1200px) {
+  .hero-main-content { gap: 60px; padding: var(--nav-h, 88px) 30px 30px; }
+}
+@media (max-width: 1024px) {
+  .hero-main-content {
+    flex-direction: column; gap: 40px; text-align: center;
+    padding: var(--nav-h, 72px) 30px 30px;
+    min-height: calc(500px - var(--nav-h, 72px));
+  }
+  .hero-image-section { order: -1; max-width: 400px; }
+  .hero-title { font-size: 28px; }
+  .credpro-brand { font-size: 36px; }
+  .title-text { font-size: 28px; }
+}
+@media (max-width: 900px) {
+  .hero-image-section { max-width: 360px; }
+}
+@media (max-width: 768px) {
+  .hero-main-content {
+    padding: var(--nav-h, 60px) 20px 20px; gap: 30px;
+    min-height: calc(500px - var(--nav-h, 60px));
+  }
+  .hero-buttons { flex-direction: column; align-items: center; gap: 16px; }
+  .hero-title { font-size: 24px; }
+  .credpro-brand { font-size: 28px; }
+  .title-text { font-size: 24px; }
+  .hero-description { font-size: 14px; }
+  .hero-image-section { max-width: 300px; }
+}
+@media (max-width: 480px) {
+  .credpro-hero-section { min-height: 500px; }
+  .hero-main-content { padding: var(--nav-h, 60px) 16px 16px; }
+}

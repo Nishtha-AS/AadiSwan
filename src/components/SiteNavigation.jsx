@@ -1,5 +1,6 @@
 // src/components/SiteNavigation.jsx
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import "./SiteNavigation.css";
 
 /* ---- Shared header assets ---- */
@@ -8,7 +9,7 @@ import callIcon from "../assets/call_logo.png";
 import emailIcon from "../assets/Email_logo.png";
 import leadingLoanImg from "../assets/leading_loan_management_img.png";
 
-/* ---- Product logos (CredPro set) ---- */
+/* ---- Product logos ---- */
 import credProLogo from "../assets/CredPro_logo.png";
 import cadProLogo from "../assets/CADPro_logo.png";
 import camProLogo from "../assets/CAMPro_logo.png";
@@ -30,80 +31,51 @@ import projectFinanceLogo from "../assets/project_finance_logo.png";
 import lapLogo from "../assets/load_against_property_logo.png";
 import nbfcLogo from "../assets/NBFC_logo.png";
 
-/* ---------- Defaults (CredPro data) ---------- */
+/* ---------- Built-in data (with routes) ---------- */
 const defaultProducts = [
-  { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions." },
-  { logo: cadProLogo,  name: "AS CADPro",  desc: "Simplifies credit administration with seamless, transparent workflows." },
-  { logo: camProLogo,  name: "AS CAMPro",  desc: "AI-powered engine for smarter, insight-driven credit appraisals." },
-  { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments." },
-  { logo: ewsProLogo,  name: "AS EWSPro",  desc: "Provides early warning signals to mitigate credit risks proactively." },
+  { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions.", path: "/credpro" },
+  { logo: cadProLogo,  name: "AS CADPro",  desc: "Simplifies credit administration with seamless, transparent workflows.",        path: "/cadpro" },
+  { logo: camProLogo,  name: "AS CAMPro",  desc: "AI-powered engine for smarter, insight-driven credit appraisals.",            path: "/campro" },
+  // If dedicated routes exist later, update these two paths:
+  { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.",              path: "/credpro" },
+  { logo: ewsProLogo,  name: "AS EWSPro",  desc: "Provides early warning signals to mitigate credit risks proactively.",        path: "/credpro" },
 ];
 
 const defaultSolutions = [
-  { label: "Underwriting Studio",                          icon: underwritingStudioLogo },
-  { label: "Document Management and Template Engine",      icon: dmteLogo },
-  { label: "Automated Decisioning", highlighted: true,     icon: automatedDecisioningLogo },
-  { label: "Covenant Management",                          icon: covenantManagementLogo },
-  { label: "Support Workflows- Legal, Valuation and more", icon: supportWorkflowLogo },
-  { label: "Third Party Integrations",                     icon: tpdLogo },
+  { label: "Underwriting Studio",                          icon: underwritingStudioLogo,     path: "/underwriting" },
+  { label: "Document Management and Template Engine",      icon: dmteLogo,                   path: "/documentmanagement" },
+  { label: "Automated Decisioning", highlighted: true,     icon: automatedDecisioningLogo,   path: "/automateddescision" },
+  { label: "Covenant Management",                          icon: covenantManagementLogo,     path: "/covenant" },
+  { label: "Support Workflows- Legal, Valuation and more", icon: supportWorkflowLogo,        path: "/support" },
+  { label: "Third Party Integrations",                     icon: tpdLogo,                    path: "/integrations" },
 ];
 
 const defaultSolutionsSecondary = [
-  { label: "Working Capital Loans", icon: workingCapitalLogo },
-  { label: "Supply Chain Finance",  icon: supplyChainLogo    },
-  { label: "Project Finance",       icon: projectFinanceLogo },
-  { label: "Loan Against Property", icon: lapLogo            },
-  { label: "NBFC Funding",          icon: nbfcLogo           },
+  { label: "Working Capital Loans", icon: workingCapitalLogo, path: "/workingcapital" },
+  { label: "Supply Chain Finance",  icon: supplyChainLogo,    path: "/supplychain" },
+  { label: "Project Finance",       icon: projectFinanceLogo, path: "/projectfinance" },
+  { label: "Loan Against Property", icon: lapLogo,            path: "/lap" },
+  { label: "NBFC Funding",          icon: nbfcLogo,           path: "/nbfcfunding" },
 ];
 
-/* ---------- Helper: smart menu positioning to avoid clipping ---------- */
+/* ---------- Helper: desktop dropdown positioning ---------- */
 function positionMenu(triggerEl, menuEl) {
   if (!triggerEl || !menuEl) return;
+  if (window.innerWidth < 992) { menuEl.style.cssText = ""; return; }
 
-  const isProducts = menuEl.classList.contains("products-dropdown");
-  const isDesktop  = window.innerWidth >= 992;
-
-  // ✅ Let CSS handle Products viewport-centering on desktop.
-  // Also clear any leftover inline styles to avoid fighting the CSS.
-  if (isProducts && isDesktop) {
-    menuEl.style.left = "";
-    menuEl.style.right = "";
-    menuEl.style.transform = "";
-    menuEl.style.position = "";
-    menuEl.style.top = "";
-    return;
-  }
-
-  // JS positions:
-  // - Products on mobile (<=991px)
-  // - Solutions on all breakpoints (so your edge-avoid logic still applies)
-
-  // Reset to default: centered under trigger (relative to dropdown trigger container)
   menuEl.style.left = "50%";
   menuEl.style.right = "";
   menuEl.style.transform = "translateX(-50%) translateY(0)";
 
   const rect = menuEl.getBoundingClientRect();
   const vw = window.innerWidth;
-
-  const overflowLeft  = rect.left < 8;         // keep small padding from edges
-  const overflowRight = rect.right > vw - 8;
-
-  if (overflowRight && !overflowLeft) {
-    // Align menu's right edge with the trigger container
+  if (rect.left < 8) {
+    menuEl.style.left = "0";
+    menuEl.style.transform = "translateY(0)";
+  } else if (rect.right > vw - 8) {
     menuEl.style.left = "";
     menuEl.style.right = "0";
     menuEl.style.transform = "translateY(0)";
-  } else if (overflowLeft && !overflowRight) {
-    // Align menu's left edge with the trigger container
-    menuEl.style.left = "0";
-    menuEl.style.right = "";
-    menuEl.style.transform = "translateY(0)";
-  } else {
-    // Keep centered
-    menuEl.style.left = "50%";
-    menuEl.style.right = "";
-    menuEl.style.transform = "translateX(-50%) translateY(0)";
   }
 }
 
@@ -116,6 +88,7 @@ export default function SiteNavigation({
   staticItems,
   activeLabel,
 
+  // You CAN still override these if you ever need to
   products = defaultProducts,
   solutions = defaultSolutions,
   solutionsSecondary = defaultSolutionsSecondary,
@@ -129,10 +102,26 @@ export default function SiteNavigation({
   const [openProducts, setOpenProducts]   = useState(false);
   const [openSolutions, setOpenSolutions] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 992);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mobileAcc, setMobileAcc] = useState({ products: false, solutions: false });
+
   const prodRef = useRef(null);
   const solRef  = useRef(null);
   const productsMenuRef  = useRef(null);
   const solutionsMenuRef = useRef(null);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 992);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // lock body scroll when drawer open
+  useEffect(() => {
+    document.documentElement.style.overflow = drawerOpen ? "hidden" : "";
+    return () => (document.documentElement.style.overflow = "");
+  }, [drawerOpen]);
 
   const closeAll = useCallback(() => {
     setOpenProducts(false);
@@ -141,6 +130,7 @@ export default function SiteNavigation({
 
   useEffect(() => {
     const onDocClick = (e) => {
+      if (isMobile) return;
       if (
         prodRef.current && !prodRef.current.contains(e.target) &&
         solRef.current  && !solRef.current.contains(e.target)
@@ -148,290 +138,332 @@ export default function SiteNavigation({
     };
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
-  }, [closeAll]);
+  }, [closeAll, isMobile]);
 
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && closeAll();
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        closeAll();
+      }
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [closeAll]);
 
-  // Reposition menus whenever they open or on resize
   useEffect(() => {
-    function handle() {
-      if (openProducts)  positionMenu(prodRef.current, productsMenuRef.current);
-      if (openSolutions) positionMenu(solRef.current,  solutionsMenuRef.current);
-    }
+    const handle = () => {
+      if (window.innerWidth >= 992) {
+        if (openProducts)  positionMenu(prodRef.current, productsMenuRef.current);
+        if (openSolutions) positionMenu(solRef.current,  solutionsMenuRef.current);
+      }
+    };
     handle();
-
     window.addEventListener("resize", handle);
     return () => window.removeEventListener("resize", handle);
   }, [openProducts, openSolutions]);
 
-  const toggleProducts  = () =>
-    setOpenProducts((v) => {
-      const nv = !v;
-      if (nv) setOpenSolutions(false);
-      return nv;
-    });
-
-  const toggleSolutions = () =>
-    setOpenSolutions((v) => {
-      const nv = !v;
-      if (nv) setOpenProducts(false);
-      return nv;
-    });
-
   const productCols = [products.slice(0, 3), products.slice(3)];
+
+  // helpers: clicking a Link should close menus/drawer
+  const onNavigate = () => {
+    closeAll();
+    setDrawerOpen(false);
+  };
+
+  /* ---------- Mobile list helper ---------- */
+  const MobileList = ({ items, withDesc }) => (
+    <ul className="m-list" role="menu">
+      {items.map((p) => (
+        <li key={p.name || p.label} role="none">
+          <Link to={p.path || "#"} role="menuitem" className="m-row" onClick={onNavigate}>
+            <img src={p.logo || p.icon} alt="" className="m-row__img" />
+            <div className="m-row__body">
+              <span className="m-row__title">{p.name || p.label}</span>
+              {withDesc && p.desc && <span className="m-row__desc">{p.desc}</span>}
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <header
-      className={[
-        "site-nav-section",
-        overlay ? "is-overlay" : "",
-        variant ? `nav--${variant}` : ""
-      ].join(" ")}
+      className={["site-nav-section", overlay ? "is-overlay" : "", variant ? `nav--${variant}` : ""].join(" ")}
       role="navigation"
       aria-label="Main"
     >
       <div className="site-nav-container nav-container">
         {/* Brand */}
         <div className="nav-left">
-          <a href={brandHref} className="brand-link" aria-label="AadiSwan Home">
+          <Link to={brandHref} className="brand-link" aria-label="AadiSwan Home" onClick={onNavigate}>
             <img className="logo" src={logo} alt="AadiSwan" />
-          </a>
+          </Link>
         </div>
 
-        {/* Center menu */}
-        <div className="menu-items" role="menubar" aria-label="Primary">
-          {leadingItems.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href || "#"}
-              role="menuitem"
-              className={`menu-item ${label === activeLabel ? "active" : ""}`}
-            >
-              <span>{label}</span>
-            </a>
-          ))}
+        {/* Center menu (desktop) */}
+        {!isMobile && (
+          <div className="menu-items" role="menubar" aria-label="Primary">
+            {leadingItems.map(({ label, href }) => (
+              <Link
+                key={label}
+                to={href || "#"}
+                role="menuitem"
+                className={`menu-item ${label === activeLabel ? "active" : ""}`}
+                onClick={onNavigate}
+              >
+                <span>{label}</span>
+              </Link>
+            ))}
 
-          {/* Products */}
-          <div className="menu-item dropdown" role="none" ref={prodRef}>
-            <button
-              type="button"
-              className="menu-trigger"
-              aria-haspopup="menu"
-              aria-expanded={openProducts}
-              aria-controls="products-menu"
-              onClick={() => {
-                const next = !openProducts;
-                setOpenProducts(next);
-                if (next) setOpenSolutions(false);
-                // Position on next frame so menu has size
-                requestAnimationFrame(() => {
-                  positionMenu(prodRef.current, productsMenuRef.current);
-                });
-              }}
-            >
-              <span>Products</span>
-              <span className="caret-circle" aria-hidden="true">
-                <svg
-                  className={`caret-icon ${openProducts ? "rotated" : ""}`}
-                  viewBox="0 0 24 24"
-                  width="14"
-                  height="14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </button>
+            {/* Products */}
+            <div className="menu-item dropdown" role="none" ref={prodRef}>
+              <button
+                type="button"
+                className="menu-trigger"
+                aria-haspopup="menu"
+                aria-expanded={openProducts}
+                aria-controls="products-menu"
+                onClick={() => {
+                  const next = !openProducts;
+                  setOpenProducts(next);
+                  if (next) setOpenSolutions(false);
+                  requestAnimationFrame(() => positionMenu(prodRef.current, productsMenuRef.current));
+                }}
+              >
+                <span>Products</span>
+                <span className="caret-circle" aria-hidden="true">
+                  <svg className={`caret-icon ${openProducts ? "rotated" : ""}`} viewBox="0 0 24 24" width="14" height="14" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </button>
 
-            <div
-              id="products-menu"
-              ref={productsMenuRef}
-              className={`dropdown-menu products-dropdown ${openProducts ? "is-open" : ""}`}
-              role="menu"
-              aria-label="Products"
-            >
-              <div className="dropdown-columns products-columns">
-                {/* Col 1 */}
-                <div className="dropdown-column products-column">
-                  <h3 className="dropdown-title">PRODUCTS</h3>
-                  <ul className="dropdown-list products-list" role="none">
-                    {productCols[0].map((p) => (
-                      <li key={p.name} role="presentation">
-                        <a href="#product" role="menuitem" className="product-row">
-                          <div className="product-chip">
-                            <img src={p.logo} alt="" className="product-chip-img" />
-                          </div>
-                          <div className="product-card-body">
-                            <span className="product-name">{p.name}</span>
-                            <span className="product-desc">{p.desc}</span>
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Col 2 */}
-                <div className="dropdown-column products-column">
-                  <ul className="dropdown-list products-list" role="none">
-                    {productCols[1].map((p) => (
-                      <li key={p.name} role="presentation">
-                        <a href="#product" role="menuitem" className="product-row">
-                          <div className="product-chip">
-                            <img src={p.logo} alt="" className="product-chip-img" />
-                          </div>
-                          <div className="product-card-body">
-                            <span className="product-name">{p.name}</span>
-                            <span className="product-desc">{p.desc}</span>
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Promo */}
-                <div className="dropdown-promo promo-column" role="none">
-                  <div className="promo-image">
-                    <img src={leadingLoanImg} alt="Leading Loan Management Solution" />
-                    <div className="promo-overlay">
-                      <div className="trusted-badge">Trusted by 10+ Prestigious Banks</div>
-                      <p>Leading Loan Management Solution</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Solutions */}
-          <div className="menu-item dropdown" role="none" ref={solRef}>
-            <button
-              type="button"
-              className="menu-trigger"
-              aria-haspopup="menu"
-              aria-expanded={openSolutions}
-              aria-controls="solutions-menu"
-              onClick={() => {
-                const next = !openSolutions;
-                setOpenSolutions(next);
-                if (next) setOpenProducts(false);
-                requestAnimationFrame(() => {
-                  positionMenu(solRef.current, solutionsMenuRef.current);
-                });
-              }}
-            >
-              <span>Solutions</span>
-              <span className="caret-circle" aria-hidden="true">
-                <svg
-                  className={`caret-icon ${openSolutions ? "rotated" : ""}`}
-                  viewBox="0 0 24 24"
-                  width="14"
-                  height="14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </button>
-
-            <div
-              id="solutions-menu"
-              ref={solutionsMenuRef}
-              className={`dropdown-menu solutions-dropdown ${openSolutions ? "is-open" : ""}`}
-              role="menu"
-              aria-label="Solutions"
-            >
-              <div className="dropdown-columns solutions-columns">
-                {/* Solutions list (LEFT) */}
-                <div className="dropdown-column col col--left">
-                  <h3 className="dropdown-title">{solutionsTitle}</h3>
-                  <ul className="dropdown-list solutions-list" role="none">
-                    {solutions.map(({ label, highlighted, icon }) => (
-                      <li
-                        key={label}
-                        className={highlighted ? "highlighted" : ""}
-                        role="presentation"
-                      >
-                        <a href="#solution" role="menuitem">
-                          {icon ? (
-                            <img className="li-logo" src={icon} alt="" />
-                          ) : (
-                            <span className="bullet" aria-hidden />
-                          )}
-                          <span>{label}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Asset Classes (CENTER) */}
-                {solutionsSecondary?.length > 0 && (
-                  <div className="dropdown-column col col--center">
-                    <h3 className="dropdown-title">{solutionsSecondaryTitle}</h3>
-                    <ul className="dropdown-list solutions-list alt" role="none">
-                      {solutionsSecondary.map(({ label, icon }) => (
-                        <li key={label} role="presentation">
-                          <a href="#asset" role="menuitem">
-                            {icon ? (
-                              <img className="li-logo" src={icon} alt="" />
-                            ) : (
-                              <span className="li-badge li-badge--dot" aria-hidden />
-                            )}
-                            <span>{label}</span>
-                          </a>
+              <div id="products-menu" ref={productsMenuRef} className={`dropdown-menu products-dropdown ${openProducts ? "is-open" : ""}`} role="menu" aria-label="Products">
+                <div className="dropdown-columns products-columns">
+                  {/* Col 1 */}
+                  <div className="dropdown-column products-column">
+                    <h3 className="dropdown-title">PRODUCTS</h3>
+                    <ul className="dropdown-list products-list" role="none">
+                      {productCols[0].map((p) => (
+                        <li key={p.name} role="presentation">
+                          <Link to={p.path} role="menuitem" className="product-row" onClick={onNavigate}>
+                            <div className="product-chip"><img src={p.logo} alt="" className="product-chip-img" /></div>
+                            <div className="product-card-body">
+                              <span className="product-name">{p.name}</span>
+                              <span className="product-desc">{p.desc}</span>
+                            </div>
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
-                )}
 
-                {/* Promo */}
-                <div className="dropdown-promo col col--promo" role="none">
-                  <div className="promo-image">
-                    <img src={leadingLoanImg} alt="Leading Loan Management Solution" />
-                    <div className="promo-overlay">
-                      <div className="trusted-badge">Trusted by 10+ Prestigious Banks</div>
-                      <p>Leading Loan Management Solution</p>
+                  {/* Col 2 */}
+                  <div className="dropdown-column products-column">
+                    <ul className="dropdown-list products-list" role="none">
+                      {productCols[1].map((p) => (
+                        <li key={p.name} role="presentation">
+                          <Link to={p.path} role="menuitem" className="product-row" onClick={onNavigate}>
+                            <div className="product-chip"><img src={p.logo} alt="" className="product-chip-img" /></div>
+                            <div className="product-card-body">
+                              <span className="product-name">{p.name}</span>
+                              <span className="product-desc">{p.desc}</span>
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Promo */}
+                  <div className="dropdown-promo promo-column" role="none">
+                    <div className="promo-image">
+                      <img src={leadingLoanImg} alt="Leading Loan Management Solution" />
+                      <div className="promo-overlay">
+                        <div className="trusted-badge">Trusted by 10+ Prestigious Banks</div>
+                        <p>Leading Loan Management Solution</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Solutions */}
+            <div className="menu-item dropdown" role="none" ref={solRef}>
+              <button
+                type="button"
+                className="menu-trigger"
+                aria-haspopup="menu"
+                aria-expanded={openSolutions}
+                aria-controls="solutions-menu"
+                onClick={() => {
+                  const next = !openSolutions;
+                  setOpenSolutions(next);
+                  if (next) setOpenProducts(false);
+                  requestAnimationFrame(() => positionMenu(solRef.current, solutionsMenuRef.current));
+                }}
+              >
+                <span>Solutions</span>
+                <span className="caret-circle" aria-hidden="true">
+                  <svg className={`caret-icon ${openSolutions ? "rotated" : ""}`} viewBox="0 0 24 24" width="14" height="14" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+
+              <div id="solutions-menu" ref={solutionsMenuRef} className={`dropdown-menu solutions-dropdown ${openSolutions ? "is-open" : ""}`} role="menu" aria-label="Solutions">
+                <div className="dropdown-columns solutions-columns">
+                  {/* Solutions list (LEFT) */}
+                  <div className="dropdown-column col col--left">
+                    <h3 className="dropdown-title">SOLUTIONS</h3>
+                    <ul className="dropdown-list solutions-list" role="none">
+                      {solutions.map(({ label, highlighted, icon, path }) => (
+                        <li key={label} className={highlighted ? "highlighted" : ""} role="presentation">
+                          <Link to={path} role="menuitem" onClick={onNavigate}>
+                            {icon ? <img className="li-logo" src={icon} alt="" /> : <span className="bullet" aria-hidden />}
+                            <span>{label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Asset Classes (CENTER) */}
+                  {solutionsSecondary?.length > 0 && (
+                    <div className="dropdown-column col col--center">
+                      <h3 className="dropdown-title">ASSET CLASSES</h3>
+                      <ul className="dropdown-list solutions-list alt" role="none">
+                        {solutionsSecondary.map(({ label, icon, path }) => (
+                          <li key={label} role="presentation">
+                            <Link to={path} role="menuitem" onClick={onNavigate}>
+                              {icon ? <img className="li-logo" src={icon} alt="" /> : <span className="li-badge li-badge--dot" aria-hidden />}
+                              <span>{label}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Promo */}
+                  <div className="dropdown-promo col col--promo" role="none">
+                    <div className="promo-image">
+                      <img src={leadingLoanImg} alt="Leading Loan Management Solution" />
+                      <div className="promo-overlay">
+                        <div className="trusted-badge">Trusted by 10+ Prestigious Banks</div>
+                        <p>Leading Loan Management Solution</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trailing items */}
+            {trailing.map(({ label, href }) => (
+              <Link
+                key={label}
+                to={href || "#"}
+                role="menuitem"
+                className={`menu-item ${label === activeLabel ? "active" : ""}`}
+                onClick={onNavigate}
+              >
+                <span>{label}</span>
+              </Link>
+            ))}
           </div>
+        )}
 
-          {/* Trailing items */}
-          {trailing.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href || "#"}
-              role="menuitem"
-              className={`menu-item ${label === activeLabel ? "active" : ""}`}
-            >
-              <span>{label}</span>
-            </a>
-          ))}
-        </div>
-
-        {/* Right icons */}
-        <div className="nav-right contact-buttons">
-          {rightContent ? (
-            rightContent
+        {/* Right icons / Hamburger */}
+        <div className="nav-right">
+          {isMobile ? (
+            <button className="hamburger" aria-label="Open menu" aria-expanded={drawerOpen} onClick={() => setDrawerOpen(true)}>
+              <span /><span /><span />
+            </button>
           ) : (
             <div className="right-icons">
-              <button className="icon-btn" aria-label="Call"><img src={callIcon} alt="" /></button>
-              <button className="icon-btn" aria-label="Email"><img src={emailIcon} alt="" /></button>
+              {rightContent || (
+                <>
+                  <button className="icon-btn" aria-label="Call"><img src={callIcon} alt="" /></button>
+                  <button className="icon-btn" aria-label="Email"><img src={emailIcon} alt="" /></button>
+                </>
+              )}
             </div>
           )}
         </div>
       </div>
+
+      {/* ===== Mobile Drawer ===== */}
+      {isMobile && (
+        <>
+          <div className={`m-backdrop ${drawerOpen ? "is-open" : ""}`} onClick={() => setDrawerOpen(false)} aria-hidden={!drawerOpen} />
+          <aside className={`m-drawer ${drawerOpen ? "is-open" : ""}`} role="dialog" aria-modal="true" aria-label="Mobile navigation">
+            <div className="m-drawer__head">
+              <img className="m-logo" src={logo} alt="AadiSwan" />
+              <button className="m-close" aria-label="Close menu" onClick={() => setDrawerOpen(false)}>×</button>
+            </div>
+
+            {/* Top links (Home / About / Blog / Contact etc.) */}
+            <nav className="m-nav" aria-label="Primary">
+              {[...leadingItems, ...trailing].map(({ label, href }) => (
+                <Link key={label} to={href || "#"} className="m-link" onClick={onNavigate}>
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Accordion: Products */}
+            <div className="m-acc">
+              <button className="m-acc__btn" aria-expanded={mobileAcc.products} onClick={() => setMobileAcc(s => ({ ...s, products: !s.products }))}>
+                <span>Products</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" className={mobileAcc.products ? "rot" : ""}>
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className={`m-acc__panel ${mobileAcc.products ? "open" : ""}`}>
+                <MobileList items={products} withDesc />
+                <div className="m-promo">
+                  <img src={leadingLoanImg} alt="" />
+                  <div className="m-badge">Trusted by 10+ Prestigious Banks</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Accordion: Solutions */}
+            <div className="m-acc">
+              <button className="m-acc__btn" aria-expanded={mobileAcc.solutions} onClick={() => setMobileAcc(s => ({ ...s, solutions: !s.solutions }))}>
+                <span>Solutions</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" className={mobileAcc.solutions ? "rot" : ""}>
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className={`m-acc__panel ${mobileAcc.solutions ? "open" : ""}`}>
+                <h4 className="m-subtitle">SOLUTIONS</h4>
+                <MobileList items={solutions.map(s => ({ ...s, name: s.label, logo: s.icon }))} />
+                {solutionsSecondary?.length > 0 && (
+                  <>
+                    <h4 className="m-subtitle">ASSET CLASSES</h4>
+                    <MobileList items={solutionsSecondary.map(s => ({ ...s, name: s.label, logo: s.icon }))} />
+                  </>
+                )}
+                <div className="m-promo">
+                  <img src={leadingLoanImg} alt="" />
+                  <div className="m-badge">Leading Loan Management Solution</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact icons */}
+            <div className="m-actions">
+              <button className="icon-btn" aria-label="Call"><img src={callIcon} alt="" /></button>
+              <button className="icon-btn" aria-label="Email"><img src={emailIcon} alt="" /></button>
+            </div>
+          </aside>
+        </>
+      )}
     </header>
   );
 }

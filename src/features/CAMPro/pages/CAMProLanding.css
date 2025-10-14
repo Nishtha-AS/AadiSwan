@@ -1,0 +1,566 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Iceland:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===== RESPONSIVE BASE SETUP ===== */
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --max-width: min(1440px, 100vw);
+  --container-padding: clamp(16px, 4vw, 32px);
+  --section-gap: clamp(40px, 8vw, 120px);
+}
+
+/* ========================== LAYOUT ========================== */
+.landing-page {
+  --nav-h: 88px;                /* header height used by shared nav */
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  background: #FFF;
+  position: relative;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1024px) { .landing-page { --nav-h: 72px; } }
+@media (max-width: 640px)  { .landing-page { --nav-h: 60px; } }
+
+/* ---------- Hero Background ---------- */
+.hero-background {
+  width: 100%;
+  max-width: 1440px;
+  height: clamp(595px, 100vh, 900px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
+
+/* ========================= HERO ============================ */
+.hero-content {
+  width: min(550px, calc(60% - 64px));
+  position: absolute;
+  left: clamp(32px, 8.5vw, 122px);
+  top: clamp(180px, 25vh, 236px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-title {
+  width: 100%;
+  max-width: 637px;
+  height: auto;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #56AEFF 39.42%, #036CBC 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.hero-description {
+  width: 100%;
+  max-width: 637px;
+  height: auto;
+  color: #FFF;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(13px, 1.8vw, 15px);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: clamp(20px, 4vw, 34px);
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.book-demo-btn, .call-us-btn {
+  width: clamp(130px, 20vw, 156px);
+  height: 45px;
+  border-radius: 20px;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.book-demo-btn {
+  background: linear-gradient(95deg, #025594 36.04%, #86C5FF 92.29%);
+  border: none;
+  color: #FFF;
+}
+
+.call-us-btn {
+  border: 3px solid #025594;
+  background: transparent;
+  color: #FFF;
+}
+
+/* ---------- Hero Side Image ---------- */
+.hero-side-image {
+  width: min(450px, 35vw);
+  height: auto;
+  position: absolute;
+  right: clamp(16px, 3vw, 50px);
+  top: clamp(60px, 12vh, 87px);
+  object-fit: cover;
+}
+
+/* =========== SECTION HEADINGS / TEXT =========== */
+.section-title {
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
+  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.section-title.large {
+  font-size: clamp(32px, 6vw, 48px);
+  width: min(487px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-description {
+  color: #003760;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.6vw, 16px);
+  font-weight: 400;
+  line-height: 1.5;
+  width: min(1201px, calc(100% - 64px));
+  margin: 33px auto 0;
+  padding: 0 var(--container-padding);
+}
+
+/* ====================== CLIENTS / LOOP ===================== */
+.our-clients-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(700px, 100vh, 750px);
+  padding: 0 var(--container-padding);
+}
+
+.clients-grid { display: flex; gap: 20px; margin-top: 36px; padding: 0 13px; }
+.client-card {
+  width: clamp(180px, 25vw, 219px);
+  height: clamp(80px, 12vw, 100px);
+  border-radius: 23px;
+  border: 3px solid #036CBC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.client-card img {
+  max-width: 85%;
+  max-height: 65%;
+  object-fit: contain;
+}
+
+/* Marquee */
+.clients-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 36px;
+  padding: 0 clamp(8px, 2vw, 13px);
+}
+
+.clients-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: clients-scroll 28s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.clients-track:hover { animation-play-state: paused; }
+@keyframes clients-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== SECTIONS - FLEXIBLE POSITIONING ====== */
+.customer-onboarding-section,
+.our-products-section,
+.consultancy-section-wrapper,
+.multi-asset-section,
+.statistics-section-wrapper,
+.platform-automation-section {
+  position: relative;
+  width: 100%;
+  margin: var(--section-gap) auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Separate rule for Customer Origination with reduced margin */
+.customer-origination-section {
+  position: relative;
+  width: 100%;
+  margin: clamp(20px, 4vh, 400px);
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======================= PRODUCTS ========================== */
+.products-grid {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  position: relative;
+  margin-top: clamp(60px, 0vw, 106px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 4vw, 40px);
+}
+
+.product-card {
+  border-radius: 40px 20px;
+  background: linear-gradient(180deg, #003760 0%, #000708 75.96%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 4vw, 33px) clamp(16px, 3vw, 28px);
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+}
+
+.product-card img,
+.product-logo {
+  width: min(236px, 80%);
+  height: auto;
+  max-height: 65px;
+  object-fit: contain;
+}
+
+.product-description {
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(12px, 1.4vw, 14px);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 20px 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.more-btn {
+  width: clamp(120px, 20vw, 141px);
+  height: 35px;
+  border-radius: 96px;
+  background: linear-gradient(90deg, rgba(134, 197, 255, 0.30) 0%, rgba(3, 108, 188, 0.30) 100%);
+  border: none;
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ======================= PRODUCTS SECTION OVERRIDE ========================== */
+.products-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: clamp(60px, 8vw, 106px);
+  display: flex !important;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Top Row - 3 Products (Equal Width) */
+.products-row-top {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px;
+}
+
+/* Bottom Row - 2 Products (Wider, Centered) */
+.products-row-bottom {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* Override existing product-card styles for new structure */
+.products-container .product-card {
+  border-radius: 40px 20px;
+  background: linear-gradient(180deg, #003760 0%, #000708 75.96%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 4vw, 33px) clamp(16px, 3vw, 28px);
+  min-height: 400px;
+  width: 100%;
+}
+
+.products-container .product-logo {
+  width: min(236px, 80%);
+  height: auto;
+  max-height: 65px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.products-container .product-description {
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(12px, 1.4vw, 14px);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 20px 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.products-container .more-btn {
+  width: clamp(120px, 20vw, 141px);
+  height: 35px;
+  border-radius: 96px;
+  background: linear-gradient(90deg, rgba(134, 197, 255, 0.30) 0%, rgba(3, 108, 188, 0.30) 100%);
+  border: none;
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+/* Responsive fixes for new structure */
+@media (max-width: 991px) {
+  .products-row-top { grid-template-columns: repeat(2, 1fr) !important; }
+  .products-row-bottom { grid-template-columns: 1fr !important; max-width: 400px; }
+}
+
+@media (max-width: 640px) {
+  .products-row-top,
+  .products-row-bottom { grid-template-columns: 1fr !important; }
+  .products-row-bottom { max-width: 100%; }
+}
+
+/* ====================== MULTI-ASSET ======================== */
+.asset-grid {
+  display: flex;
+  gap: clamp(15px, 3vw, 25px);
+  margin-top: 60px;
+  padding: 0 20px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.asset-card {
+  width: clamp(140px, 20vw, 180px);
+  height: clamp(140px, 20vw, 180px);
+  border-radius: 40px 20px;
+  background: linear-gradient(180deg, #003760 0%, #000708 75.96%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 4vw, 31px) clamp(10px, 2vw, 15px) clamp(15px, 3vw, 18px);
+  flex-shrink: 0;
+}
+
+.asset-card img {
+  width: clamp(60px, 12vw, 91px);
+  height: clamp(55px, 11vw, 82px);
+  object-fit: contain;
+}
+
+.asset-card span {
+  color: #FFF;
+  text-align: center;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: clamp(12px, 1.6vw, 16px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* ================== PLATFORM AUTOMATION ==================== */
+.automation-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(30px, 6vw, 60px);
+  margin-top: 50px;
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.automation-list {
+  flex: 1;
+  min-width: 250px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.automation-list li {
+  font-family: Poppins, sans-serif;
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: #003760;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.automation-list li span {
+  font-weight: 700;
+  font-size: clamp(16px, 1.8vw, 18px);
+  color: #003760;
+}
+
+.automation-image {
+  flex: 1.2;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.automation-image img { max-width: 100%; height: auto; }
+
+.automation-bottom {
+  display: flex;
+  justify-content: center;
+  gap: clamp(60px, 12vw, 120px);
+  margin-top: clamp(-30px, -4vw, -48px);
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.bottom-item {
+  font-family: Poppins, sans-serif;
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: #003760;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-align: center;
+}
+
+.bottom-item span {
+  font-weight: 700;
+  font-size: clamp(16px, 1.8vw, 18px);
+  color: #003760;
+}
+
+/* ================== RESPONSIVE BREAKPOINTS ====================== */
+@media (max-width: 1024px) {
+  .hero-side-image { width: min(350px, 30vw); right: 10px; }
+  .hero-content { width: min(500px, 65%); }
+}
+
+@media (max-width: 1200px) {
+  /* dropdown width is handled by centralized nav; no duplicates here */
+}
+
+@media (max-width: 991px) {
+  .hero-content {
+    position: static;
+    width: 100%;
+    margin-top: 120px;
+    padding: 0 var(--container-padding);
+  }
+
+  .hero-side-image {
+    position: static;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .automation-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .automation-image {
+    min-width: auto;
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-content { margin-top: 80px; }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .book-demo-btn, .call-us-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .asset-grid { gap: 15px; }
+
+  .automation-bottom {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}

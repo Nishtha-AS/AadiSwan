@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProductsSection.css';
 
 // Import your product logos
@@ -24,7 +25,7 @@ const ProductsSection = () => {
             <p className="product-description">
               AadiSwan's flagship lending suite, covering origination, underwriting, credit administration, covenant management, and valuation/legal workflows. Using self-service BRE, it automates end-to-end processes, ensuring precise evaluations, compliance, and faster turnaround times.
             </p>
-            <button className="more-btn">More →</button>
+           <Link to="/credpro" className="more-btn" role="button">More →</Link>
           </div>
           
           <div className="product-card">
@@ -32,7 +33,8 @@ const ProductsSection = () => {
             <p className="product-description">
               CADPro streamlines credit administration with automated document templatization, covenant scheduling & tracking, disbursement workflows, pre/post disbursement compliance—ensuring consistency & transparency while reducing manual intervention.
             </p>
-            <button className="more-btn">More →</button>
+           <Link to="/CADPro" className="more-btn" role="button">More →</Link>
+
           </div>
           
           <div className="product-card">
