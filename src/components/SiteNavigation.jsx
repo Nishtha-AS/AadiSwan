@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./SiteNavigation.css";
 
+/* ===================== CENTRALIZED ASSETS ===================== */
+
 /* ---- Shared header assets ---- */
 import logo from "../assets/aadiswan_logo.png";
 import callIcon from "../assets/call_logo.png";
@@ -31,34 +33,49 @@ import projectFinanceLogo from "../assets/project_finance_logo.png";
 import lapLogo from "../assets/load_against_property_logo.png";
 import nbfcLogo from "../assets/NBFC_logo.png";
 
-/* ---------- Built-in data (with routes) ---------- */
-const defaultProducts = [
-  { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions.", path: "/credpro" },
-  { logo: cadProLogo,  name: "AS CADPro",  desc: "Simplifies credit administration with seamless, transparent workflows.",        path: "/cadpro" },
-  { logo: camProLogo,  name: "AS CAMPro",  desc: "AI-powered engine for smarter, insight-driven credit appraisals.",            path: "/campro" },
-  // If dedicated routes exist later, update these two paths:
-  { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.",              path: "/credpro" },
-  { logo: ewsProLogo,  name: "AS EWSPro",  desc: "Provides early warning signals to mitigate credit risks proactively.",        path: "/credpro" },
-];
+/* ===================== CENTRALIZED NAVIGATION DATA ===================== */
 
-const defaultSolutions = [
-  { label: "Underwriting Studio",                          icon: underwritingStudioLogo,     path: "/underwriting" },
-  { label: "Document Management and Template Engine",      icon: dmteLogo,                   path: "/documentmanagement" },
-  { label: "Automated Decisioning", highlighted: true,     icon: automatedDecisioningLogo,   path: "/automateddescision" },
-  { label: "Covenant Management",                          icon: covenantManagementLogo,     path: "/covenant" },
-  { label: "Support Workflows- Legal, Valuation and more", icon: supportWorkflowLogo,        path: "/support" },
-  { label: "Third Party Integrations",                     icon: tpdLogo,                    path: "/integrations" },
-];
+const NAV_ITEMS = {
+  // Static links appearing before Products/Solutions
+  LEADING_ITEMS: [{ label: "Home", href: "/" }],
 
-const defaultSolutionsSecondary = [
-  { label: "Working Capital Loans", icon: workingCapitalLogo, path: "/workingcapital" },
-  { label: "Supply Chain Finance",  icon: supplyChainLogo,    path: "/supplychain" },
-  { label: "Project Finance",       icon: projectFinanceLogo, path: "/projectfinance" },
-  { label: "Loan Against Property", icon: lapLogo,            path: "/lap" },
-  { label: "NBFC Funding",          icon: nbfcLogo,           path: "/nbfcfunding" },
-];
+  // Static links appearing after Products/Solutions
+  TRAILING_ITEMS: [
+    { label: "About Us", href: "/aboutUs" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact Us", href: "/contact" },
+  ],
 
-/* ---------- Helper: desktop dropdown positioning ---------- */
+  // Products Data (for Products dropdown)
+  PRODUCTS: [
+    { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions.", path: "/credpro" },
+    { logo: cadProLogo, name: "AS CADPro", desc: "Simplifies credit administration with seamless, transparent workflows.", path: "/cadpro" },
+    { logo: camProLogo, name: "AS CAMPro", desc: "AI-powered engine for smarter, insight-driven credit appraisals.", path: "/campro" },
+    { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.", path: "/credpro" },
+    { logo: ewsProLogo, name: "AS EWSPro", desc: "Provides early warning signals to mitigate credit risks proactively.", path: "/credpro" },
+  ],
+
+  // Solutions Data (for Solutions dropdown - left column)
+  SOLUTIONS_PRIMARY: [
+    { label: "Underwriting Studio", icon: underwritingStudioLogo, path: "/underwriting" },
+    { label: "Document Management and Template Engine", icon: dmteLogo, path: "/documentmanagement" },
+    { label: "Automated Decisioning", highlighted: true, icon: automatedDecisioningLogo, path: "/automateddescision" },
+    { label: "Covenant Management", icon: covenantManagementLogo, path: "/covenant" },
+    { label: "Support Workflows- Legal, Valuation and more", icon: supportWorkflowLogo, path: "/support" },
+    { label: "Third Party Integrations", icon: tpdLogo, path: "/integrations" },
+  ],
+
+  // Asset Classes Data (for Solutions dropdown - middle column)
+  SOLUTIONS_SECONDARY: [
+    { label: "Working Capital Loans", icon: workingCapitalLogo, path: "/workingcapital" },
+    { label: "Supply Chain Finance", icon: supplyChainLogo, path: "/supplychain" },
+    { label: "Project Finance", icon: projectFinanceLogo, path: "/projectfinance" },
+    { label: "Loan Against Property", icon: lapLogo, path: "/lap" },
+    { label: "NBFC Funding", icon: nbfcLogo, path: "/nbfcfunding" },
+  ],
+};
+
+/* ---------- Helper: desktop dropdown positioning (Keep this as is) ---------- */
 function positionMenu(triggerEl, menuEl) {
   if (!triggerEl || !menuEl) return;
   if (window.innerWidth < 992) { menuEl.style.cssText = ""; return; }
@@ -83,23 +100,17 @@ export default function SiteNavigation({
   variant,
   overlay = true,
   brandHref = "/",
-  leadingItems = [],
-  trailingItems,
-  staticItems,
-  activeLabel,
-
-  // You CAN still override these if you ever need to
-  products = defaultProducts,
-  solutions = defaultSolutions,
-  solutionsSecondary = defaultSolutionsSecondary,
-  solutionsTitle = "SOLUTIONS",
-  solutionsSecondaryTitle = "ASSET CLASSES",
+  activeLabel, // ONLY activeLabel and rightContent are kept as props
 
   rightContent,
 }) {
-  const trailing = trailingItems ?? staticItems ?? [];
+  const products = NAV_ITEMS.PRODUCTS;
+  const solutions = NAV_ITEMS.SOLUTIONS_PRIMARY;
+  const solutionsSecondary = NAV_ITEMS.SOLUTIONS_SECONDARY;
+  const leadingItems = NAV_ITEMS.LEADING_ITEMS;
+  const trailing = NAV_ITEMS.TRAILING_ITEMS;
 
-  const [openProducts, setOpenProducts]   = useState(false);
+  const [openProducts, setOpenProducts] = useState(false);
   const [openSolutions, setOpenSolutions] = useState(false);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 992);
@@ -107,8 +118,8 @@ export default function SiteNavigation({
   const [mobileAcc, setMobileAcc] = useState({ products: false, solutions: false });
 
   const prodRef = useRef(null);
-  const solRef  = useRef(null);
-  const productsMenuRef  = useRef(null);
+  const solRef = useRef(null);
+  const productsMenuRef = useRef(null);
   const solutionsMenuRef = useRef(null);
 
   useEffect(() => {
@@ -133,7 +144,7 @@ export default function SiteNavigation({
       if (isMobile) return;
       if (
         prodRef.current && !prodRef.current.contains(e.target) &&
-        solRef.current  && !solRef.current.contains(e.target)
+        solRef.current && !solRef.current.contains(e.target)
       ) closeAll();
     };
     document.addEventListener("mousedown", onDocClick);
@@ -154,8 +165,8 @@ export default function SiteNavigation({
   useEffect(() => {
     const handle = () => {
       if (window.innerWidth >= 992) {
-        if (openProducts)  positionMenu(prodRef.current, productsMenuRef.current);
-        if (openSolutions) positionMenu(solRef.current,  solutionsMenuRef.current);
+        if (openProducts) positionMenu(prodRef.current, productsMenuRef.current);
+        if (openSolutions) positionMenu(solRef.current, solutionsMenuRef.current);
       }
     };
     handle();
@@ -171,7 +182,7 @@ export default function SiteNavigation({
     setDrawerOpen(false);
   };
 
-  /* ---------- Mobile list helper ---------- */
+  /* ---------- Mobile list helper (Keep this as is) ---------- */
   const MobileList = ({ items, withDesc }) => (
     <ul className="m-list" role="menu">
       {items.map((p) => (
@@ -235,7 +246,7 @@ export default function SiteNavigation({
                 <span>Products</span>
                 <span className="caret-circle" aria-hidden="true">
                   <svg className={`caret-icon ${openProducts ? "rotated" : ""}`} viewBox="0 0 24 24" width="14" height="14" fill="none">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
               </button>
@@ -309,7 +320,7 @@ export default function SiteNavigation({
                 <span>Solutions</span>
                 <span className="caret-circle" aria-hidden="true">
                   <svg className={`caret-icon ${openSolutions ? "rotated" : ""}`} viewBox="0 0 24 24" width="14" height="14" fill="none">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
               </button>
@@ -420,7 +431,7 @@ export default function SiteNavigation({
               <button className="m-acc__btn" aria-expanded={mobileAcc.products} onClick={() => setMobileAcc(s => ({ ...s, products: !s.products }))}>
                 <span>Products</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" className={mobileAcc.products ? "rot" : ""}>
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               <div className={`m-acc__panel ${mobileAcc.products ? "open" : ""}`}>
@@ -437,7 +448,7 @@ export default function SiteNavigation({
               <button className="m-acc__btn" aria-expanded={mobileAcc.solutions} onClick={() => setMobileAcc(s => ({ ...s, solutions: !s.solutions }))}>
                 <span>Solutions</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" className={mobileAcc.solutions ? "rot" : ""}>
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               <div className={`m-acc__panel ${mobileAcc.solutions ? "open" : ""}`}>

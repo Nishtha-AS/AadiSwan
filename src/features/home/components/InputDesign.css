@@ -1,208 +1,162 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.platform-automation-container {
-  max-width: 1246px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
+:root {
+  --ink: #0e3552;
+  --muted: #1f4a72;
+  --brand: #036CBC;
+  --brand-2: #56AEFF;
+  --card-bg: rgba(255,255,255,0.75);
+  --card-br: rgba(3,108,188,0.15);
+  --card-shadow: 0 10px 28px rgba(3,108,188,0.08);
 }
 
-.platform-automation-title {
-  color: #003760;
-  text-align: center;
-  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
-  margin-bottom: 54px;
-  font: 400 40px Iceland, sans-serif;
-}
-
-.platform-automation-description {
-  color: #003760;
-  text-align: center;
-  max-width: 1113px;
-  margin: 0 auto 78px;
-  font: 300 16px Poppins, sans-serif;
-}
-
-.automation-layout {
+.pa-section {
   position: relative;
-  min-height: 600px;
+  padding: clamp(40px, 8vw, 90px) 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(1300px 420px at 50% -120px, rgba(86,174,255,0.15), transparent 60%),
+    linear-gradient(180deg, #f8fbff, #ffffff);
 }
 
-.automation-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 61px;
+.pa-shell {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-.automation-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 61px;
+.pa-title {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font: 400 clamp(28px, 4.4vw, 46px) "Iceland", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, var(--brand), #003760);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.automation-center-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.pa-subtitle {
+  margin: 0 auto clamp(24px, 4.5vw, 56px);
+  max-width: 1100px;
+  text-align: center;
+  color: #1c3f63;
+  font: 400 clamp(14px, 1.5vw, 18px) "Poppins", system-ui, sans-serif;
+  opacity: .95;
 }
 
-.center-solution-image {
-  aspect-ratio: 1.5;
-  object-fit: contain;
-  object-position: center;
-  width: 100%;
-  max-width: 350px;
-  height: auto;
+/* Grid: 3 cols on lg, stacked on mobile */
+.pa-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 560px) 1fr;
+  gap: clamp(18px, 3vw, 28px);
+  align-items: start;
 }
 
-.automation-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+.pa-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(12px, 1.8vw, 16px);
 }
 
-.automation-number {
-  color: #003760;
-  min-width: 38px;
-  font: 700 24px/36px Poppins, sans-serif;
+.pa-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(12px, 2.2vw, 18px) clamp(14px, 2.6vw, 22px);
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-br);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: saturate(150%) blur(6px);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform .35s ease, opacity .35s ease, box-shadow .2s ease;
 }
 
-.automation-text {
-  color: #423A3A;
-  margin-top: 6px;
-  font: 400 15px/23px Poppins, sans-serif;
+.pa-card.in {
+  opacity: 1;
+  transform: none;
 }
 
-.automation-bottom-row {
-  display: flex;
+.pa-card:hover {
+  box-shadow: 0 14px 36px rgba(3,108,188,0.12);
+}
+
+.pa-badge {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 100px;
-  flex-wrap: wrap;
+  min-width: 56px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #EAF4FF, #D6ECFF);
+  color: #0b4a7a;
+  font: 700 clamp(15px, 1.6vw, 18px) "Poppins", system-ui, sans-serif;
+  border: 1px solid rgba(3,108,188,0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
 }
 
-/* Responsive Design */
-@media (max-width: 991px) {
-  .platform-automation-container {
-    max-width: 991px;
-    padding: 0 15px;
+.pa-label {
+  color: var(--ink);
+  font: 500 clamp(15px, 1.6vw, 18px) "Poppins", system-ui, sans-serif;
+}
+
+/* Center media (no box; only soft drop shadow) */
+.pa-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(6px, 1.2vw, 10px);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform .4s ease, opacity .4s ease;
+}
+
+.pa-media.in {
+  transform: none;
+  opacity: 1;
+}
+
+.pa-laptop {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 0;                 /* no border/box */
+  background: transparent;   /* remove any white box feel */
+  box-shadow: 0 26px 60px rgba(3,108,188,0.18);
+  border-radius: 18px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .pa-grid {
+    grid-template-columns: 1fr;
   }
 
-  .platform-automation-title {
-    font-size: 32px;
-    margin-bottom: 40px;
+  .pa-media {
+    order: -1; /* image first on mobile */
+    margin-bottom: 16px;
   }
 
-  .platform-automation-description {
-    font-size: 14px;
-    margin-bottom: 60px;
-  }
-
-  .automation-layout {
-    min-height: auto;
-  }
-
-  .automation-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .automation-center-image {
-    position: static;
-    transform: none;
-    order: 1;
-    margin: 20px 0;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .left-column {
-    order: 0;
-  }
-
-  .right-column {
-    order: 2;
-  }
-
-  .automation-column {
-    gap: 40px;
-  }
-
-  .automation-number {
-    font-size: 20px;
-    min-width: 32px;
-  }
-
-  .automation-text {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .automation-bottom-row {
-    gap: 60px;
-    justify-content: space-around;
+  /* Put the two lists in a 2-column grid on mobile so items sit two-across */
+  .pa-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 }
 
 @media (max-width: 640px) {
-  .platform-automation-container {
-    max-width: 640px;
-    padding: 0 10px;
+  .pa-list {
+    grid-template-columns: 1fr;  /* single column on very small screens for readability */
   }
 
-  .platform-automation-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-  }
-
-  .platform-automation-description {
-    font-size: 13px;
-    margin-bottom: 40px;
-    padding: 0 10px;
-  }
-
-  .automation-column {
-    gap: 30px;
-  }
-
-  .automation-item {
-    max-width: 300px;
-  }
-
-  .automation-number {
-    font-size: 18px;
-    min-width: 28px;
-  }
-
-  .automation-text {
-    font-size: 13px;
-    line-height: 18px;
-  }
-
-  .center-solution-image {
-    max-width: 280px;
-  }
-
-  .automation-center-image {
-    padding: 15px;
-  }
-
-  .automation-bottom-row {
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
+  .pa-badge {
+    min-width: 50px;
+    height: 40px;
   }
 }

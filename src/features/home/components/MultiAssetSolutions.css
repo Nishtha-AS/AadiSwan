@@ -1,0 +1,130 @@
+/* src/features/home/components/MultiAssetSolutions.css */
+
+.mas-section {
+  padding: clamp(28px, 5vw, 60px) 16px;
+  background: #fff;
+}
+
+.mas-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.mas-title {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-family: 'Iceland', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(26px, 4.2vw, 44px);
+  letter-spacing: .02em;
+  background: linear-gradient(90deg, #036CBC 0%, #003760 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mas-subtitle {
+  margin: 0 auto clamp(26px, 4vw, 40px);
+  max-width: 980px;
+  text-align: center;
+  font: 400 clamp(14px, 1.65vw, 18px)/1.7 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #0f2a3f;
+  opacity: 0.9;
+}
+
+/* GRID: Desktop 6 → Tablet 4/3 → Mobile 2 per row */
+.mas-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  grid-template-columns: repeat(6, 1fr);
+}
+@media (max-width: 1200px) { .mas-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px)  { .mas-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px)  { .mas-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* CARD */
+.mas-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  min-height: clamp(130px, 22vw, 220px);
+  border-radius: 36px 18px;
+  padding: 18px 14px;
+
+  color: #fff;
+  background: linear-gradient(180deg, #0e3a60 0%, #02171c 86%);
+  border: 1px solid rgba(134, 197, 255, 0.22);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.25) inset,
+    0 14px 28px rgba(3, 22, 44, .18);
+
+  /* entrance animation */
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  transition:
+    opacity .6s ease,
+    transform .6s cubic-bezier(.22,.61,.36,1),
+    box-shadow .2s ease;
+}
+
+.mas-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mas-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.3) inset,
+    0 18px 36px rgba(3, 22, 44, .24);
+}
+
+.mas-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(134,197,255,.14), transparent 40%);
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.mas-card:hover::after{ opacity: 1; }
+
+/* icon + title */
+.mas-icon-wrap{
+  display:flex; align-items:center; justify-content:center;
+  width: clamp(54px, 8vw, 86px);
+  height: clamp(54px, 8vw, 86px);
+  margin-bottom: clamp(12px, 1.6vw, 16px);
+  border-radius: 20px;
+  background: rgba(255,255,255,.06);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.mas-icon{
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+
+.mas-card-title{
+  text-align:center;
+  font: 700 clamp(12px, 1.55vw, 18px)/1.25 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: .02em;
+}
+
+.mas-card:focus-visible{
+  outline: 3px solid #56AEFF;
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px){
+  .mas-card { min-height: 120px; }
+  .mas-card-title { font-size: 13px; }
+}

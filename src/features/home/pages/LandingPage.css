@@ -257,61 +257,83 @@ html, body {
   padding: 0 var(--container-padding);
 }
 
-/* ====================== CLIENTS / LOOP ===================== */
+/* ====================== CLIENTS / LOOP ULTIMATE REFINEMENT ===================== */
 .our-clients-section {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: clamp(700px, 100vh, 750px);
-  padding: 0 var(--container-padding);
+ position: relative;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-top: clamp(700px, 100vh, 750px);
+ padding: 0 var(--container-padding);
 }
 
 .clients-grid { display: flex; gap: 20px; margin-top: 36px; padding: 0 13px; }
 
-.client-card {
-  width: clamp(180px, 25vw, 219px);
-  height: clamp(80px, 12vw, 100px);
-  border-radius: 23px;
-  border: 3px solid #036CBC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  flex-shrink: 0;
+.our-clients-section .client-card {
+ width: clamp(180px, 25vw, 219px);
+ height: clamp(80px, 12vw, 100px);
+ border-radius: 23px;
+ 
+ /* 1. INITIAL STATE: Blue Border & Clean White Background */
+ border: 1.5px solid #036CBC; /* Prominent Blue Border (Increased to 2px) */
+ background: #FFFFFF; /* Pure white for maximum logo clarity */
+ 
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-shrink: 0;
+ 
+ /* 2. BOX SHADOW & TRANSITION (The lift effect) */
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Soft initial lift */
+ /* Transitioning the box-shadow and border for smooth effects */
+ transition: box-shadow 0.3s ease-out, border-color 0.3s ease;
 }
 
 .client-card img {
-  max-width: 85%;
-  max-height: 65%;
-  object-fit: contain;
+ max-width: 85%;
+ max-height: 65%;
+ object-fit: contain;
 }
 
-/* Marquee */
+/* 3. HOVER EFFECT: Deep Shadow + Subtle Blue Aura */
+.our-clients-section .client-card:hover {
+ /* No transform: translateY(-5px) or scale() to fix the cropping issue */
+ border-color: #025594; /* Darker blue on hover */
+ 
+ /* Two box shadows combined: 
+   - Deep, clean outer shadow for the "lift"
+   - Stronger, blue shadow for the "aura/glow" (uses brand color) 
+  */
+ box-shadow: 
+  0 12px 25px rgba(0, 0, 0, 0.15), /* Outer deep shadow */
+  0 0 15px 1px rgba(3, 108, 188, 0.4); /* Blue Aura Glow */
+}
+
+
+/* Marquee and Animation unchanged as they are correct */
 .clients-marquee {
-  width: 100%;
-  overflow: hidden;
-  margin-top: 36px;
-  padding: 0 clamp(8px, 2vw, 13px);
+ width: 100%;
+ overflow: hidden;
+ margin-top: 36px;
+ padding: 0 clamp(8px, 2vw, 13px);
 }
 
 .clients-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: clients-scroll 28s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
+ display: flex;
+ gap: 20px;
+ width: max-content;
+ animation: clients-scroll 28s linear infinite;
+ will-change: transform;
+ backface-visibility: hidden;
 }
 
 .clients-track:hover { animation-play-state: paused; }
 
 @keyframes clients-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+ 0% { transform: translateX(0); }
+ 100% { transform: translateX(-50%); }
 }
-
 /* ====== SECTIONS - FLEXIBLE POSITIONING ====== */
 .customer-onboarding-section,
 .our-products-section,

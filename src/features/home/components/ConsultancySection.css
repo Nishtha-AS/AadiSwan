@@ -1,258 +1,206 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.consultancy-main-container {
-  display: flex;
+.consultancy {
+  --ink-1: #003760;
+  --ink-2: #0e2a45;
+  --grad-a: #036CBC;
+  --grad-b: #003760;
+  --rail: #56AEFF;
+  --dot-bg: linear-gradient(180deg, #036CBC 0%, #56AEFF 100%);
+  --card-bg: #fff;
+  --success-a: #4AA90A;
+  --success-b: #9FF863;
+
   width: 100%;
-  max-width: 1197px;
-  height: 629px;
-  position: relative;
-  gap: 80px;
-  padding: 0;
+  box-sizing: border-box;
+  padding: clamp(28px, 4vw, 56px) 16px;
+}
+
+.consultancy-shell {
+  max-width: 1240px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: clamp(22px, 3vw, 44px);
+  align-items: start;
 }
 
-.consultancy-left-section {
-  flex: 1;
-  max-width: 519px;
-  display: flex;
-  flex-direction: column;
-}
-
-.consultancy-title {
-  background: linear-gradient(90deg, #036CBC 21.63%, #003760 100%);
-  background-clip: text;
+/* Left side */
+.consultancy-heading {
+  margin: 0 0 18px 0;
+  font-family: 'Iceland', sans-serif;
+  font-size: clamp(28px, 4.2vw, 46px);
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
-  font: 400 40px Iceland, sans-serif;
-}
-
-.consultancy-description {
-  color: #003760;
-  margin-bottom: 40px;
-  font: 400 14px/24px Poppins, sans-serif;
-}
-
-.features-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 0;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.check-icon {
-  position: relative;
-  width: 25px;
-  height: 25px;
-  flex-shrink: 0;
-}
-
-.feature-item span {
-  color: #003760;
-  font: 400 16px Poppins, sans-serif;
-}
-
-.consultancy-right-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-left: 80px;
-}
-
-.process-steps {
-  display: flex;
-  flex-direction: column;
-}
-
-.process-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  position: relative;
-}
-
-.step-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.step-circle {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-}
-
-.step-number {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #FFF;
-  font: 400 36px Iceland, sans-serif;
-}
-
-.connecting-line {
-  width: 4px;
-  height: 86px;
-  background: #56AEFF;
-  border-radius: 2px;
-}
-
-.step-content {
-  border: 1.5px solid #036CBC;
-  border-radius: 20px;
-  padding: 20px 24px;
-  width: 507px;
-  height: 78px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: -10px;
-}
-
-.step-content h3 {
-  background: linear-gradient(90deg, #036CBC 21.63%, #003760 100%);
   background-clip: text;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0 0 8px 0;
-  font: 400 30px Iceland, sans-serif;
 }
 
-.step-content p {
-  color: #003760;
-  font: 400 12px Poppins, sans-serif;
+.consultancy-lead {
+  color: var(--ink-1);
+  font: 400 clamp(14px, 1.6vw, 16px)/1.85 'Poppins', sans-serif;
+  margin: 0 0 clamp(16px, 2vw, 22px) 0;
+}
+
+.consultancy-bullets {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: grid;
+  gap: 12px;
 }
 
-.success-step {
+.consultancy-bullets li {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 10px;
+  color: var(--ink-1);
+  font: 500 clamp(14px, 1.6vw, 16px) 'Poppins', sans-serif;
 }
 
-.success-circle {
+.check-bullet {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  background: var(--dot-bg);
+  box-shadow: 0 4px 10px rgba(3,108,188,0.28);
+}
+
+/* Right side – timeline */
+.consultancy-right { position: relative; }
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: clamp(18px, 2.4vw, 26px);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 70px 1fr; /* rail | card */
+  gap: clamp(14px, 1.8vw, 20px);
+  align-items: start;
+}
+
+.timeline-rail {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+}
+
+.dot {
   width: 56px;
   height: 56px;
-  flex-shrink: 0;
-  position: relative;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: 'Iceland', sans-serif;
+  font-size: 32px;
+  background: var(--dot-bg);
+  border: 1px solid #ffffff;
+  box-shadow: 0 8px 14px rgba(3,108,188,0.22);
+}
+
+.rail {
+  width: 6px;
+  border-radius: 3px;
+  background: var(--rail);
+  margin-top: 10px;
+  min-height: 80px;
+  justify-self: center;
+}
+
+.rail-end { min-height: 40px; } /* last blue rail shorter */
+
+/* Card */
+.timeline-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--grad-a);
+  border-radius: 18px;
+  padding: clamp(16px, 1.8vw, 22px);
+  box-shadow: 0 10px 26px rgba(12,54,96,0.08), inset 0 1px 0 rgba(255,255,255,0.55);
+}
+
+.timeline-card h3 {
+  margin: 0 0 8px 0;
+  font-family: 'Iceland', sans-serif;
+  font-size: clamp(22px, 2.8vw, 30px);
+  line-height: 1.2;
+  background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timeline-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font: 400 clamp(12.5px, 1.45vw, 14.5px)/1.7 'Poppins', sans-serif;
+}
+
+/* Success row (step 5) — in same grid so it lines up */
+.success-item {
+  align-items: center; /* vertically center badge/text against the connector */
+}
+
+.rail-success {
+  /* short green continuation to visually end the rail nicely */
+  width: 6px;
+  height: 36px;
+  min-height: 36px;
+  margin-top: 0;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--success-a), var(--success-b));
+  justify-self: center;
+}
+
+.success-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.success-badge {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
 }
 
 .success-text {
-  background: linear-gradient(90deg, #4AA90A 21.63%, #9FF863 100%);
-  background-clip: text;
+  font-family: 'Iceland', sans-serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  background: linear-gradient(90deg, var(--success-a), var(--success-b));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  font: 400 30px Iceland, sans-serif;
+  line-height: 1.1;
 }
 
-/* Responsive Design */
-@media (max-width: 991px) {
-  .consultancy-main-container {
-    flex-direction: column;
-    height: auto;
-    gap: 40px;
-    padding: 20px;
-  }
-  
-  .consultancy-left-section {
-    max-width: 100%;
-  }
-  
-  .consultancy-title {
-    font-size: 32px;
-    text-align: center;
-  }
-  
-  .consultancy-description {
-    font-size: 13px;
-    line-height: 22px;
-  }
-  
-  .features-list {
-    margin-top: 30px;
-  }
-  
-  .consultancy-right-section {
-    margin-left: 0;
-  }
-  
-  .process-step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  
-  .step-left {
-    flex-direction: row;
-    gap: 15px;
-  }
-  
-  .connecting-line {
-    width: 86px;
-    height: 4px;
-  }
-  
-  .step-content {
-    width: 100%;
-    max-width: 500px;
-    padding: 16px;
-    height: auto;
-    min-height: 70px;
-    margin-top: 0;
-  }
-  
-  .success-step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
+/* ===== Responsiveness ===== */
+@media (max-width: 1024px) {
+  .consultancy-shell { grid-template-columns: 1fr; }
+  .timeline-item { grid-template-columns: 60px 1fr; }
+  .dot, .success-badge { width: 52px; height: 52px; }
+  .rail { width: 5px; min-height: 70px; }
+  .rail-success { width: 5px; height: 30px; }
 }
 
 @media (max-width: 640px) {
-  .consultancy-main-container {
-    padding: 16px;
-    gap: 30px;
-  }
-  
-  .consultancy-title {
-    font-size: 24px;
-    line-height: 1.2;
-  }
-  
-  .consultancy-description {
-    font-size: 12px;
-    line-height: 20px;
-  }
-  
-  .feature-item span {
-    font-size: 14px;
-  }
-  
-  .step-content h3 {
-    font-size: 24px;
-  }
-  
-  .step-content p {
-    font-size: 11px;
-  }
-  
-  .success-text {
-    font-size: 24px;
-  }
-  
-  .step-content {
-    padding: 12px 15px;
-  }
+  .consultancy { padding: 22px 12px; }
+  .timeline-item { grid-template-columns: 48px 1fr; gap: 12px; }
+  .dot, .success-badge { width: 44px; height: 44px; }
+  .rail { width: 4px; min-height: 64px; }
+  .rail-end { min-height: 34px; }
+  .rail-success { width: 4px; height: 28px; }
+  .timeline-card { border-radius: 14px; padding: 14px; }
 }
