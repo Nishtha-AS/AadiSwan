@@ -6,7 +6,8 @@ import AboutPage from './features/about/pages/AboutPage';
 import ContactPage from './features/contact/pages/ContactPage';
 import CADProLanding from './features/CADPro/pages/CADProLanding';
 import CAMProLanding from './features/CAMPro/pages/CAMProLanding';
-
+import ESMSProLanding from "./features/ESMSPro/pages/ESMSProLanding";
+import EWSProLanding from "./features/EWSPro/pages/EWSProLanding";
 import WorkingCapitalLoans from './features/AssetClasses/WorkingCapital/WorkingCapitalLoans';
 import SupplyChainFinance from './features/AssetClasses/SupplyChainFinance/SupplyChainFinance';
 import ProjectFinance from './features/AssetClasses/ProjectFinance/ProjectFinance';
@@ -38,6 +39,12 @@ function App() {
 
           {/* CAMPro page route */}
           <Route path="/campro" element={<CAMProLanding />} />
+
+          {/* ESMSPro page route */}
+          <Route path="/esmspro" element={<ESMSProLanding />} />
+
+          {/* EWSPro page route */}
+          <Route path="/ewspro" element={<EWSProLanding />} />
 
           {/* About Us page route */}
           <Route path="/aboutUs" element={<AboutPage />} />

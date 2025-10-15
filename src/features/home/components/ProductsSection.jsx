@@ -38,7 +38,7 @@ const products = [
     key: 'esmspro',
     title: 'AS ESMSPro',
     logo: esmsProLogo,
-    to: '#', // add route when ready
+    to: '/esmspro', // add route when ready
     desc:
       'ESMSPro integrates environmental & social risk criteria into lending processes, enabling assessments, monitoring, and reporting that support responsible, sustainable financing practices.',
   },
@@ -46,7 +46,7 @@ const products = [
     key: 'ewspro',
     title: 'AS EWSPro',
     logo: ewsProLogo,
-    to: '#', // add route when ready
+    to: '/ewspro', // add route when ready
     desc:
       'EWSPro delivers early warning signals by monitoring behavioral, financial, and non-financial indicators—enabling proactive risk management and timely interventions to reduce defaults.',
   },

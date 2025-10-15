@@ -1,5 +1,5 @@
 import React from 'react';
-import esmsproFlowGif from '../../../assets/ESMSPro Flow Diagram GIF.gif';
+import ewsproFlowGif from '../../../assets/EWSPro Flow Diagram GIF.gif';
 import '../styles/InputDesign.css';
 
 const InputDesign = () => {
@@ -7,7 +7,7 @@ const InputDesign = () => {
     <section className="input-design-section">
       <div className="flow-diagram-container">
         <img
-          src={esmsproFlowGif}
+          src={ewsproFlowGif}
           alt="CredPro flow diagram"
           className="flow-diagram-image"
         />

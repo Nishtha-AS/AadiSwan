@@ -52,7 +52,7 @@ const IndustriesUseCases = () => {
         <h2 className="industries-title">Industries & Use Cases</h2>
         
         <p className="industries-subtitle">
-          ESMSPro adapts across multiple lending environments.
+          EWSPro adapts across multiple lending environments.
         </p>
         
         <div className="industries-grid">

@@ -4,36 +4,37 @@ import '../styles/FAQSection.css';
 const FAQSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState(3); // Fourth FAQ is open by default
 
-  const faqs = [
+const faqs = [
   {
     id: 1,
     question:
-      "What is an Environmental & Social Management System (ESMS), and how does ESMSPro enable it?",
+      "What is an Early Warning Signal (EWS) framework, and how does EWSPro enable it?",
     answer:
-      "ESMSPro operationalizes your ESMS end-to-end: policy-driven E&S screening, IFC PS/ESG criteria mapping, permit & consent tracking, ESAP action-plan assignment, covenant/KPI scheduling, site monitoring & incident reporting, stakeholder/grievance workflows, and disclosure/audit trails. Everything is checklist-based, role-controlled, and fully auditable in one governed workspace."
+      "EWSPro operationalizes portfolio surveillance end-to-end: multi-source data aggregation (LOS/CBS/LMS/DWH, bureau, GST/MCA, ratings, news), policy-driven signal libraries, configurable thresholds & materiality, automated risk scoring & bucketing (watchlists/SMA-style), alerting & escalation, corrective-action assignment with owners/due dates, and closure/audit trails. Everything is role-controlled, versioned, and fully auditable in one governed workspace."
   },
   {
     id: 2,
     question:
-      "How does ESMSPro integrate with core systems and third-party services?",
+      "How does EWSPro integrate with core systems and third-party services?",
     answer:
-      "ESMSPro offers REST/SOAP adapters and webhooks to exchange facility, borrower, project, covenant, and incident data with CBS/LMS/ERM and BI tools. It connects with document/e-sign/e-stamp providers for approvals, GIS or inspection apps for site evidence, and supply-chain/KYC vendors for E&S checks. Integrations are configured via connectors and policy rules—no heavy custom code."
+      "EWSPro provides REST/SOAP connectors and webhooks to exchange customer/facility, account-conduct, covenant/CS, collateral, and rating data with CBS/LMS/LOS/BI platforms. It plugs into bureau/GST/MCA/news/risk vendors, supports file & API ingests (batch or real-time), and exposes curated data marts for dashboards. Integrations are configured via connectors and policy rules—no heavy custom code."
   },
   {
     id: 3,
     question:
-      "Can ESMSPro help reduce E&S risk and reporting turnaround time?",
+      "Can EWSPro actually reduce slippages and reporting turnaround time?",
     answer:
-      "Yes. Risk scoring and screening templates standardize evaluations; ESAP tasks with owners & due dates prevent slippage; automated reminders and escalations close actions faster; mobile-friendly site monitoring captures geo-tagged evidence; and one-click MIS/IFC/Board reports cut manual compilation—reducing both risk exposure and reporting TAT."
+      "Yes. Standardized signal templates and sector/counterparty models cut noise and improve consistency; automated alerts, SLA timers, and hierarchy escalations accelerate action; corrective-action tracking prevents pendency; and ready-to-use dashboards/MIS (aging, top breaches, RM performance, heatmaps) remove manual compilation—reducing both slippage risk and reporting TAT."
   },
   {
     id: 4,
     question:
-      "What makes ESMSPro different from spreadsheet or generic compliance tools?",
+      "What makes EWSPro different from spreadsheets or generic analytics tools?",
     answer:
-      "ESMSPro is purpose-built for E&S governance. It embeds IFC PS/ESG libraries, configurable screening matrices, permit & covenant schedulers, incident/grievance flows, supply-chain E&S checks, and a defensible disclosure & audit trail—plus deep integrations with banking/ERM systems. The result is consistent policy enforcement, clear accountability, and regulator-ready evidence."
+      "EWSPro is purpose-built for proactive credit risk. It combines a governed signal library, rule chaining & versioning, model scorecards, watchlists/SMA logic, breach aging, committee approvals, and end-to-end action workflows—backed by deep banking integrations and a defensible audit trail. Result: consistent policy enforcement, early visibility on stress, and regulator-ready evidence across the portfolio."
   }
 ];
+
 
   const toggleFAQ = (id) => {
     setExpandedFAQ(expandedFAQ === id ? null : id);

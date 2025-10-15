@@ -1,15 +1,15 @@
 import React from 'react';
-// ESMSPro API icons
-import compliancePermits from '../../../assets/Compliance & Permits.png';
 import covenantKpiMonitoring from '../../../assets/Covenant & KPI Monitoring.png';
 import disclosureAuditTrail from '../../../assets/Disclosure & Audit Trail.png';
-import esScreeningApi from '../../../assets/E&S Screening API.png';
-import esapActionPlanTracking from '../../../assets/ESAP Action Plan Tracking.png';
-import esgIfcPsMapping from '../../../assets/ESG IFC PS Mapping.png';
-import riskCategorization from '../../../assets/Risk Categorization.png';
-import siteMonitoringIncident from '../../../assets/Site Monitoring & Incident Reporting.png';
 import stakeholderGrievance from '../../../assets/Stakeholder & Grievance.png';
-import supplyChainEsChecks from '../../../assets/Supply Chain E&S Checks.png';
+import accountConductIncidentFlags from '../../../assets/Account Conduct & Incident Flags.png';
+import actionPlanAssignmentTracking from '../../../assets/Action Plan Assignment & Tracking.png';
+import breachComplianceRegister from '../../../assets/Breach & Compliance Register.png';
+import ewsSignal from '../../../assets/EWS Signal.png';
+import externalDataChecks from '../../../assets/External Data Checks.png';
+import riskScoringBucketing from '../../../assets/Risk Scoring & Bucketing.png';
+import sectorCounterpartyWatchlists from '../../../assets/Sector Counterparty Watchlists.png';
+
 import '../styles/ApiEcosystem.css';
 
 const ApiEcosystem = () => {
@@ -17,9 +17,9 @@ const ApiEcosystem = () => {
   // Top row (5)
   [
     {
-      icon: compliancePermits,
-      name: "Compliance & Permits",
-      alt: "Compliance & Permits"
+      icon: breachComplianceRegister,
+      name: "Breach & Compliance Register",
+      alt: "Breach & Compliance Register"
     },
     {
       icon: covenantKpiMonitoring,
@@ -32,42 +32,42 @@ const ApiEcosystem = () => {
       alt: "Disclosure & Audit Trail"
     },
     {
-      icon: esScreeningApi,
-      name: "E&S Screening API",
-      alt: "E&S Screening API"
+      icon: ewsSignal,
+      name: "EWS Signal",
+      alt: "EWS Signal"
     },
     {
-      icon: esapActionPlanTracking,
-      name: "ESAP Action Plan Tracking",
-      alt: "ESAP Action Plan Tracking"
+      icon: actionPlanAssignmentTracking,
+      name: "Action Plan Assignment & Tracking",
+      alt: "Action Plan Assignment & Tracking"
     }
   ],
   // Bottom row (5)
   [
     {
-      icon: esgIfcPsMapping,
-      name: "ESG IFC PS Mapping",
-      alt: "ESG IFC PS Mapping"
+      icon: sectorCounterpartyWatchlists,
+      name: "Sector / Counterparty Watchlists",
+      alt: "Sector / Counterparty Watchlists"
     },
     {
-      icon: riskCategorization,
-      name: "Risk Categorization",
-      alt: "Risk Categorization"
+      icon: riskScoringBucketing,
+      name: "Risk Scoring & Bucketing",
+      alt: "Risk Scoring & Bucketing"
     },
     {
-      icon: siteMonitoringIncident,
-      name: "Site Monitoring & Incident Reporting",
-      alt: "Site Monitoring & Incident Reporting"
+      icon: accountConductIncidentFlags,
+      name: "Account Conduct & Incident Flags",
+      alt: "Account Conduct & Incident Flags"
     },
     {
       icon: stakeholderGrievance,
-      name: "Stakeholder & Grievance",
-      alt: "Stakeholder & Grievance"
+      name: "Stakeholder & Escalations",
+      alt: "Stakeholder & Escalations"
     },
     {
-      icon: supplyChainEsChecks,
-      name: "Supply Chain E&S Checks",
-      alt: "Supply Chain E&S Checks"
+      icon: externalDataChecks,
+      name: "External Data Checks (Bureau / GST / MCA)",
+      alt: "External Data Checks (Bureau / GST / MCA)"
     }
   ]
 ];
@@ -75,7 +75,7 @@ const ApiEcosystem = () => {
   return (
     <section className="api-ecosystem-section">
       <div className="api-ecosystem-container">
-        <h2 className="api-ecosystem-title">ESMSPro API Ecosystem</h2>
+        <h2 className="api-ecosystem-title">EWSPro API Ecosystem</h2>
         
         <p className="api-ecosystem-description">
           Seamlessly integrate with 100+ trusted services across documentation, e-Sign/e-Stamp, disbursements, account validation, eNACH mandates, collateral & CERSAI, and CBS/LMS—enabling faster, consistent, and fully auditable credit administration.

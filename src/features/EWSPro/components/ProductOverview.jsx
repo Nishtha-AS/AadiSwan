@@ -12,16 +12,16 @@ const ProductOverview = () => {
           
           {/* Main Description */}
           <p className="product-overview-description">
-            ESMSPro is AadiSwan’s end-to-end Environmental & Social Management System platform. It streamlines E&S governance across the credit lifecycle— from screening and IFC PS mapping to permit/consent tracking, ESAP action-plan execution, covenant & KPI monitoring, site inspections and incident reporting. With policy-driven workflows and 100+ API integrations (DMS/e-sign, GIS/inspection apps, CBS/LMS/BI), ESMSPro delivers audit-ready evidence, faster reporting, and consistent regulatory compliance.
+            EWSPro is AadiSwan’s end-to-end Early Warning Signal & Risk Intelligence platform. It streamlines portfolio surveillance across the credit lifecycle— from data aggregation and signal generation to scoring, escalation, and closure tracking. By ingesting internal (LOS/CBS/LMS/DWH), behavioral/account-conduct, covenant and collateral data alongside external sources (Bureau, GST/MCA, ratings, market/news feeds), EWSPro surfaces emerging stress early and drives timely action. With policy-driven rule libraries, versioned models, and 100+ integration options, EWSPro delivers audit-ready evidence, faster exception handling, and consistent governance.
           </p>
           
           {/* Who is it for section */}
           <div className="target-audience-section">
             <p className="audience-intro">Who is it for?</p>
             <ul className="audience-list">
-              <li>Banks & DFIs building or upgrading ESMS programs</li>
-              <li>NBFCs & Cooperatives seeking ESG / IFC-aligned lending processes</li>
-              <li>Project-finance and corporate-lending teams managing high-impact sectors</li>
+              <li>Banks & DFIs building or upgrading enterprise EWS frameworks</li>
+              <li>NBFCs & Cooperatives seeking proactive NPA prevention and collections prioritization</li>
+              <li>Corporate/SME/Agri lenders managing distributed portfolios and multi-stage monitoring</li>
             </ul>
           </div>
           
@@ -49,7 +49,7 @@ const ProductOverview = () => {
                   </defs>
                 </svg>
               </div>
-              <span className="feature-text">End-to-end E&S governance with policy-driven workflows</span>
+              <span className="feature-text">End-to-end EWS governance with policy-driven workflows</span>
             </div>
             
             <div className="feature-item">
@@ -74,7 +74,7 @@ const ProductOverview = () => {
                   </defs>
                 </svg>
               </div>
-              <span className="feature-text">Built-in IFC PS / ESG libraries, configurable screening & risk scoring</span>
+              <span className="feature-text">Unified data layer & APIs</span>
             </div>
             
             <div className="feature-item">
@@ -99,7 +99,7 @@ const ProductOverview = () => {
                   </defs>
                 </svg>
               </div>
-              <span className="feature-text">Seamless API and data integrations</span>
+              <span className="feature-text">Automated risk scoring & bucketing</span>
             </div>
             
             <div className="feature-item">
@@ -124,7 +124,7 @@ const ProductOverview = () => {
                   </defs>
                 </svg>
               </div>
-              <span className="feature-text">Faster, audit-ready reporting and dashboards for management & regulators</span>
+              <span className="feature-text">Configurable signal library & thresholds</span>
             </div>
           </div>
         </div>

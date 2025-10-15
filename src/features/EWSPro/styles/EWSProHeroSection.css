@@ -1,6 +1,6 @@
-/* CredProHeroSection.css — hero only; nav handled by SiteNavigation.css */
+/* EWSProHeroSection.css — hero only; nav handled by SiteNavigation.css */
 
-.credpro-hero-section {
+.ewspro-hero-section {
   position: relative;
   width: 100%;
   min-height: 614px;
@@ -47,7 +47,7 @@
 
 /* Headline (force Poppins to defeat old Iceland rules) */
 .hero-title,
-.credpro-brand,
+.ewspro-brand,
 .title-text {
   font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif !important;
   color: #fff;
@@ -64,7 +64,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.credpro-brand { font-weight: 700; font-size: 40px; }
+.ewspro-brand { font-weight: 700; font-size: 40px; }
 .title-text   { font-weight: 700; font-size: 32px; }
 
 /* Copy */
@@ -118,7 +118,7 @@
   }
   .hero-image-section { order: -1; max-width: 400px; }
   .hero-title { font-size: 28px; }
-  .credpro-brand { font-size: 36px; }
+  .ewspro-brand { font-size: 36px; }
   .title-text { font-size: 28px; }
 }
 @media (max-width: 900px) {
@@ -131,12 +131,12 @@
   }
   .hero-buttons { flex-direction: column; align-items: center; gap: 16px; }
   .hero-title { font-size: 24px; }
-  .credpro-brand { font-size: 28px; }
+  .ewspro-brand { font-size: 28px; }
   .title-text { font-size: 24px; }
   .hero-description { font-size: 14px; }
   .hero-image-section { max-width: 300px; }
 }
 @media (max-width: 480px) {
-  .credpro-hero-section { min-height: 500px; }
+  .ewspro-hero-section { min-height: 500px; }
   .hero-main-content { padding: var(--nav-h, 60px) 16px 16px; }
 }

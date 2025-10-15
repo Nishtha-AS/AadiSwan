@@ -51,8 +51,8 @@ const NAV_ITEMS = {
     { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions.", path: "/credpro" },
     { logo: cadProLogo, name: "AS CADPro", desc: "Simplifies credit administration with seamless, transparent workflows.", path: "/cadpro" },
     { logo: camProLogo, name: "AS CAMPro", desc: "AI-powered engine for smarter, insight-driven credit appraisals.", path: "/campro" },
-    { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.", path: "/credpro" },
-    { logo: ewsProLogo, name: "AS EWSPro", desc: "Provides early warning signals to mitigate credit risks proactively.", path: "/credpro" },
+    { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.", path: "/esmspro" },
+    { logo: ewsProLogo, name: "AS EWSPro", desc: "Provides early warning signals to mitigate credit risks proactively.", path: "/ewspro" },
   ],
 
   // Solutions Data (for Solutions dropdown - left column)

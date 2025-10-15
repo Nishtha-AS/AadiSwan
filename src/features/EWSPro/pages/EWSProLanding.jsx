@@ -1,17 +1,16 @@
-// src/features/CADPro/pages/CADProLanding.jsx
 import React from 'react';
 import Footer from '../../../components/Footer';
-import './CADProLanding.css';
+import './EWSProLanding.css';
 
 import SiteNavigation from '../../../components/SiteNavigation';
 import '../../../components/SiteNavigation.css';
 
-import CADProHeroSection from '../../CADPro/components/CADProHeroSection';
-import ProductOverview from '../../CADPro/components/ProductOverview';
-import InputDesign from '../../CADPro/components/InputDesign';
-import ApiEcosystem from '../../CADPro/components/ApiEcosystem';
-import IndustriesUseCases from '../../CADPro/components/IndustriesUseCases';
-import FAQSection from '../../CADPro/components/FAQSection';
+import EWSProHeroSection from '../components/EWSProHeroSection';
+import ProductOverview from '../components/ProductOverview';
+import InputDesign from '../components/InputDesign';
+import ApiEcosystem from '../components/ApiEcosystem';
+import IndustriesUseCases from '../components/IndustriesUseCases';
+import FAQSection from '../components/FAQSection';
 
 import credProLogo from '../../../assets/CredPro_logo.png';
 import cadProLogo from '../../../assets/CADPro_logo.png';
@@ -57,11 +56,11 @@ const assetClasses = [
   { label: 'NBFC Funding',          icon: nbfcLogo           },
 ];
 
-export default function CADProLanding() {
+export default function EWSProLanding() {
   return (
     <div className="landing-page" style={{ '--nav-h': '88px' }}>
       <SiteNavigation
-        variant="cadpro"
+        variant="ewspro"
         overlay
         brandHref="/"
         leadingItems={[ { label: 'Home', href: '/' } ]}
@@ -75,7 +74,7 @@ export default function CADProLanding() {
         ]}
       />
 
-      <CADProHeroSection />
+      <EWSProHeroSection />
       <ProductOverview />
       <InputDesign />
       <ApiEcosystem />
