@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductsSection.css';
 
@@ -30,7 +30,7 @@ const products = [
     key: 'campro',
     title: 'AS CAMPro',
     logo: camProLogo,
-    to: '/campro', // linked to your App.jsx route
+    to: '/campro',
     desc:
       'CAMPro is an AI- and ML-powered engine that automates credit appraisals by generating analyst-style memos, projecting financials, benchmarking peers, and delivering sentiment analysis with forward-looking metrics for faster, consistent lending decisions.',
   },
@@ -38,7 +38,7 @@ const products = [
     key: 'esmspro',
     title: 'AS ESMSPro',
     logo: esmsProLogo,
-    to: '/esmspro', // add route when ready
+    to: '/esmspro',
     desc:
       'ESMSPro integrates environmental & social risk criteria into lending processes, enabling assessments, monitoring, and reporting that support responsible, sustainable financing practices.',
   },
@@ -46,15 +46,52 @@ const products = [
     key: 'ewspro',
     title: 'AS EWSPro',
     logo: ewsProLogo,
-    to: '/ewspro', // add route when ready
+    to: '/ewspro',
     desc:
       'EWSPro delivers early warning signals by monitoring behavioral, financial, and non-financial indicators—enabling proactive risk management and timely interventions to reduce defaults.',
   },
 ];
 
 export default function ProductsSection() {
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    // Title + subtitle
+    const headBits = root.querySelectorAll('.op-title, .op-subtitle');
+    const cards = root.querySelectorAll('.op-card');
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('op-in');
+            // Stop watching after first reveal
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    headBits.forEach((el, i) => {
+      el.style.setProperty('--d', `${i * 120}ms`);
+      io.observe(el);
+    });
+
+    cards.forEach((card, i) => {
+      // stagger each card
+      card.style.setProperty('--d', `${i * 90 + 180}ms`);
+      io.observe(card);
+    });
+
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section className="our-products v2" aria-labelledby="products-title">
+    <section className="our-products v2" aria-labelledby="products-title" ref={rootRef}>
       <div className="op-shell">
         <h2 id="products-title" className="op-title">OUR PRODUCTS</h2>
         <p className="op-subtitle">
@@ -79,8 +116,16 @@ export default function ProductsSection() {
             return (
               <article key={key} className="op-card">
                 {to && to !== '#'
-                  ? <Link to={to} className="op-card-link" aria-label={`${title} details`}>{cardInner}</Link>
-                  : <div className="op-card-link" aria-label={`${title} details`}>{cardInner}</div>}
+                  ? (
+                    <Link to={to} className="op-card-link" aria-label={`${title} details`}>
+                      {cardInner}
+                    </Link>
+                  )
+                  : (
+                    <div className="op-card-link" aria-label={`${title} details`}>
+                      {cardInner}
+                    </div>
+                  )}
               </article>
             );
           })}

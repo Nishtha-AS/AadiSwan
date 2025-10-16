@@ -2,17 +2,18 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./MultiAssetSolutions.css";
 
-/** Icons — reuse the ones you already import elsewhere */
+/** Icons */
 import workingCapitalLogo from "../../../assets/WCM_logo.png";
 import lapLogo from "../../../assets/load_against_property_logo.png";
 import supplyChainLogo from "../../../assets/supply_chain_logo.png";
 import projectFinanceLogo from "../../../assets/project_finance_logo.png";
 import nbfcLogo from "../../../assets/NBFC_logo.png";
 
-/** Trade Finance icon (placeholder kept from your previous card) */
+/** Trade Finance icon (placeholder) */
 const tradeFinanceIcon =
   "https://api.builder.io/api/v1/image/assets/TEMP/7a9df0f34c7558d9bd60944b38d717ca53ae56ed?width=182";
 
+/** Cards mapped to routes present in App.jsx */
 const CARDS = [
   {
     title: "WORKING CAPITAL",
@@ -42,7 +43,7 @@ const CARDS = [
   {
     title: "TRADE FINANCE",
     icon: tradeFinanceIcon,
-    to: "#", // add a route when available, e.g. "/tradefinance"
+    to: null, // no route in App.jsx yet
   },
 ];
 
@@ -87,19 +88,20 @@ export default function MultiAssetSolutions() {
           {CARDS.map(({ title, icon, to }, i) => {
             const CardInner = (
               <>
-                <div className="mas-icon-wrap">
+                <div className="mas-icon-wrap" aria-hidden="true">
                   <img src={icon} alt="" className="mas-icon" />
                 </div>
                 <div className="mas-card-title">{title}</div>
               </>
             );
 
-            // Link when we have a route; otherwise render a <div> (still styled)
-            return to && to !== "#" ? (
+            return to ? (
               <Link
                 key={title}
                 to={to}
                 className="mas-card"
+                title={title}
+                aria-label={title}
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 {CardInner}
@@ -107,10 +109,11 @@ export default function MultiAssetSolutions() {
             ) : (
               <div
                 key={title}
-                className="mas-card"
+                className="mas-card mas-card--disabled"
+                role="link"
+                aria-disabled="true"
+                title={`${title} (Coming Soon)`}
                 style={{ transitionDelay: `${i * 60}ms` }}
-                role="button"
-                tabIndex={0}
               >
                 {CardInner}
               </div>

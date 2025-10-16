@@ -5,7 +5,7 @@ import React from 'react';
 import SiteNavigation from '../../../components/SiteNavigation';
 import Footer from '../../../components/Footer';
 
-// Home sections (use these components instead of inline markup)
+// Home sections
 import StatisticsSection from '../components/StatisticsSection';
 import ConsultancySection from '../components/ConsultancySection';
 import CustomerOnboarding1 from '../components/CustomerOnboarding1';
@@ -30,15 +30,18 @@ const LandingPage = () => {
       <SiteNavigation overlay activeLabel="Home" />
 
       {/* HERO */}
+      {/* NOTE: kept the same elements, just added animation delays via CSS variables */}
       <div className="hero-content">
-        <h1 className="hero-title">TRANSFORM YOUR LENDING AND MONITORING PROCESS</h1>
-        <p className="hero-description">
+        <h1 className="hero-title a-fade-up" style={{ '--d': '120ms' }}>
+          TRANSFORM YOUR LENDING AND MONITORING PROCESS
+        </h1>
+        <p className="hero-description a-fade-up" style={{ '--d': '260ms' }}>
           A new paradigm of digital-led technologies and connected experiences awaits your
           financial operations with AadiSwan. Embrace our advanced, platform-led solutions to
           accelerate and adapt to the evolving digital era, transforming your business processes
           for optimal efficiency and precision.
         </p>
-        <div className="hero-buttons">
+        <div className="hero-buttons a-fade-up" style={{ '--d': '420ms' }}>
           <button className="book-demo-btn">Book A Demo</button>
           <button className="call-us-btn">Call Us</button>
         </div>
@@ -46,7 +49,8 @@ const LandingPage = () => {
 
       {/* Hero Side Image */}
       <img
-        className="hero-side-image"
+        className="hero-side-image a-fade-up a-float"
+        style={{ '--d': '380ms' }}
         src="https://api.builder.io/api/v1/image/assets/TEMP/b5ce5c673af9fe6d1ea145788a66694305d47e00?width=1172"
         alt="Hero Art"
       />
@@ -100,23 +104,23 @@ const LandingPage = () => {
         <CustomerOnboarding1 />
       </section>
 
-      {/* Products (component) */}
+      {/* Products */}
       <ProductsSection />
 
-      {/* Consultancy (component) */}
+      {/* Consultancy */}
       <section className="consultancy-section-wrapper">
         <ConsultancySection />
       </section>
 
-      {/* Multi-Asset Solutions (component) */}
+      {/* Multi-Asset Solutions */}
       <MultiAssetSolutions />
 
-      {/* Statistics (component) */}
+      {/* Statistics */}
       <section className="statistics-section-wrapper">
         <StatisticsSection />
       </section>
 
-      {/* Platform Automation / Contact (component) */}
+      {/* Platform Automation / Contact */}
       <section className="platform-automation-section" id="contact">
         <InputDesign />
       </section>

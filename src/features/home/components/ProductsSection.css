@@ -21,6 +21,23 @@
 
 .op-shell { max-width: 1200px; margin: 0 auto; }
 
+/* —— REVEAL BASICS —— */
+.op-title, .op-subtitle, .op-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity .6s ease,
+    transform .6s cubic-bezier(.17,.67,.26,1);
+  transition-delay: var(--d, 0ms);
+}
+.op-in.op-title,
+.op-in.op-subtitle,
+.op-in.op-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Title & subtitle */
 .op-title {
   font-family: 'Iceland', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size: clamp(28px, 4.6vw, 48px);
@@ -31,7 +48,6 @@
   background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-
 .op-subtitle {
   margin: 10px auto clamp(24px, 3vw, 40px);
   max-width: 900px;
@@ -62,6 +78,7 @@
     0 20px 50px rgba(8, 34, 60, 0.20),
     inset 0 1px 0 rgba(255,255,255,0.35);
   overflow: hidden;
+  will-change: transform, opacity;
 }
 
 .op-card-link {
@@ -71,7 +88,7 @@
   text-decoration: none;
 }
 
-/* gradient border halo */
+/* gradient border halo with slow, subtle glow */
 .op-card-border {
   position: absolute;
   inset: -1px;
@@ -87,7 +104,14 @@
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: .55;
+  animation: op-border-glow 7s linear infinite;
+}
+
+@keyframes op-border-glow {
+  0%   { opacity: .42; }
+  50%  { opacity: .62; }
+  100% { opacity: .42; }
 }
 
 /* content */
@@ -96,10 +120,13 @@
   height: clamp(26px, 5.6vw, 44px);
   width: auto;
   margin: 4px 0 clamp(10px, 1.2vw, 14px);
-  background: transparent !important; /* ensure no background behind logos */
+  background: transparent !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  transform: translateY(4px);
+  transition: transform .25s ease, opacity .25s ease;
 }
+.op-card-link:hover .op-logo { transform: translateY(0); }
 
 .op-card-title {
   margin: 0 0 6px 0;
@@ -149,3 +176,9 @@
 
 .op-arrow { transition: transform 160ms ease; }
 .op-card-link:hover .op-arrow { transform: translateX(4px); }
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce){
+  .op-title, .op-subtitle, .op-card { transition: none; transform: none; opacity: 1; }
+  .op-card-border { animation: none; }
+}

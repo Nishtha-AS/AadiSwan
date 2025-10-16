@@ -1,212 +1,229 @@
-/* API Ecosystem Section - Figma-accurate design */
+/* ============================================================
+   API Ecosystem — Premium, border-less cards (FINAL)
+   • 5 CARDS PER ROW on desktop (hard override)
+   • Non-bold titles
+   • Subtle depth + hover lift
+   ============================================================ */
+
+/* Section backdrop */
 .api-ecosystem-section {
   width: 100%;
-  background: #FFF;
   position: relative;
-  padding: 80px 0;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+  padding: clamp(56px, 7vw, 96px) 0;
+  background:
+    radial-gradient(1200px 420px at 15% -10%, rgba(86,174,255,0.10), transparent 60%),
+    radial-gradient(1200px 420px at 85% -12%, rgba(0,55,96,0.08), transparent 60%),
+    #ffffff;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
+/* Container */
 .api-ecosystem-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1380px;              /* a touch narrower so 5 cols fit comfortably */
   margin: 0 auto;
-  padding: 0 clamp(32px, 8.5vw, 122px);
+  padding: 0 32px;                /* balanced side padding */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Title with gradient styling matching existing patterns */
+/* Headings */
 .api-ecosystem-title {
-  width: 384px;
-  margin: 0 0 24px 0;
+  margin: 0 0 10px 0;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.40);
-  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 40px;
+  font-family: Iceland, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(28px, 4.5vw, 40px);
   font-weight: 400;
-  line-height: normal;
-  background: linear-gradient(90deg, #036CBC 39.42%, #003760 100%);
-  background-clip: text;
+  line-height: 1.1;
+  letter-spacing: .01em;
+  background: linear-gradient(90deg, #036CBC 40%, #003760 100%);
   -webkit-background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(255,255,255,.35);
 }
 
-/* Description text */
 .api-ecosystem-description {
-  width: 100%;
-  max-width: 1201px;
-  margin: 0 0 77px 0;
-  color: #003760;
+  max-width: 1100px;
+  margin: 4px 0 clamp(28px, 4.5vw, 56px);
+  color: #0f3656;
   text-align: center;
-  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.7;
+  opacity: .95;
 }
 
-/* API Grid Container */
+/* ========================= GRID ========================= */
+
 .api-grid {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1380px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: clamp(16px, 2.2vw, 24px);
   align-items: center;
 }
 
-/* Grid Rows */
-.api-grid-row {
-  display: grid;
-  grid-template-columns: repeat(5, 219px);
-  gap: 20px;
-  justify-content: center;
-  width: 100%;
+/* >>> FORCE 5 columns on desktop */
+@media (min-width: 1200px) {
+  .api-ecosystem-section .api-grid .api-grid-row {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    column-gap: 16px !important;
+    row-gap: 22px !important;
+    align-items: stretch !important;
+    width: 100%;
+  }
 }
 
-/* Individual API Service Cards */
-.api-service-card {
-  width: 219px;
-  height: 215px;
-  border-radius: 23px;
-  border: 3px solid #036CBC;
-  background: #FFF;
+/* graceful fallbacks */
+@media (max-width: 1199.98px) and (min-width: 992px) {
+  .api-ecosystem-section .api-grid .api-grid-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    column-gap: 18px !important;
+    row-gap: 22px !important;
+    width: 100%;
+  }
+}
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .api-ecosystem-section .api-grid .api-grid-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    column-gap: 18px !important;
+    row-gap: 20px !important;
+    width: 100%;
+  }
+}
+@media (max-width: 767.98px) and (min-width: 520px) {
+  .api-ecosystem-section .api-grid .api-grid-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    column-gap: 16px !important;
+    row-gap: 18px !important;
+    width: 100%;
+  }
+}
+@media (max-width: 519.98px) {
+  .api-ecosystem-section .api-grid .api-grid-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    row-gap: 16px !important;
+    width: 100%;
+  }
+}
+
+/* ====================== CARD ======================= */
+/* Border-less glass card with soft halo and lift */
+.api-ecosystem-section .api-service-card {
+  position: relative;
+  min-width: 0 !important;                       /* prevent overflow in grid */
+  height: clamp(160px, 18.5vw, 194px);
+  padding: clamp(12px, 1.6vw, 16px);
+  border-radius: 18px;
+  border: none;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(140%) blur(4px);
+  box-shadow:
+    0 14px 34px rgba(12,54,96,.10),
+    inset 0 1px 0 rgba(255,255,255,.65);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
+  transition: transform .22s ease, box-shadow .22s ease;
 }
 
-/* API Service Icon Container */
-.api-service-icon {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 22px;
+/* soft outer ring (not a hard border) */
+.api-ecosystem-section .api-service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(140% 80% at 50% -20%, rgba(86,174,255,.16), transparent 60%),
+    linear-gradient(135deg, rgba(3,108,188,.18), rgba(0,55,96,.18));
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+          mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1px;
+  opacity: .55;
 }
 
-.api-service-icon img {
-  max-width: 100%;
-  max-height: 100%;
+.api-ecosystem-section .api-service-card:hover,
+.api-ecosystem-section .api-service-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow:
+    0 22px 48px rgba(12,54,96,.14),
+    inset 0 1px 0 rgba(255,255,255,.75);
+}
+
+/* Icon capsule */
+.api-ecosystem-section .api-service-icon {
+  width: clamp(48px, 5vw, 64px);
+  height: clamp(48px, 5vw, 64px);
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  margin-top: clamp(6px, 1vw, 10px);
+  background:
+    radial-gradient(65% 65% at 50% 35%, rgba(3,108,188,.10), transparent 70%),
+    linear-gradient(180deg, rgba(3,108,188,.10), rgba(0,55,96,.06));
+  box-shadow:
+    0 6px 14px rgba(3,108,188,.10),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  transition: transform .2s ease;
+}
+
+.api-ecosystem-section .api-service-card:hover .api-service-icon {
+  transform: translateY(-2px);
+}
+
+.api-ecosystem-section .api-service-icon img {
+  max-width: 70%;
+  max-height: 70%;
   object-fit: contain;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,.5));
 }
 
-/* API Service Name */
-.api-service-name {
+/* Title — NOT bold */
+.api-ecosystem-section .api-service-name {
   width: 100%;
-  margin: 0;
-  color: #036CBC;
+  margin: 0 0 clamp(8px, 1.2vw, 12px) 0;
   text-align: center;
-  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 28px;
-  margin-bottom: 20px;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, Arial, sans-serif; /* no Iceland here */
+  font-weight: 400;                               /* <<< not bold */
+  font-size: clamp(15px, 1.55vw, 18px);
+  line-height: 1.28;
+  letter-spacing: 0.15px;
+  background: linear-gradient(90deg, #036CBC 30%, #003760 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Responsive Design */
-@media (max-width: 1440px) {
-  .api-ecosystem-container {
-    padding: 0 clamp(20px, 5vw, 80px);
-  }
-  
-  .api-grid-row {
-    grid-template-columns: repeat(5, 1fr);
-    max-width: 1200px;
-    gap: clamp(15px, 2vw, 20px);
-  }
-  
-  .api-service-card {
-    width: 100%;
-    min-width: 180px;
-    height: clamp(180px, 20vw, 215px);
-  }
-}
-
-@media (max-width: 1200px) {
-  .api-grid-row {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 960px;
-  }
-}
-
+/* =============== Misc responsive polish =============== */
 @media (max-width: 900px) {
-  .api-ecosystem-section {
-    padding: 60px 0;
-  }
-  
-  .api-ecosystem-title {
-    width: 100%;
-    font-size: clamp(28px, 5vw, 40px);
-    margin-bottom: 20px;
-  }
-  
-  .api-ecosystem-description {
-    font-size: clamp(14px, 1.6vw, 16px);
-    margin-bottom: 50px;
-    padding: 0 20px;
-  }
-  
-  .api-grid-row {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 720px;
-  }
-  
-  .api-service-card {
-    height: clamp(160px, 18vw, 180px);
-    padding: 15px;
-  }
-  
-  .api-service-icon {
-    width: 60px;
-    height: 60px;
-    margin-top: 15px;
-  }
-  
-  .api-service-name {
-    font-size: clamp(18px, 2.5vw, 24px);
-    line-height: 24px;
-    margin-bottom: 15px;
-  }
+  .api-ecosystem-section { padding: 56px 0; }
+  .api-ecosystem-description { margin-bottom: clamp(28px, 6vw, 40px); padding: 0 8px; }
 }
-
 @media (max-width: 640px) {
-  .api-grid-row {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 480px;
-  }
-  
-  .api-service-card {
-    height: clamp(140px, 16vw, 160px);
-    padding: 12px;
-  }
-  
-  .api-service-icon {
-    width: 50px;
-    height: 50px;
-    margin-top: 10px;
-  }
-  
-  .api-service-name {
-    font-size: clamp(16px, 2.2vw, 20px);
-    line-height: 22px;
-  }
+  .api-ecosystem-section .api-service-card { height: clamp(150px, 32vw, 176px); }
+  .api-ecosystem-section .api-service-icon { border-radius: 12px; }
 }
 
-@media (max-width: 480px) {
-  .api-grid-row {
-    grid-template-columns: 1fr;
-    max-width: 280px;
-  }
-  
-  .api-service-card {
-    height: 140px;
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .api-ecosystem-section .api-service-card,
+  .api-ecosystem-section .api-service-icon {
+    transition: none !important;
   }
 }

@@ -27,7 +27,7 @@ import supportWorkflowLogo from "../assets/support_workflow_logo.png";
 import tpdLogo from "../assets/TPD_Logo.png";
 
 /* ---- Asset Classes logos ---- */
-import workingCapitalLogo from "../assets/WCM_logo.jpg";
+import workingCapitalLogo from "../assets/WCM_logo.png";
 import supplyChainLogo from "../assets/supply_chain_logo.png";
 import projectFinanceLogo from "../assets/project_finance_logo.png";
 import lapLogo from "../assets/load_against_property_logo.png";
@@ -36,17 +36,12 @@ import nbfcLogo from "../assets/NBFC_logo.png";
 /* ===================== CENTRALIZED NAVIGATION DATA ===================== */
 
 const NAV_ITEMS = {
-  // Static links appearing before Products/Solutions
   LEADING_ITEMS: [{ label: "Home", href: "/" }],
-
-  // Static links appearing after Products/Solutions
   TRAILING_ITEMS: [
     { label: "About Us", href: "/aboutUs" },
     { label: "Blog", href: "/blog" },
     { label: "Contact Us", href: "/contact" },
   ],
-
-  // Products Data (for Products dropdown)
   PRODUCTS: [
     { logo: credProLogo, name: "AS CredPro", desc: "Automates end-to-end lending processes for faster, compliant credit decisions.", path: "/credpro" },
     { logo: cadProLogo, name: "AS CADPro", desc: "Simplifies credit administration with seamless, transparent workflows.", path: "/cadpro" },
@@ -54,8 +49,6 @@ const NAV_ITEMS = {
     { logo: esmsProLogo, name: "AS ESMSPro", desc: "Enables responsible lending with ESG-focused risk assessments.", path: "/esmspro" },
     { logo: ewsProLogo, name: "AS EWSPro", desc: "Provides early warning signals to mitigate credit risks proactively.", path: "/ewspro" },
   ],
-
-  // Solutions Data (for Solutions dropdown - left column)
   SOLUTIONS_PRIMARY: [
     { label: "Underwriting Studio", icon: underwritingStudioLogo, path: "/underwriting" },
     { label: "Document Management and Template Engine", icon: dmteLogo, path: "/documentmanagement" },
@@ -64,8 +57,6 @@ const NAV_ITEMS = {
     { label: "Support Workflows- Legal, Valuation and more", icon: supportWorkflowLogo, path: "/support" },
     { label: "Third Party Integrations", icon: tpdLogo, path: "/integrations" },
   ],
-
-  // Asset Classes Data (for Solutions dropdown - middle column)
   SOLUTIONS_SECONDARY: [
     { label: "Working Capital Loans", icon: workingCapitalLogo, path: "/workingcapital" },
     { label: "Supply Chain Finance", icon: supplyChainLogo, path: "/supplychain" },
@@ -75,11 +66,12 @@ const NAV_ITEMS = {
   ],
 };
 
-/* ---------- Helper: desktop dropdown positioning (Keep this as is) ---------- */
+/* ---------- Helper: desktop dropdown positioning (kept for Solutions) ---------- */
 function positionMenu(triggerEl, menuEl) {
   if (!triggerEl || !menuEl) return;
   if (window.innerWidth < 992) { menuEl.style.cssText = ""; return; }
 
+  // Center attempt then clamp to viewport edges (Solutions only)
   menuEl.style.left = "50%";
   menuEl.style.right = "";
   menuEl.style.transform = "translateX(-50%) translateY(0)";
@@ -100,8 +92,7 @@ export default function SiteNavigation({
   variant,
   overlay = true,
   brandHref = "/",
-  activeLabel, // ONLY activeLabel and rightContent are kept as props
-
+  activeLabel,
   rightContent,
 }) {
   const products = NAV_ITEMS.PRODUCTS;
@@ -139,6 +130,7 @@ export default function SiteNavigation({
     setOpenSolutions(false);
   }, []);
 
+  // Close on outside click (desktop)
   useEffect(() => {
     const onDocClick = (e) => {
       if (isMobile) return;
@@ -151,6 +143,7 @@ export default function SiteNavigation({
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [closeAll, isMobile]);
 
+  // ESC closes
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") {
@@ -162,27 +155,23 @@ export default function SiteNavigation({
     return () => document.removeEventListener("keydown", onKey);
   }, [closeAll]);
 
+  // Keep Solutions positioned on resize while open
   useEffect(() => {
     const handle = () => {
       if (window.innerWidth >= 992) {
-        if (openProducts) positionMenu(prodRef.current, productsMenuRef.current);
         if (openSolutions) positionMenu(solRef.current, solutionsMenuRef.current);
+        // Products uses fixed+center in CSS; no JS positioning needed
       }
     };
     handle();
     window.addEventListener("resize", handle);
     return () => window.removeEventListener("resize", handle);
-  }, [openProducts, openSolutions]);
+  }, [openSolutions]);
 
   const productCols = [products.slice(0, 3), products.slice(3)];
+  const onNavigate = () => { closeAll(); setDrawerOpen(false); };
 
-  // helpers: clicking a Link should close menus/drawer
-  const onNavigate = () => {
-    closeAll();
-    setDrawerOpen(false);
-  };
-
-  /* ---------- Mobile list helper (Keep this as is) ---------- */
+  /* ---------- Mobile list helper ---------- */
   const MobileList = ({ items, withDesc }) => (
     <ul className="m-list" role="menu">
       {items.map((p) => (
@@ -198,6 +187,23 @@ export default function SiteNavigation({
       ))}
     </ul>
   );
+
+  /* ---------- Desktop hover handlers (no click needed) ---------- */
+  const handleProductsEnter = () => {
+    if (isMobile) return;
+    setOpenSolutions(false);
+    setOpenProducts(true);
+    // Products panel is fixed+centered; no positionMenu call
+  };
+  const handleProductsLeave = () => { if (!isMobile) setOpenProducts(false); };
+
+  const handleSolutionsEnter = () => {
+    if (isMobile) return;
+    setOpenProducts(false);
+    setOpenSolutions(true);
+    requestAnimationFrame(() => positionMenu(solRef.current, solutionsMenuRef.current));
+  };
+  const handleSolutionsLeave = () => { if (!isMobile) setOpenSolutions(false); };
 
   return (
     <header
@@ -229,19 +235,23 @@ export default function SiteNavigation({
             ))}
 
             {/* Products */}
-            <div className="menu-item dropdown" role="none" ref={prodRef}>
+            <div
+              className="menu-item dropdown"
+              role="none"
+              ref={prodRef}
+              onMouseEnter={handleProductsEnter}
+              onMouseLeave={handleProductsLeave}
+            >
               <button
                 type="button"
                 className="menu-trigger"
                 aria-haspopup="menu"
                 aria-expanded={openProducts}
                 aria-controls="products-menu"
-                onClick={() => {
-                  const next = !openProducts;
-                  setOpenProducts(next);
-                  if (next) setOpenSolutions(false);
-                  requestAnimationFrame(() => positionMenu(prodRef.current, productsMenuRef.current));
-                }}
+                /* Desktop opens on hover; keep click only for accessibility/focus */
+                onFocus={handleProductsEnter}
+                onBlur={handleProductsLeave}
+                onClick={(e) => { if (isMobile) e.preventDefault(); }} /* no-op on desktop */
               >
                 <span>Products</span>
                 <span className="caret-circle" aria-hidden="true">
@@ -251,7 +261,13 @@ export default function SiteNavigation({
                 </span>
               </button>
 
-              <div id="products-menu" ref={productsMenuRef} className={`dropdown-menu products-dropdown ${openProducts ? "is-open" : ""}`} role="menu" aria-label="Products">
+              <div
+                id="products-menu"
+                ref={productsMenuRef}
+                className={`dropdown-menu products-dropdown ${openProducts ? "is-open" : ""}`}
+                role="menu"
+                aria-label="Products"
+              >
                 <div className="dropdown-columns products-columns">
                   {/* Col 1 */}
                   <div className="dropdown-column products-column">
@@ -303,19 +319,22 @@ export default function SiteNavigation({
             </div>
 
             {/* Solutions */}
-            <div className="menu-item dropdown" role="none" ref={solRef}>
+            <div
+              className="menu-item dropdown"
+              role="none"
+              ref={solRef}
+              onMouseEnter={handleSolutionsEnter}
+              onMouseLeave={handleSolutionsLeave}
+            >
               <button
                 type="button"
                 className="menu-trigger"
                 aria-haspopup="menu"
                 aria-expanded={openSolutions}
                 aria-controls="solutions-menu"
-                onClick={() => {
-                  const next = !openSolutions;
-                  setOpenSolutions(next);
-                  if (next) setOpenProducts(false);
-                  requestAnimationFrame(() => positionMenu(solRef.current, solutionsMenuRef.current));
-                }}
+                onFocus={handleSolutionsEnter}
+                onBlur={handleSolutionsLeave}
+                onClick={(e) => { if (isMobile) e.preventDefault(); }}
               >
                 <span>Solutions</span>
                 <span className="caret-circle" aria-hidden="true">
@@ -325,7 +344,13 @@ export default function SiteNavigation({
                 </span>
               </button>
 
-              <div id="solutions-menu" ref={solutionsMenuRef} className={`dropdown-menu solutions-dropdown ${openSolutions ? "is-open" : ""}`} role="menu" aria-label="Solutions">
+              <div
+                id="solutions-menu"
+                ref={solutionsMenuRef}
+                className={`dropdown-menu solutions-dropdown ${openSolutions ? "is-open" : ""}`}
+                role="menu"
+                aria-label="Solutions"
+              >
                 <div className="dropdown-columns solutions-columns">
                   {/* Solutions list (LEFT) */}
                   <div className="dropdown-column col col--left">
@@ -417,7 +442,7 @@ export default function SiteNavigation({
               <button className="m-close" aria-label="Close menu" onClick={() => setDrawerOpen(false)}>×</button>
             </div>
 
-            {/* Top links (Home / About / Blog / Contact etc.) */}
+            {/* Top links */}
             <nav className="m-nav" aria-label="Primary">
               {[...leadingItems, ...trailing].map(({ label, href }) => (
                 <Link key={label} to={href || "#"} className="m-link" onClick={onNavigate}>

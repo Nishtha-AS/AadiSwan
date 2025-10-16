@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland:wght@400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Root wrapper stays neutral */
 .stats-wrap{
   --brand-a:#036CBC;
   --brand-b:#003760;
+  --ink:#0b3e65;
+  --glassA: rgba(134,197,255,.18);
+  --glassB: rgba(3,108,188,.18);
+  --glassBase: rgba(255,255,255,.72);
   background:#fff;
 }
 
-/* ===== HEADING on white (separate from map) ===== */
+/* ---------- Heading ---------- */
 .stats-head{
-  padding: clamp(28px, 6vw, 44px) clamp(16px, 4vw, 40px) 0;
+  padding: clamp(22px, 5.5vw, 40px) clamp(16px, 4vw, 40px) 0;
 }
 .stats-heading{
   margin: 0 auto;
@@ -17,61 +20,73 @@
   text-align: center;
   font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: clamp(28px, 4.6vw, 48px);
-  line-height: 1.15;
-  letter-spacing: .02em;
+  font-size: clamp(24px, 4.4vw, 48px);
   background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
-  -webkit-background-clip: text; background-clip: text;
+  background-clip: text;              /* standard */
+  -webkit-background-clip: text;      /* Safari/Chrome */
   -webkit-text-fill-color: transparent;
 }
 
+/* ---------- Map background for desktop ---------- */
 .stats-body{
-  /* remove the radial-gradient overlay */
-  margin-top: clamp(10px, 1.8vw, 16px);
-  padding: clamp(24px, 5.5vw, 64px) clamp(16px, 4vw, 40px) clamp(40px, 7vw, 90px);
+  margin-top: clamp(8px, 1.6vw, 16px);
+  padding: clamp(18px, 5vw, 60px) clamp(14px, 4vw, 40px) clamp(28px, 7vw, 80px);
   background:
     url("https://api.builder.io/api/v1/image/assets/TEMP/635165c859b1246e4b14802ec2f9f091a4e61ec4?width=2880")
       center / cover no-repeat,
     #ffffff;
+  transition: background 0.3s ease;
 }
 
-/* GRID — 4 across → 2×2 on smaller screens */
+/* ---------- Mobile background: pure white ---------- */
+@media (max-width: 640px){
+  .stats-body{
+    background: #ffffff !important;
+  }
+}
+
+/* ---------- Grid ---------- */
 .stats-grid{
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: clamp(16px, 2.4vw, 28px);
+  grid-template-columns: minmax(220px, 1fr);
+  gap: clamp(12px, 2.6vw, 24px);
 }
-@media (max-width: 980px){
-  .stats-grid{ grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+@media (min-width: 600px){
+  .stats-grid{ grid-template-columns: repeat(2, minmax(240px, 1fr)); }
 }
-@media (max-width: 520px){
-  .stats-grid{ gap: 14px; }
+@media (min-width: 1024px){
+  .stats-grid{ grid-template-columns: repeat(4, minmax(220px, 1fr)); }
 }
 
-/* CARD — translucent glass */
+/* ---------- Card Glass Style ---------- */
 .stat-card{
   position: relative;
-  border-radius: 24px;
-  padding: clamp(18px, 2.2vw, 22px);
-  min-height: 160px;
+  border-radius: 22px;
+  padding: clamp(16px, 2vw, 22px);
+  min-height: 150px;
 
   background:
-    linear-gradient(180deg, rgba(134,197,255,.20), rgba(3,108,188,.20)),
-    rgba(255,255,255,.78);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
+    linear-gradient(180deg, var(--glassA), var(--glassB)),
+    var(--glassBase);
   backdrop-filter: saturate(140%) blur(8px);
-
   border: 1px solid rgba(3,108,188,.18);
-  box-shadow:
-    0 18px 40px rgba(12,54,96,.12),
-    inset 0 1px 0 rgba(255,255,255,.55);
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, opacity .22s ease;
+  box-shadow: 0 18px 40px rgba(12,54,96,.12), inset 0 1px 0 rgba(255,255,255,.55);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
 
   opacity: 0; transform: translateY(12px);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, opacity .22s ease;
 }
+
+@media (max-width: 600px){
+  .stats-wrap{
+    --glassA: rgba(134,197,255,.14);
+    --glassB: rgba(3,108,188,.14);
+    --glassBase: rgba(255,255,255,.64);
+  }
+}
+
 .in-view .stat-card{ opacity: 1; transform: translateY(0); }
 .in-view .stat-card:nth-child(1){ transition-delay: 40ms; }
 .in-view .stat-card:nth-child(2){ transition-delay: 120ms; }
@@ -83,38 +98,43 @@
   border-color: rgba(3,108,188,.32);
   box-shadow: 0 22px 48px rgba(12,54,96,.16), inset 0 1px 0 rgba(255,255,255,.65);
 }
+
 .card-halo{
   position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
   background: radial-gradient(120% 120% at 50% -10%, rgba(86,174,255,.35), transparent 60%);
 }
 
-/* content */
-.stat-top{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 10px; }
-.stat-icon{ flex:0 0 auto; opacity:.9 }
+/* ---------- Text & Icons ---------- */
+.stat-top{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; }
+.stat-icon{ flex:0 0 auto; opacity:.9; }
 
 .stat-number{
   display:flex; align-items:center; gap:6px;
-  color:#0b3e65;
-  font-family: Iceland, -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: clamp(34px, 4.2vw, 56px);
-  line-height: 1;
-  filter: drop-shadow(0 2px 3px rgba(255,255,255,.45));
+  color:var(--ink);
+  font-family:Iceland,system-ui,Roboto,Helvetica,sans-serif;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height:1;
+  filter:drop-shadow(0 2px 3px rgba(255,255,255,.45));
 }
-.stat-number .plus{ font-size:.6em; margin-left:2px; color:#114a76; }
+.stat-number .plus{ font-size:.6em; color:#114a76; }
 .stat-number .dot{
   width:8px; height:8px; border-radius:999px; background:#FF3B3B;
   box-shadow:0 0 0 3px rgba(255,59,59,.18);
 }
 
 .stat-label{
-  text-align:center; color:#0b3e65;
-  font: 700 clamp(14px, 1.7vw, 18px)/1.35 Poppins, -apple-system, Roboto, Helvetica, sans-serif;
-  letter-spacing:.2px;
+  text-align:center; color:var(--ink);
+  font:700 clamp(13px,1.6vw,18px)/1.35 Poppins,system-ui,sans-serif;
 }
 .stat-label div:first-child{ margin-bottom:4px; font-weight:700; }
 .stat-label div:last-child{
-  font-weight:700;
   background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
-  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip: text;              /* standard */
+  -webkit-background-clip: text;      /* Safari / Chrome */
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .stat-card, .in-view .stat-card{ transition:none; transform:none; opacity:1; }
 }

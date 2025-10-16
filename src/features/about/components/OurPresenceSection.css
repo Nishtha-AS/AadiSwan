@@ -390,10 +390,17 @@
     gap: 15px;
   }
 
-  .book-demo-button,
+  .book-demo-button {
+    width: 150px;
+    height: 42px;
+    font-size: 16px;
+
+   
   .call-us-button {
     width: 150px;
     height: 42px;
     font-size: 16px;
+     color:#036CBC !important;
+  }
   }
 }
