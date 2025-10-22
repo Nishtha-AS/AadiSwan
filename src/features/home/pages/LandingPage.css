@@ -217,7 +217,7 @@ html, body { width: 100%; margin: 0; padding: 0; overflow-x: hidden; }
   flex-direction: column;
   align-items: center;
   padding: 0 var(--pad-x);
-  margin-top: 0 !important;
+  margin-top: 60px !important;
 }
 
 .our-clients-section .client-card{
@@ -283,4 +283,14 @@ html, body { width: 100%; margin: 0; padding: 0; overflow-x: hidden; }
 
 @media (prefers-reduced-motion: reduce){
   .a-fade-up, .a-stagger{ animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ===== PLATFORM AUTOMATION COLOR FIX ===== */
+.platform-automation-section * {
+  color: #025594 !important; /* FIX: Applied dark blue color */
+}
+
+.platform-automation-section .section-title {
+  background: none !important; /* To prevent the title's gradient from overriding */
+  -webkit-text-fill-color: #025594 !important;
 }
