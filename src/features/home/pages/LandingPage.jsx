@@ -4,6 +4,7 @@ import React from 'react';
 // Centralized header & footer
 import SiteNavigation from '../../../components/SiteNavigation';
 import Footer from '../../../components/Footer';
+import herogif from '../../../assets/Home Page hero.gif';
 
 // Home sections
 import StatisticsSection from '../components/StatisticsSection';
@@ -13,47 +14,91 @@ import ProductsSection from '../components/ProductsSection';
 import InputDesign from '../components/InputDesign';
 import MultiAssetSolutions from '../components/MultiAssetSolutions';
 
+// Icons (PNG)
+import sheildicon from '../../../assets/Shield.png';
+import shieldlockicon from '../../../assets/Shield Lock.png';
+import handshakeicon from '../../../assets/Hand Shake.png';
+import sustainabilityicon from '../../../assets/Sustainability 2.png';
+
 // Stylesheet
 import './LandingPage.css';
+
+const HeroCard = ({ src, alt, title, subtitle }) => (
+  <div className="hero-card a-stagger">
+    <div className="hero-card__icon">
+      <img src={src} alt={alt} loading="lazy" />
+    </div>
+    <div className="hero-card__txt">
+      <div className="hero-card__title">{title}</div>
+      <div className="hero-card__sub">{subtitle}</div>
+    </div>
+  </div>
+);
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      {/* Background Hero Image */}
-      <img
-        className="hero-background"
-        src="https://api.builder.io/api/v1/image/assets/TEMP/6d9d205db9aec208c9dcf74e6a6b4a91731efbb6?width=2880"
-        alt=""
-      />
+      {/* Background (GIF) — darker via filter only (no overlay) */}
+      <img className="hero-background" src={herogif} alt="" aria-hidden="true" />
 
       {/* Centralized Navigation */}
       <SiteNavigation overlay activeLabel="Home" />
 
       {/* HERO */}
-      {/* NOTE: kept the same elements, just added animation delays via CSS variables */}
-      <div className="hero-content">
-        <h1 className="hero-title a-fade-up" style={{ '--d': '120ms' }}>
-          TRANSFORM YOUR LENDING AND MONITORING PROCESS
-        </h1>
-        <p className="hero-description a-fade-up" style={{ '--d': '260ms' }}>
-          A new paradigm of digital-led technologies and connected experiences awaits your
-          financial operations with AadiSwan. Embrace our advanced, platform-led solutions to
-          accelerate and adapt to the evolving digital era, transforming your business processes
-          for optimal efficiency and precision.
-        </p>
-        <div className="hero-buttons a-fade-up" style={{ '--d': '420ms' }}>
-          <button className="book-demo-btn">Book A Demo</button>
-          <button className="call-us-btn">Call Us</button>
-        </div>
-      </div>
+      <section className="hero" aria-label="Intro">
+        <div className="hero-shell">
+          <h1 className="hero-title a-fade-up" style={{ '--d': '120ms' }}>
+            TRANSFORM YOUR LENDING AND<br />MONITORING PROCESS
+          </h1>
 
-      {/* Hero Side Image */}
-      <img
-        className="hero-side-image a-fade-up a-float"
-        style={{ '--d': '380ms' }}
-        src="https://api.builder.io/api/v1/image/assets/TEMP/b5ce5c673af9fe6d1ea145788a66694305d47e00?width=1172"
-        alt="Hero Art"
-      />
+          <p className="hero-sub a-fade-up" style={{ '--d': '240ms' }}>
+            Reimagine credit and risk operations with connected, intelligent fintech solutions
+            built to automate decisions, enhance compliance, and deliver speed with precision.
+          </p>
+
+          <div className="hero-ctas a-fade-up" style={{ '--d': '360ms' }}>
+            <a className="btn-primary" href="#contact" aria-label="Book a demo">
+              Book a Demo
+            </a>
+            <a
+              className="btn-ghost"
+              href="tel:+919971777097"
+              aria-label="Call AadiSwan"
+              rel="nofollow"
+            >
+              Call Us
+            </a>
+          </div>
+
+          {/* Feature cards row */}
+          <div className="hero-cards a-fade-up" style={{ '--d': '480ms' }}>
+            <HeroCard
+              src={sheildicon}
+              alt="Regulatory compliance"
+              title="Regulatory"
+              subtitle="Compliance"
+            />
+            <HeroCard
+              src={shieldlockicon}
+              alt="Data security and privacy"
+              title="Data Security"
+              subtitle="and Privacy"
+            />
+            <HeroCard
+              src={handshakeicon}
+              alt="Bank-grade reliability"
+              title="Bank-grade"
+              subtitle="Reliability"
+            />
+            <HeroCard
+              src={sustainabilityicon}
+              alt="Sustainability and ESG"
+              title="Sustainability"
+              subtitle="and ESG"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* OUR CLIENTS */}
       <section className="our-clients-section">
@@ -81,7 +126,6 @@ const LandingPage = () => {
                     />
                   </div>
                 )),
-                // duplicate for seamless marquee loop
                 ...clientIds.map((id) => (
                   <div key={`${id}-dup`} className="client-card" aria-hidden="true">
                     <img
