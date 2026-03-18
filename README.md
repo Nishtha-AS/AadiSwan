@@ -1,12 +1,44 @@
-# React + Vite
+# AadiSwan Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The AadiSwan Website is the corporate web platform for AadiSwan, built to present the organization’s profile, products, solutions, and digital capabilities in a clean, modern, and responsive format. It serves as the primary digital presence for showcasing AadiSwan’s offerings across credit technology, risk management, and enterprise workflow solutions.
 
-Currently, two official plugins are available:
+Live Website: https://aadi-swan-theta.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository contains the frontend codebase for the AadiSwan corporate website, developed using React and Vite.
 
-## Expanding the ESLint configuration
+The project is built on a lightweight React + Vite setup that enables fast development, hot module replacement (HMR), and optimized production builds. Vite provides a modern build toolchain with faster startup and improved performance compared to traditional bundlers.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tech Stack:
+- React
+- Vite
+- JavaScript
+- CSS
+
+Key Features:
+- Corporate website interface for AadiSwan
+- Responsive and modern UI layout
+- Product and solution showcase pages
+- Component-based frontend architecture
+- Fast build and development setup using Vite
+
+Project Setup:
+
+Install dependencies:
+npm install
+
+Run development server:
+npm run dev
+
+Build for production:
+npm run build
+
+Preview production build:
+npm run preview
+
+Status:
+- Frontend developed
+- Deployed on Vercel
+- Active corporate website
+
+Notes:
+This project is based on a React + Vite setup and customized for AadiSwan’s corporate web presence. Default template configurations have been adapted for production use.
